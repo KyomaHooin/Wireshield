@@ -3,7 +3,7 @@
   (general
     (links 42)
     (no_connects 12)
-    (area 106.728572 62.525 185.271429 121.275)
+    (area 113.924999 63.424999 178.075001 119.575001)
     (thickness 1.6)
     (drawings 8)
     (tracks 70)
@@ -280,6 +280,11 @@
       (scale (xyz 0.393701 0.393701 0.393701))
       (rotate (xyz 0 0 0))
     )
+    (model /home/user/rpishield/3dmodels/crystal/crystal/crystal_hc-49s.wrl
+      (at (xyz 0.1 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (module Discret:R3 (layer F.Cu) (tedit 0) (tstamp 58AC5EB0)
@@ -353,6 +358,11 @@
       (net 1 GND))
     (pad 3 thru_hole rect (at -3 4.7 90) (size 3.5 3.5) (drill oval 3 1) (layers *.Cu *.Mask)
       (net 56 /A3))
+    (model /home/user/rpishield/3dmodels/av/conn_av/jack_3.5_sj1-3513-smt.wrl
+      (at (xyz -0.25 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (module Socket_Strips:Socket_Strip_Straight_1x04_Pitch2.54mm (layer F.Cu) (tedit 588DE956) (tstamp 58AC5E34)
@@ -392,6 +402,11 @@
       (at (xyz 0 -0.15 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 270))
+    )
+    (model /home/user/rpishield/3dmodels/strip/pin_strip/pin_strip_4.wrl
+      (at (xyz 0 -0.15 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
     )
   )
 
@@ -507,6 +522,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 270))
     )
+    (model /home/user/rpishield/3dmodels/strip/pin_strip/pin_socket_20x2.wrl
+      (at (xyz -0.05 -0.95 -0.05))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 180 0 90))
+    )
   )
 
   (module Housings_DIP:DIP-28_W7.62mm_Socket (layer F.Cu) (tedit 586281B5) (tstamp 58AC5E80)
@@ -604,6 +624,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
+    (model /home/user/rpishield/3dmodels/IC/pth_circuits/dil_28-300_socket.wrl
+      (at (xyz 0.15 -0.65 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (module Socket_Strips:Socket_Strip_Straight_1x06_Pitch2.54mm (layer F.Cu) (tedit 588DE956) (tstamp 58AC5E8A)
@@ -648,6 +673,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 270))
     )
+    (model /home/user/rpishield/3dmodels/strip/pin_strip/pin_strip_6.wrl
+      (at (xyz 0 -0.25 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (module Connectors:BARREL_JACK (layer F.Cu) (tedit 5861378E) (tstamp 58AC5EA3)
@@ -691,6 +721,11 @@
       (net 1 GND))
     (pad 3 thru_hole rect (at -3 4.7 90) (size 3.5 3.5) (drill oval 3 1) (layers *.Cu *.Mask)
       (net 55 /A1))
+    (model /home/user/rpishield/3dmodels/av/conn_av/jack_3.5_sj1-3513-smt.wrl
+      (at (xyz -0.25 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (module Discret:R3 (layer F.Cu) (tedit 0) (tstamp 58AC5EB6)
@@ -903,6 +938,11 @@
       (scale (xyz 0.393701 0.393701 0.393701))
       (rotate (xyz 0 0 0))
     )
+    (model /home/user/rpishield/3dmodels/capacitors/capacitors/cnp_3mm_disc.wrl
+      (at (xyz 0.05 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (module Capacitors_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm (layer F.Cu) (tedit 58765D06) (tstamp 58AC5E26)
@@ -935,6 +975,11 @@
       (scale (xyz 0.393701 0.393701 0.393701))
       (rotate (xyz 0 0 0))
     )
+    (model /home/user/rpishield/3dmodels/capacitors/capacitors/cnp_3mm_disc.wrl
+      (at (xyz 0.05 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (module Capacitors_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm (layer F.Cu) (tedit 58765D06) (tstamp 58AC5E2C)
@@ -965,6 +1010,11 @@
     (model Capacitors_THT.3dshapes/C_Disc_D3.0mm_W1.6mm_P2.50mm.wrl
       (at (xyz 0 0 0))
       (scale (xyz 0.393701 0.393701 0.393701))
+      (rotate (xyz 0 0 0))
+    )
+    (model /home/user/rpishield/3dmodels/capacitors/capacitors/cnp_3mm_disc.wrl
+      (at (xyz 0.05 0 0))
+      (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
   )
@@ -1002,6 +1052,11 @@
       (scale (xyz 0.393701 0.393701 0.393701))
       (rotate (xyz 0 0 0))
     )
+    (model /home/user/rpishield/3dmodels/led/indicators/led_3mm_yellow.wrl
+      (at (xyz 0.05 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (module LEDs:LED_D3.0mm_FlatTop (layer F.Cu) (tedit 5880A862) (tstamp 58AC5E9C)
@@ -1036,6 +1091,11 @@
       (at (xyz 0 0 0))
       (scale (xyz 0.393701 0.393701 0.393701))
       (rotate (xyz 0 0 0))
+    )
+    (model /home/user/rpishield/3dmodels/led/indicators/led_3mm_green.wrl
+      (at (xyz 0.05 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
     )
   )
 

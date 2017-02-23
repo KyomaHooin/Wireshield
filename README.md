@@ -5,7 +5,8 @@ Raspberry RPi2 OneWire bus AVR shiled.
 
 FILE
 
-schema/ - Kicad schamatic.
+kicad/ - Kicad schamatic.
+   3d/ - 3D models by W. Lain   
 
 CONTACT
 
