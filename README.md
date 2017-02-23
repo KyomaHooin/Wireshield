@@ -1,4 +1,4 @@
-![Shield](https://github.com/KyomaHooin/Wireshield/raw/master/frontend/shield_screen.png "screenshot")
+![Shield](https://github.com/KyomaHooin/Wireshield/raw/master/shield_screen.png "screenshot")
 
 DESCRIPTION
 
