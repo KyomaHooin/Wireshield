@@ -29,17 +29,16 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:dil28
-LIBS:conn220
+LIBS:rpishield
 LIBS:rpishield-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "RPi OneWire Bus Shield"
-Date "2017-02-20"
-Rev "1.0.0"
+Title "RPi OneWire Shield"
+Date "2017-02-25"
+Rev "1.0.1"
 Comp "Narodni Muzeum"
 Comment1 ""
 Comment2 ""
@@ -268,7 +267,7 @@ RX
 Text Label 4750 2400 0    60   ~ 0
 TX
 Text Label 6750 2850 2    60   ~ 0
-TX_RPi
+TX_RPI
 Text Label 6750 1950 2    60   ~ 0
 RX_RPI
 $Comp
@@ -531,23 +530,23 @@ VCC_AVR
 $Comp
 L GND #PWR09
 U 1 1 58B0BF7E
-P 2550 6900
-F 0 "#PWR09" H 2550 6650 50  0001 C CNN
-F 1 "GND" H 2550 6750 50  0000 C CNN
-F 2 "" H 2550 6900 50  0000 C CNN
-F 3 "" H 2550 6900 50  0000 C CNN
-	1    2550 6900
+P 2400 6900
+F 0 "#PWR09" H 2400 6650 50  0001 C CNN
+F 1 "GND" H 2400 6750 50  0000 C CNN
+F 2 "" H 2400 6900 50  0000 C CNN
+F 3 "" H 2400 6900 50  0000 C CNN
+	1    2400 6900
 	0    1    1    0   
 $EndComp
 $Comp
 L GND #PWR010
 U 1 1 58B0C277
-P 2550 5400
-F 0 "#PWR010" H 2550 5150 50  0001 C CNN
-F 1 "GND" H 2550 5250 50  0000 C CNN
-F 2 "" H 2550 5400 50  0000 C CNN
-F 3 "" H 2550 5400 50  0000 C CNN
-	1    2550 5400
+P 2400 6200
+F 0 "#PWR010" H 2400 5950 50  0001 C CNN
+F 1 "GND" H 2400 6050 50  0000 C CNN
+F 2 "" H 2400 6200 50  0000 C CNN
+F 3 "" H 2400 6200 50  0000 C CNN
+	1    2400 6200
 	0    1    1    0   
 $EndComp
 Text Label 2100 5000 0    60   ~ 0
@@ -561,8 +560,6 @@ Wire Wire Line
 	3750 5300 3150 5300
 Wire Wire Line
 	2650 5000 2100 5000
-Wire Wire Line
-	2650 5400 2550 5400
 NoConn ~ 2650 5300
 NoConn ~ 2650 5500
 NoConn ~ 2650 5600
@@ -571,7 +568,6 @@ NoConn ~ 2650 5800
 NoConn ~ 2650 5900
 NoConn ~ 2650 6000
 NoConn ~ 2650 6100
-NoConn ~ 2650 6200
 NoConn ~ 2650 6300
 NoConn ~ 2650 6400
 NoConn ~ 2650 6500
@@ -586,14 +582,13 @@ NoConn ~ 3150 6300
 NoConn ~ 3150 6200
 NoConn ~ 3150 6100
 NoConn ~ 3150 6000
-NoConn ~ 3150 5900
 NoConn ~ 3150 5800
 NoConn ~ 3150 5700
 NoConn ~ 3150 5600
 NoConn ~ 3150 5400
 NoConn ~ 3150 5500
 Wire Wire Line
-	2550 6900 2650 6900
+	2400 6900 2650 6900
 NoConn ~ 3150 5100
 $Comp
 L DIL28 Conn3
@@ -623,4 +618,23 @@ F 3 "" H 2900 5000 50  0000 C CNN
 	1    2900 5950
 	1    0    0    -1  
 $EndComp
+$Comp
+L GND #PWR011
+U 1 1 58B20A68
+P 10000 2150
+F 0 "#PWR011" H 10000 1900 50  0001 C CNN
+F 1 "GND" H 10000 2000 50  0000 C CNN
+F 2 "" H 10000 2150 50  0000 C CNN
+F 3 "" H 10000 2150 50  0000 C CNN
+	1    10000 2150
+	0    -1   -1   0   
+$EndComp
+Connection ~ 9700 2150
+Wire Wire Line
+	10000 2150 9700 2150
+Connection ~ 5950 2400
+Connection ~ 5950 2500
+NoConn ~ 2650 5400
+Wire Wire Line
+	2650 6200 2400 6200
 $EndSCHEMATC

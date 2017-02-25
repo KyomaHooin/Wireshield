@@ -1,4 +1,4 @@
-update=So 25. únor 2017, 19:45:50 CET
+update=So 25. únor 2017, 23:05:37 CET
 version=1
 last_client=kicad
 [pcbnew]
@@ -69,5 +69,4 @@ LibName27=opto
 LibName28=atmel
 LibName29=contrib
 LibName30=valves
-LibName31=dil28
-LibName32=conn220
+LibName31=rpishield
