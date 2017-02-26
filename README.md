@@ -7,7 +7,7 @@ Raspberry RPi2 OneWire AVR shiled.
 FILE
 <pre>
                kicad/ - Kicad schematic and PCB.
-                  3d/ - 3D models by W. Lain.
+                  3d/ - 3D models by Walter Lain (c) 2015.
     shield_screen.png - Board screenshot.
 wireshield_schema.pdf - Shied schematic.
 </pre>
