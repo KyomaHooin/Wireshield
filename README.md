@@ -6,7 +6,7 @@ Raspberry RPi2 OneWire AVR shiled.
 
 TODO:
 
-5V+, AVCC, AGND
+5V+, AVCC, AGND, DIL28_mod
 
 FILE
 <pre>
