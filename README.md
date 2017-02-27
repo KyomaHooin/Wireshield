@@ -4,6 +4,10 @@ DESCRIPTION
 
 Raspberry RPi2 OneWire AVR shiled.
 
+TODO:
+
+5V+, AVCC, AGND
+
 FILE
 <pre>
                kicad/ - Kicad schematic and PCB.
