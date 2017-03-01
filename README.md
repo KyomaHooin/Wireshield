@@ -4,10 +4,19 @@ DESCRIPTION
 
 Raspberry RPi2 OneWire AVR shiled.
 
-TODO:
+<pre>
+TODO
 
-5V+, AVCC, AGND, DIL28_mod, backlight = [R] + GND, 1.8/2.2' TFT 5V LLC SPI LCD
+5V+, AVCC, AGND, DIL28_mod, backlight = [R] + GND
 
+LCD
+
+1.8/2.2' TFT 5V LLC SPI LCD
+
+IDC
+
+ribbon cable 40pin 10cm
+</pre>
 FILE
 <pre>
                kicad/ - Kicad schematic and PCB.
