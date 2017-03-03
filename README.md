@@ -7,7 +7,7 @@ Raspberry RPi2 OneWire AVR shiled.
 <pre>
 TODO
 
-5V+, AVCC, AGND, DIL28_mod, backlight = [R] + GND, SPI 90 angle
+5V+, AVCC, AGND, DIL28_mod, backlight = [R] + GND, SPI 90 angle + 5V digital
 
 LCD
 
