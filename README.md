@@ -4,14 +4,10 @@ DESCRIPTION
 
 Raspberry RPi2 OneWire AVR shiled.
 
-<pre>
 TODO
-
-AVR: 5V+ ,AVCC, AGND, DIL28 mod
-TFT: BL/LED - VCC, SPI 90 angel, RST, D/C
+<pre>
 IDC: 40pin 10cm ribbon
 BOX: OpenSCAD
-
 </pre>
 FILE
 <pre>
