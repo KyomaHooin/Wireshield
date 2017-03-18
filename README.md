@@ -6,8 +6,7 @@ Raspberry RPi2 OneWire AVR shiled.
 
 TODO
 <pre>
-IDC: 40pin 10cm ribbon
-BOX: OpenSCAD
+GND Zone,Silk/Label,OpenSCAD
 </pre>
 FILE
 <pre>
