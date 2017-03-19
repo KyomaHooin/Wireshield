@@ -6,7 +6,12 @@ Raspberry RPi2 OneWire AVR shiled.
 
 TODO
 <pre>
-GND Zone,Silk/Label,OpenSCAD
+-GND Zone
+-Silk/Label - refname
+-LED silk/foot.
+-Jack foot.
+-SPI schematic
+-OpenSCAD
 </pre>
 FILE
 <pre>
