@@ -15,8 +15,9 @@ TODO
 </pre>
 FILE
 <pre>
-               kicad/ - Kicad schematic and PCB.
-                  3d/ - 3D models by Walter Lain (c) 2015.
+               kicad/ - KiCad schematic and PCB.
+            kicad/3d/ - 3D models by Walter Lain (c) 2015.
+            openscad/ - OpenSCAD case model.
     shield_screen.png - Board screenshot.
 wireshield_schema.pdf - Shied schematic.
 </pre>
