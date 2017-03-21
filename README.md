@@ -11,7 +11,8 @@ TODO
 -LED silk/foot.
 -Jack foot.
 -SPI schematic
--OpenSCAD
+
+-OpenSCAD(TFT/RPI sroubovaci "podlozky")
 </pre>
 FILE
 <pre>
