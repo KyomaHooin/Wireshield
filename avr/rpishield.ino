@@ -66,7 +66,7 @@ void loop() {
   for (int i = 0; i < 4; i++) {
     digitalWrite(LED_ACC, HIGH);
     ds_temp_request(Bus1,sensor[i]);
-    temperature = ds_get_temperature(Bus1,sensor[i][8]);
+    temperature = ds_get_temperature(Bus1,sensor[i]);
     sprintf(message,"ID#%dT#%03d",i, int(temperature * 100)); 
     Serial.println(message);// Zapis na UART
     tft_update(i,temperature);
@@ -75,7 +75,7 @@ void loop() {
   for (int i = 4; i < 8; i++) {
     digitalWrite(LED_ACC, HIGH);
     ds_temp_request(Bus2,sensor[i]);
-    temperature = ds_get_temperature(Bus2,sensor[i][8]);
+    temperature = ds_get_temperature(Bus2,sensor[i]);
     sprintf(message,"ID#%dT#%f",i, int(temperature * 100));
     Serial.println(message);
     tft_update(i,temperature);
