@@ -68,7 +68,7 @@ void loop() {
     ds_temp_request(Bus1,sensor[i]);
     temperature = ds_get_temperature(Bus1,sensor[i]);
     sprintf(message,"ID#%dT#%03d",i, int(temperature * 100)); 
-    Serial.println(message);// Zapis na UART
+    Serial.println(message);
     tft_update(i,temperature);
     digitalWrite(LED_ACC, LOW);
   }
@@ -76,18 +76,18 @@ void loop() {
     digitalWrite(LED_ACC, HIGH);
     ds_temp_request(Bus2,sensor[i]);
     temperature = ds_get_temperature(Bus2,sensor[i]);
-    sprintf(message,"ID#%dT#%f",i, int(temperature * 100));
+    sprintf(message,"ID#%dT#%03d",i, int(temperature * 100));
     Serial.println(message);
     tft_update(i,temperature);
     digitalWrite(LED_ACC, LOW);
   }
-  delay(300000);// hang for 5 min. tady by bylo moze strit proudem a vetsinu veci vypnout..
+  delay(300000);// hang for 5 min. tady by bylo moze setrit proudem a vetsinu veci vypnout..
 }
 
 //FUNC
 
 //Bus request temperature
-void ds_temp_request(OneWire &ds, byte addr[8]) {// &ds -> instance reference
+void ds_temp_request(OneWire &ds, byte addr[8]) {
   ds.reset();
   ds.select(addr);
   ds.write(0x44);//"Convert T".
@@ -95,7 +95,7 @@ void ds_temp_request(OneWire &ds, byte addr[8]) {// &ds -> instance reference
 }
 
 //Bus calculate temperature.
-float ds_get_temperature(OneWire &ds,byte addr[8]) {
+float ds_get_temperature(OneWire &ds, byte addr[8]) {
   byte ds_data[2];
   ds.reset();
   ds.select(addr);
@@ -111,7 +111,7 @@ void tft_draw_background() {
   tft.setBackgroundColor(COLOR_BLACK);
   tft.drawRectangle(5,5,305,235,COLOR_WHITE);
   for (int i = 0; i < 8; i++) {
-  // zde genericke vykresleni ctvercu, statickeho textu  etc. pro senzory
+  // zde genericke vykresleni ctvercu, statickeho textu etc. pro senzory
     tft.drawText(10 * i, 20, "HODNOTA: ", COLOR_WHITE);
   }
 }
