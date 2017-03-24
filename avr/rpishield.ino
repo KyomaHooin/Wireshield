@@ -81,7 +81,7 @@ void loop() {
     tft_update(i,temperature);
     digitalWrite(LED_ACC, LOW);
   }
-  delay(300000);// hang for 5 min. tady by bylo moze setrit proudem a vetsinu veci vypnout..
+  delay(15000);// hang for 15 sec.
 }
 
 //FUNC
@@ -111,7 +111,6 @@ void tft_draw_background() {
   tft.setBackgroundColor(COLOR_BLACK);
   tft.drawRectangle(5,5,305,235,COLOR_WHITE);
   for (int i = 0; i < 8; i++) {
-  // zde genericke vykresleni ctvercu, statickeho textu etc. pro senzory
     tft.drawText(10 * i, 20, "HODNOTA: ", COLOR_WHITE);
   }
 }
@@ -119,7 +118,6 @@ void tft_draw_background() {
 //TFT draw value
 void tft_update(int id, float val) {
   tft.setFont(Terminal6x8);
-  tft.fillRectangle(10 * id, 40, 10, 15, COLOR_BLACK);// prekresleni pozadi textu(?)
   tft.drawText(10 * id, 40, String(val), COLOR_WHITE);
 }
 
