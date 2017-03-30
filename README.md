@@ -10,10 +10,6 @@ TODO
 -Silk/Label - refname
 -LED silk/foot.
 -Jack foot.
--SPI schematic
--A0-A5 naming
-
--OpenSCAD(TFT/RPI sroubovaci "podlozky")
 </pre>
 FILE
 <pre>
