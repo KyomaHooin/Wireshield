@@ -13,7 +13,8 @@ TODO
 </pre>
 FILE
 <pre>
-                 avr/ - Atmega demo code.
+                 rpi/ - RPi code.
+                 avr/ - Atmega code.
                kicad/ - KiCad schematic and PCB.
             kicad/3d/ - 3D models by Walter Lain (c) 2015.
             openscad/ - OpenSCAD case model.
