@@ -3,7 +3,7 @@
 # AVR RX/TX GPIO
 #
 
-import serial,time,sys
+import serial,time
 
 try:
 	while 1:# MAIN
@@ -15,6 +15,5 @@ try:
 			print 'Serial error.'
 			time.sleep(5)
 except Exception as e:
-	print 'Something bad: ' + e.args[0]
-	sys.exit(1)
+	print e.args[0]
 
