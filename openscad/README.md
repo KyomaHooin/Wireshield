@@ -2,7 +2,7 @@
 
 DESCRIPTION
 
-Raspberry RPi2 OneWire AVR shiled & SPI 2.2' TFT sisplay case.
+Raspberry RPi2 AVR shiled & TFT display case.
 
 FILE
 <pre>
