@@ -7,6 +7,7 @@ drawShiled=0;
 drawDisplay=0;
 drawCaseTop=0;
 drawCaseBottom=0;
+drawAll=1;
 
 $fn=50;
 
@@ -22,7 +23,7 @@ module rounded_rect(x, y, z, radius) {
 }
 
 module display_hole() {
-	cylinder(h=displayThick+2, d=2*displayHoleRadius);
+	cylinder(h=displayThick+2, r=displayHoleRadius);
 }
 
 module shield_hole() {
@@ -31,6 +32,13 @@ module shield_hole() {
 
 module pi_hole() {
 	cylinder(h=piThick+2, d=piHoleDia);
+}
+
+module bottom_mount(offsetX,offsetY,Thick) {
+	difference() {
+		translate([offsetX, offsetY, Thick]) cylinder(h=bottomMountHight, d=bottomMountDia);
+		translate([offsetX, offsetY, Thick-1]) cylinder(h=bottomMountHight+2, d=piHoleDia);
+	}
 }
 
 //----------------------------
@@ -42,6 +50,7 @@ piWidth=56;
 piLength=85;
 piThick=1.33;
 piHoleDia=2.75;
+piShieldLength=65;
 piHoleOffset=3.5;
 
 module pi() {
@@ -50,8 +59,8 @@ module pi() {
 		cube([piWidth, piLength, piThick]);
 		translate([piHoleOffset, piHoleOffset, -1]) pi_hole();
 		translate([piWidth-piHoleOffset, piHoleOffset, -1]) pi_hole();
-		translate([piHoleOffset, piLength-piHoleOffset, -1]) pi_hole();
-		translate([piWidth-piHoleOffset,piLength-piHoleOffset, -1]) pi_hole();
+		translate([piHoleOffset, piShieldLength-piHoleOffset, -1]) pi_hole();
+		translate([piWidth-piHoleOffset, piShieldLength-piHoleOffset, -1]) pi_hole();
 	}
 }
 
@@ -90,18 +99,23 @@ displayHoleRadius=1.7;
 displayHoleWoffset=3.5;
 displayHoleLoffset=2.5;
 
+DisplayOffsetW=(piWidth-displayWidth)/2;
+DisplayOffsetH=(piLength-displayLength)/2;
+
 module display() {
-	color("salmon")
-	difference() {
-		cube([displayWidth, displayLength, displayThick]);
-		translate([displayHoleWoffset, displayHoleLoffset, -1]) display_hole();
-		translate([displayWidth-displayHoleWoffset, displayHoleLoffset, -1]) display_hole();
-		translate([displayHoleWoffset, displayLength-displayHoleLoffset, -1]) display_hole();
-		translate([displayWidth-displayHoleWoffset, displayLength-displayHoleLoffset, -1]) display_hole();
+	translate([DisplayOffsetW,DisplayOffsetH,0]) {
+		color("salmon")
+		difference() {
+			cube([displayWidth, displayLength, displayThick]);
+			translate([displayHoleWoffset, displayHoleLoffset, -1]) display_hole();
+			translate([displayWidth-displayHoleWoffset, displayHoleLoffset, -1]) display_hole();
+			translate([displayHoleWoffset, displayLength-displayHoleLoffset, -1]) display_hole();
+			translate([displayWidth-displayHoleWoffset, displayLength-displayHoleLoffset, -1]) display_hole();
+		}
+		color("lightblue")//SCREEN
+		translate([0,screenOffset,displayThick])
+			cube([displayWidth, displayLength-2*screenOffset, displayThick]);
 	}
-	color("lightblue")//SCREEN
-	translate([0,screenOffset,displayThick])
-		cube([displayWidth, displayLength-2*screenOffset, displayThick]);
 }
 
 //----------------------------
@@ -115,20 +129,27 @@ module display() {
 topWidth=piWidth;
 topLength=piLength;
 topHeight=15-piThick;
+topThick=3;
+topMountHight=2;
+topMountPiHight=topHeight;
+topMountHoleDia=2;
+topMountDia=6.2;
 
 module case_top() {
 	difference() {
-		rounded_rect(topWidth, topLength, topHeight,3);
-		translate([(piWidth-displayWidth)/2,(piLength-displayLength)/2+screenOffset,0])
+		rounded_rect(topWidth, topLength, topHeight, topThick);
+		translate([0,0,-topThick]) cube([piWidth, piLength, topHeight]);// filler
+		translate([DisplayOffsetW, DisplayOffsetH+screenOffset, 0])// screen
 			cube([displayWidth,displayLength-2*screenOffset,topHeight+1]);
-		translate([0,0,-piThick])
-			cube([piWidth, piLength, topHeight]);
+		translate([DisplayOffsetW+displayHoleWoffset,DisplayOffsetH+displayHoleLoffset,topHeight-topThick-1])// display hole
+			cylinder(h=topThick+2,r=displayHoleRadius);
+		translate([displayWidth+displayHoleWoffset, DisplayOffsetH+displayHoleLoffset, topHeight-topThick-1])
+			cylinder(h=topThick+2,r=displayHoleRadius);
+		translate([DisplayOffsetW+displayHoleWoffset, topLength-DisplayOffsetH-displayHoleLoffset, topHeight-topThick-1])
+			cylinder(h=topThick+2,r=displayHoleRadius);
+		translate([displayWidth+displayHoleWoffset, topLength-DisplayOffsetH-displayHoleLoffset, topHeight-topThick-1])
+			cylinder(h=topThick+2,r=displayHoleRadius);
 	}
-//	// Lock lip extensions
-//	translate([-locklipWidth,0,-locklipHeight])
-//		cube([locklipWidth, boardLength, locklipHeight]);
-//	translate([topWidth,0,-locklipHeight])
-//		cube([locklipWidth, boardLength, locklipHeight]);
 }
 
 
@@ -136,48 +157,30 @@ module case_top() {
 //CASE BOTTOM
 //
 // ventilation
-// pwr,jack,USB side
-// wall harden
-// mount
 // liplock
 
 bottomWidth=piWidth;
 bottomLength=piLength;
 bottomHeight=15+piThick;
 bottomThick=3;
+bottomMountHight=3;
+bottomMountDia=6.2;
 
 module case_bottom() {
 	difference() {
-		rounded_rect(piWidth, piLength, topHeight, 3);
-		translate([0,0,piThick])
-			cube([piWidth, piLength, topHeight]);
-//		translate([-locklipWidth,0,baseHeight-locklipHeight])
-//			cube([boardWidth+(locklipWidth*2), boardLength, 5]);
+		rounded_rect(bottomWidth, bottomLength, bottomHeight, bottomThick);
+		translate([0,0,bottomThick]) cube([piWidth, piLength,  bottomHeight]);// filler
+		translate([piHoleOffset,piHoleOffset,-1]) cylinder(h=bottomThick+2, d=piHoleDia);// mount hole
+		translate([piWidth-piHoleOffset,piHoleOffset,-1]) cylinder(h=bottomThick+2, d=piHoleDia);
+		translate([piHoleOffset,piShieldLength-piHoleOffset,-1]) cylinder(h=bottomThick+2, d=piHoleDia);
+		translate([piWidth-piHoleOffset,piShieldLength-piHoleOffset,-1]) cylinder(h=bottomThick+2, d=piHoleDia);
+		//pi();
 	}
-//	difference() {
-//		translate([mountHoleSideOffset, boardLength-mountHoleSideOffset, 0])
-//			cylinder(h=mountRiserHeight, d=mountHoleDiameter*mountRiserScale);
-//		translate([mountHoleSideOffset, boardLength-mountHoleSideOffset, mountRiserHeight/2])
-//			cylinder(h=10, d=mountHoleDiameter);
-//	}
-//		difference() {
-//			translate([boardWidth-mountHoleSideOffset, boardLength-mountHoleSideOffset, 0])
-//				cylinder(h=mountRiserHeight, d=mountHoleDiameter*mountRiserScale);
-//			translate([boardWidth-mountHoleSideOffset, boardLength-mountHoleSideOffset, mountRiserHeight/2])
-//				cylinder(h=10, d=mountHoleDiameter);
-//		}	
-//		difference() {
-//			translate([mountHoleSideOffset, mountHoleMidOffset, 0])
-//				cylinder(h=mountRiserHeight, d=mountHoleDiameter*mountRiserScale);
-//			translate([mountHoleSideOffset, mountHoleMidOffset, mountRiserHeight/2])
-//				cylinder(h=10, d=mountHoleDiameter);
-//		}	
-//		difference() {
-//			translate([boardWidth-mountHoleSideOffset, mountHoleMidOffset, 0])
-//				cylinder(h=mountRiserHeight, d=mountHoleDiameter*mountRiserScale);		
-//			translate([boardWidth-mountHoleSideOffset, mountHoleMidOffset, mountRiserHeight/2])
-//				cylinder(h=10, d=mountHoleDiameter);
-//		}
+	//mount buffer
+	bottom_mount(piHoleOffset,piHoleOffset,bottomThick);
+	bottom_mount(piWidth-piHoleOffset,piHoleOffset,bottomThick);
+	bottom_mount(piHoleOffset,piShieldLength-piHoleOffset,bottomThick);
+	bottom_mount(piWidth-piHoleOffset,piShieldLength-piHoleOffset,bottomThick);
 }
 
 //----------------------------
@@ -189,9 +192,11 @@ if (drawDisplay) { display(); }
 if (drawCaseTop) { case_top(); }
 if (drawCaseBottom) { case_bottom(); }
 
-translate([0,0,0]) pi();
-translate([0,0,10]) shield();
-translate([(piWidth-displayWidth)/2,(piLength-displayLength)/2,20]) display();
-translate([0,0,30]) case_top();
-translate([0,0,-20]) case_bottom();
+if (drawAll) {
+//	translate([0,0,0]) pi();
+//	translate([0,0,10]) shield();
+//	translate([0,0,20]) display();
+	translate([0,0,40]) case_top();
+	translate([0,0,-0]) case_bottom();
+}
 
