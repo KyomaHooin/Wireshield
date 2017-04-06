@@ -4,7 +4,7 @@ DESCRIPTION
 RPi AVR Shield config.
 
 RPI
-
+<pre>
 apt-get install python-serial watchdog
 
 /etc/fstab:
@@ -27,6 +27,16 @@ iface eth0 inet static
 	gateway 10.10.10.43
 	dns-nameservers 10.10.9.26 10.10.9.27
 
+/etc/watchdog.conf:
+
+watchdog-device = /dev/watchdog
+watchdog-timeout = 15
+
+/etc/ntp.conf:
+
+server tik.cesnet.cz
+server tak.cesnet.cz
+</pre>
 FILE
 <pre>
 rpi-avr.py - AVR serial console.
