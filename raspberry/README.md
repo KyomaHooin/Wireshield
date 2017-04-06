@@ -7,6 +7,8 @@ RPI
 <pre>
 apt-get install python-serial watchdog
 
+raspi-config > Advanced options > logging [no] > device [yes]
+
 /etc/fstab:
 
 tmpfs   /root/avr/ramdisk   tmpfs   nodev,nosuid,size=32M   0       0
