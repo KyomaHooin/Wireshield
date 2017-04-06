@@ -5,10 +5,10 @@ Server room enviroment monitoring.
 
 FILE
 <pre>
-                 rpi/ - RPi code.
                  avr/ - Atmega code.
                kicad/ - KiCad schematic and PCB.
             openscad/ - OpenSCAD case model.
+           raspberry/ - RPi code.
 wireshield_schema.pdf - Shied schematic.
 </pre>
 CONTACT
