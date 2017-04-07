@@ -84,27 +84,26 @@ ethOverHang=2.32;
 avWidth=7.05;
 avLength=14.90;
 avHeight=7.38-piThick;
-avRadius=avWidth/2;
 avOverHang=2.30;
-avYset=53.5-avWidth/2;
+avY=53.5-avWidth/2;
 
 hdmiWidth=11.37;
 hdmiLength=15.07;
 hdmiHeight=7.86-piThick;
 hdmiOverHang=1.9;
-hdmiYset=32-(hdmiWidth/2);
+hdmiY=32-(hdmiWidth/2);
 
 microWidth=5.59;
 microLength=8.04;
 microHeight=4.22-piThick;
 microOverHang=1.9;
-microYset=10.6-(microWidth/2);
+microY=10.6-(microWidth/2);
 
 gpioWidth=5.01;
 gpioLength=50.27;
 gpioHeight=10.2-piThick;
-gpioYset=HoleOffset/2+29-gpioLength/2;
-gpioXset=1.05;
+gpioY=HoleOffset/2+29-gpioLength/2;
+gpioX=1.05;
 
 module pi(edgeCut=0) {
 	color("seagreen")
@@ -125,18 +124,18 @@ module pi(edgeCut=0) {
 		translate([ethOffset, piLength-ethLength+ethOverHang+edgeCut, piThick])
 			cube([ethWidth, ethLength, ethHeight]);
 		// HDMI Plug
-		translate([piWidth-hdmiWidth+hdmiOverHang+edgeCut, hdmiYset, piThick])
+		translate([piWidth-hdmiWidth+hdmiOverHang+edgeCut, hdmiY, piThick])
 			cube([hdmiWidth, hdmiLength, hdmiHeight]);
 		// AV
-		translate([piWidth-avLength+avOverHang+edgeCut, avYset, piThick])
+		translate([piWidth-avLength+avOverHang+edgeCut, avY, piThick])
 			cube([avLength, avWidth, avHeight]);
 		// microUSB
-		translate([piWidth-microWidth+microOverHang+edgeCut, microYset, piThick])
+		translate([piWidth-microWidth+microOverHang+edgeCut, microY, piThick])
 			cube([microWidth, microLength, microHeight]);
 	}
 	// GPIO Headers
 	color("black") {
-		translate([gpioXset, gpioYset, piThick])
+		translate([gpioX, gpioY, piThick])
 			cube([gpioWidth, gpioLength, gpioHeight]);
 	}
 }
@@ -156,8 +155,25 @@ shieldSPIHeight=gpioHeight;
 shieldSPIoffsetX=(shieldWidth-shieldSPILength)/2;
 shieldSPIoffsetY=2.5;
 
+shiledJackWidth=7.05;
+shiledJackLength=14.90;
+shiledJackHeight=7.38-shieldThick;
+shiledJackX=shieldWidth-shiledJackLength+2.5;
+shiledJackY=25;
 
-module shield() {
+shiledLEDWidth=5.05;
+shiledLEDLength=14.90;
+shiledLEDHeight=5.38-shieldThick;
+shiledLEDX=shieldWidth-shiledJackLength+2.5;
+shiledLEDY=40;
+
+shieldGPIOWidth=5.01;
+shieldGPIOLength=50.27;
+shieldGPIOHeight=10.2-piThick;
+shieldGPIOY=(shieldLength-shieldGPIOLength)/2;
+shieldGPIOX=1.05;
+
+module shield(shieldEdgeCut=0) {
 	color("seagreen")
 	difference() {
 		cube([shieldWidth, shieldLength, shieldThick]);
@@ -167,15 +183,19 @@ module shield() {
 		translate([shieldWidth-shieldHoleOffset, shieldLength-shieldHoleOffset, -1]) shield_hole();
 	}
 	color("black") {
-		translate([gpioXset, gpioYset, piThick])
-			cube([gpioWidth, gpioLength, gpioHeight]);
-		translate([shieldSPIoffsetX,shieldSPIoffsetY,piThick])
+		translate([shieldGPIOX, shieldGPIOY, shieldThick])// GPIO
+			cube([shieldGPIOWidth, shieldGPIOLength, shieldGPIOHeight]);
+		translate([shieldSPIoffsetX,shieldSPIoffsetY,shieldThick])// SPI
 			cube([shieldSPILength,shieldSPIWidth,shieldSPIHeight]);
+		translate([shiledJackX+shieldEdgeCut,shiledJackY,shieldThick])// JACK
+			cube([shiledJackLength,shiledJackWidth,shiledJackHeight]);
+		translate([shiledJackX+shieldEdgeCut,shiledJackY-10,shieldThick])
+			cube([shiledJackLength,shiledJackWidth,shiledJackHeight]);
+		translate([shiledLEDX+shieldEdgeCut,shiledLEDY,shieldThick])// LED
+			cube([shiledLEDLength,shiledLEDWidth,shiledLEDHeight]);
+		translate([shiledLEDX+shieldEdgeCut,shiledLEDY+10,shieldThick])
+			cube([shiledLEDLength,shiledLEDWidth,shiledLEDHeight]);
 	}
-	//JACK
-	//LED
-	//SPI
-	//MEGA
 }
 
 //----------------------------
@@ -263,6 +283,7 @@ module case_top() {
 		translate([displayWidth+displayHoleWoffset, topLength-displayOffsetH-displayHoleLoffset, topHeight-topThick-1])
 			cylinder(h=topThick+2,r=displayHoleRadius);
 		translate([0,0,-10]) pi(edgeCut=3);
+		translate([0,0,10]) shield(shieldEdgeCut=3);
 	}
 }
 
@@ -317,6 +338,6 @@ if (drawAll) {
 		shield();
 	translate([0,0,bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick++spacerHeight])
 		display();
-//	translate([0,0,bottomThick+bottomMountHight+piThick+shieldThick+displayThick+topThick]) case_top();
+	translate([0,0,bottomThick+bottomMountHight+piThick+shieldThick+displayThick+topThick]) case_top();
 }
 
