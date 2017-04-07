@@ -5,7 +5,7 @@ RPi AVR Shield config.
 
 RPI
 <pre>
-apt-get install python-serial watchdog
+apt-get install apache2 python-serial python-rrdtool watchdog
 
 raspi-config > Advanced options > logging [no] > device [yes]
 
