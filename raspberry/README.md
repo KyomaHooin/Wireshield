@@ -3,6 +3,12 @@ DESCRIPTION
 
 RPi AVR Shield config.
 
+TODO
+<pre>
+-RRD plot
+-HTML frontend
+-email/SMS notification
+</pre>
 RPI
 <pre>
 apt-get install apache2 python-serial python-rrdtool watchdog
@@ -11,8 +17,7 @@ raspi-config > Advanced options > logging [no] > device [yes]
 
 /etc/fstab:
 
-tmpfs   /root/avr/ramdisk   tmpfs   nodev,nosuid,size=32M   0       0
-
+#tmpfs   /root/avr/ramdisk   tmpfs   nodev,nosuid,size=32M   0       0
 #tmpfs   /tmp            tmpfs   defaults,noatime,nosuid,size=100m       0       0
 #tmpfs   /var/log        tmpfs   defaults,noatime,nosuid,mode=0755,size=100m     0       0
 #tmpfs   /var/run        tmpfs   defaults,noatime,nosuid,mode=0755,size=2m       0       0
@@ -43,6 +48,7 @@ server tak.cesnet.cz
 FILE
 <pre>
 rpi-avr.py - AVR serial console.
+  firewall - Firewall script.
 </pre>
 CONTACT
 
