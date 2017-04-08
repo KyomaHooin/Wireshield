@@ -44,6 +44,18 @@ watchdog-timeout = 15
 
 server tik.cesnet.cz
 server tak.cesnet.cz
+
+/etc/apache2/sites-enabled/000-default.conf:
+
+ServerName xxx.xx.cz
+
+DocumentRoot /var/www/rpishield
+
+&lt;Directory /var/www/rpishield/plot&gt;
+Options -Indexes -Multiviews
+Order Allow,Deny
+Allow from all
+&lt;/Directory&gt;
 </pre>
 FILE
 <pre>
