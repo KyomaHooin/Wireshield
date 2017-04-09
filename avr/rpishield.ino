@@ -61,14 +61,13 @@ void setup() {
 
 void loop() {
   float temperature;
-  char message[9];
+  char msg[6], payload[48];
 
   for (int i = 0; i < 4; i++) {
     digitalWrite(LED_ACC, HIGH);
     ds_temp_request(Bus1,sensor[i]);
     temperature = ds_get_temperature(Bus1,sensor[i]);
-    sprintf(message,"ID#%dT#%03d",i, int(temperature * 100)); 
-    Serial.println(message);
+    *payload += sprintf(msg, "S%uT%03d", i, temperature * 10);
     tft_update(i,temperature);
     digitalWrite(LED_ACC, LOW);
   }
@@ -76,11 +75,11 @@ void loop() {
     digitalWrite(LED_ACC, HIGH);
     ds_temp_request(Bus2,sensor[i]);
     temperature = ds_get_temperature(Bus2,sensor[i]);
-    sprintf(message,"ID#%dT#%03d",i, int(temperature * 100));
-    Serial.println(message);
+    *payload += sprintf(msg, "S%uT%03d", i, temperature * 10);
     tft_update(i,temperature);
     digitalWrite(LED_ACC, LOW);
   }
+  Serial.println(payload);
   delay(15000);// hang for 15 sec.
 }
 
