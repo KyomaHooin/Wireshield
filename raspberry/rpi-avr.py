@@ -61,7 +61,7 @@ try:
 	#				rrdtool.update('DATABASE', re.sub(pattern, time.gmtime()
 	#					+ ':\\1:\\2:\\3:\\4:\\5:\\6:\\7:\\8', data))
 	#			for (sid,val) in re.findall(value, data):
-	#				if value >= 40:# 40C
+	#				if val >= 40:# 40C
 	#					notify(sid,val)
 		except serial.SerialException:
 			print 'Serial error.'

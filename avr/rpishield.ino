@@ -80,7 +80,7 @@ void loop() {
     digitalWrite(LED_ACC, LOW);
   }
   Serial.println(payload);
-  delay(15000);// hang for 15 sec.
+  delay(50000);// hang for 5 min. sleep?
 }
 
 //FUNC
