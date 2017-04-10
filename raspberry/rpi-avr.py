@@ -25,7 +25,7 @@ import rrdtool,smtplib,serial,email,time,re
 
 from email.mime.text import MIMEText
 
-ADMIN='foo@bar.cz'
+ADMIN='foo@foobar.foo'
 DATABASE='/root/avr/rpishield.rrd'
 PLOT='/var/www/rpishield/plot/'
 PAYLOAD=''
@@ -36,33 +36,42 @@ UPDATE=True
 
 def notify(s,t):
 	try:
-		text = "Sensor: " + s + "\n\nTemeperature: " + t + "\n\n"
+		text = "\nRack Sensor: " + s + "\nTemeperature: " + t + "\n"
 		msg = MIMEText(text)
 		msg['Subject'] = "Rack Sensor Alarm"
-		msg['From'] = 'root@xxx.xx.cz'
+		msg['From'] = 'root@localhost'
 		msg['To'] = ADMIN
-		s = smtplib.SMTP('xx.xx.cz')
-		s.sendmail('root@xxx.xx.xx', ADMIN, msg.as_string())
+		s = smtplib.SMTP('foo.foobar.foo')
+		s.sendmail('root@localhost', ADMIN, msg.as_string())
 		s.quit()
 	except: pass
 
 #----------------	
 
+#data = "S1T050S2T100S3T250S4T300S5T350S6T400S7T450S8T500"
+
 try:
 	while 1:# MAIN
+
 		try:# SERIAL
+			time.sleep(5)
 			s = serial.Serial('/dev/ttyAMA0',9600,xonxoff=0,timeout=5)# 8,N,1; 5s scan..
 			data = s.readline()
-			if data: print data,
-	#		if data:
-	#			pattern = re.compile('^S1T(*)S2T(*)S3T(*)S4T(*)S5T(*)S6T(*)S7T(*)S8T(*)$')
-	#			value = re.compile('S(\d)T(\d{3})')
-	#			if re.match(pattern, data):
-	#				rrdtool.update('DATABASE', re.sub(pattern, time.gmtime()
-	#					+ ':\\1:\\2:\\3:\\4:\\5:\\6:\\7:\\8', data))
-	#			for (sid,val) in re.findall(value, data):
-	#				if val >= 40:# 40C
-	#					notify(sid,val)
+
+			if data:
+				print data,
+				pattern = re.compile('S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)')
+				sensor = re.compile('S(.)T(...)')
+
+				if re.match(pattern,data):
+					print "update ok"
+				#	rrdtool.update(DATABASE, re.sub(pattern, time.gmtime() +
+				#		':\\1:\\2:\\3:\\4:\\5:\\6:\\7:\\8', data))
+				for (sid,val) in re.findall(sensor, data):
+					temperature = float(re.sub('(..)(.)','\\1.\\2',val))
+					if temperature > 40:
+						print sid, temperature
+					#	notify(sid,temperature)
 		except serial.SerialException:
 			print 'Serial error.'
 			time.sleep(5)
