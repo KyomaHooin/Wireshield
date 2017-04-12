@@ -3,12 +3,6 @@ DESCRIPTION
 
 RPi AVR Shield config.
 
-TODO
-<pre>
--RRD plot
--HTML frontend
--email/SMS notification
-</pre>
 RPI
 <pre>
 apt-get install apache2 python-serial python-rrdtool watchdog
@@ -24,6 +18,7 @@ raspi-config > Advanced options > logging [no] > device [yes]
 
 /etc/rc.local:
 
+/root/avr/rpi-avr.py &
 /root/firewall &
 
 /etc/network/interfaces:
