@@ -7,7 +7,7 @@ TODO
 <pre>
 -GND test
 -Long wire test
--String test
+-TFT
 </pre>
 FILE
 
