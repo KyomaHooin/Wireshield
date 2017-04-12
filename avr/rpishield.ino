@@ -6,10 +6,10 @@
 #include<OneWire.h>
 #include<TFT_22_ILI9225.h>
 
-#define BUS1_DQ  A0
-#define BUS1_PWR A1
-#define BUS2_DQ  A2
-#define BUS2_PWR A3
+#define BUS1_PWR A0
+#define BUS1_DQ  A1
+#define BUS2_PWR A2
+#define BUS2_DQ  A3
 #define TFT_RST  8 // TFT RST
 #define TFT_RS   9 // TFT D/C
 #define TFT_CS   10// SPI SS
