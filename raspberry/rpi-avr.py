@@ -7,6 +7,8 @@
 
 import rrdtool,smtplib,serial,email,time,sys,re
 
+import random
+
 from email.mime.text import MIMEText
 
 ADMIN='foo@foobar.foo'
@@ -29,7 +31,7 @@ def notify(s,t):
 		s.quit()
 	except: pass
 
-data = "S1T050S2T100S3T250S4T300S5T350S6T400S7T450S8T500"
+#----------------
 
 try:
 	try:
@@ -40,26 +42,22 @@ try:
 		sys.exit(1)
 	while 1:# MAIN
 		try:# SERIAL
-			#s = serial.Serial('/dev/ttyAMA0',9600,xonxoff=0,timeout=5)# 8,N,1; 5s scan..
-			#data = s.readline()
+			s = serial.Serial('/dev/ttyAMA0',9600,xonxoff=0,timeout=5)# 8,N,1; 5s scan..
+			data = s.readline()
 			if data:
 				pattern = re.compile('S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)')
 				sensor = re.compile('S(.)T(...)')
-
-				if re.match(pattern,data):
-					rrdtool.update(DATABASE, re.sub(pattern, 'N:' +
-						'\\1:\\2:\\3:\\4:\\5:\\6:\\7:\\8' , data))
-		#		for (sid,val) in re.findall(sensor, data):
-		#			temperature = float(re.sub('(\d\d)(\d)','\\1.\\2',val))
-		#			if temperature > 40:
-		#				print sid, temperature
-		#			#	notify(sid,temperature)
-			time.sleep(300)
-		#except serial.SerialException:
-		except:
+				payload = 'N'
+				if re.match(pattern, data):
+					for (sid,val) in re.findall(sensor, data):
+						temperature = float(re.sub('(\d\d)(\d)','\\1.\\2',val))
+						payload += ':' + str(temperature)
+						if temperature > 40: notify(sid,temperature)
+					rrdtool.update(DATABASE, payload)
+		except serial.SerialException:
 			LOG.write('Update error.\n')
-		#15 min graph plot update..
-		if int(time.strftime("%M")) % 15 == 0 and UPDATE:
+		# 5 min graph plot update..
+		if int(time.strftime("%M")) % 5 == 0 and UPDATE:
 			UPDATE=False
 			try:
 				for interval in ['1d','1w','1m','1y']:			
@@ -69,7 +67,6 @@ try:
 						'--end','now',
 						'--width','600',
 						'--height','150',
-						#'--step','60',
 						'DEF:s1=' + DATABASE + ':S1:MAX',
 						'DEF:s2=' + DATABASE + ':S2:MAX',
 						'DEF:s3=' + DATABASE + ':S3:MAX',
@@ -90,7 +87,7 @@ try:
 			except:
 				LOG.write('Plot error.\n')
 		#reset update token
-		if int(time.strftime("%M")) % 15 == 1: UPDATE=True
+		if int(time.strftime("%M")) % 5 == 1: UPDATE=True
 except Exception as e:
 	print e.args[0]
 
