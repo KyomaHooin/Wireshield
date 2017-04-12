@@ -54,8 +54,11 @@ Allow from all
 </pre>
 FILE
 <pre>
-rpi-avr.py - AVR serial console.
-  firewall - Firewall script.
+  frontend/ - HTML frontend.
+
+ rpi-avr.py - AVR  data processing.
+database.py - Create RRD database.
+   firewall - Firewall script.
 </pre>
 CONTACT
 
