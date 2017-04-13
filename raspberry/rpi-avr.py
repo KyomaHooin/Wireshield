@@ -7,8 +7,6 @@
 
 import rrdtool,smtplib,serial,email,time,sys,re
 
-import random
-
 from email.mime.text import MIMEText
 
 ADMIN='foo@foobar.foo'
