@@ -14,6 +14,7 @@ from email.mime.text import MIMEText
 ADMIN='foo@foobar.foo'
 DATABASE='/root/avr/rpishield.rrd'
 PLOT='/var/www/rpishield/plot/'
+LOG='/var/log/rpishield.log'
 PAYLOAD=''
 UPDATE=True
 
@@ -35,8 +36,8 @@ def notify(s,t):
 
 try:
 	try:
-		LOG = open('/var/log/rpishiled.log','a',0)
-		LOG.write('Program start: ' + time.strftime("%d.%m.%Y %H:%M") + '\n')
+		log = open(LOG,'a',0)
+		log.write('Program start: ' + time.strftime("%d.%m.%Y %H:%M") + '\n')
 	except IOError:
 		print 'Read only FS exiting...'
 		sys.exit(1)
@@ -55,7 +56,8 @@ try:
 						if temperature > 40: notify(sid,temperature)
 					rrdtool.update(DATABASE, payload)
 		except serial.SerialException:
-			LOG.write('Update error.\n')
+			log.write('Update error.\n')
+			time.sleep(300)
 		# 5 min graph plot update..
 		if int(time.strftime("%M")) % 5 == 0 and UPDATE:
 			UPDATE=False
@@ -85,9 +87,10 @@ try:
 						'LINE:s8#C0FF3E: S8',
 					)
 			except:
-				LOG.write('Plot error.\n')
+				log.write('Plot error.\n')
 		#reset update token
 		if int(time.strftime("%M")) % 5 == 1: UPDATE=True
 except Exception as e:
 	print e.args[0]
+log.close()
 
