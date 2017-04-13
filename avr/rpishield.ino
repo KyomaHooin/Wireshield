@@ -68,6 +68,7 @@ void loop() {
     ds_temp_request(Bus1,sensor[i]);
     temperature = ds_get_temperature(Bus1,sensor[i]);
     if ( temperature < 0 ) { temperature = 0; }
+    if ( 0 < temperature < 10 ) { temperature / 10; }
     strcat(payload,sprintf(msg, "S%uT%03d", i, int(temperature * 10)));
     tft_update(i,temperature);
     digitalWrite(LED_ACC, LOW);
@@ -77,6 +78,7 @@ void loop() {
     ds_temp_request(Bus2,sensor[i]);
     temperature = ds_get_temperature(Bus2,sensor[i]);
     if ( temperature < 0 ) { temperature = 0; }
+    if ( 0 < temperature < 10 ) { temperature / 0; }
     strcat(payload,sprintf(msg, "S%uT%03d", i, int(temperature * 10)));
     tft_update(i,temperature);
     digitalWrite(LED_ACC, LOW);
