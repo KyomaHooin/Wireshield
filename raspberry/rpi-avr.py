@@ -53,7 +53,7 @@ try:
 						payload += ':' + str(temperature)
 						if temperature > 40: notify(sid,temperature)
 					rrdtool.update(DATABASE, payload)
-		except serial.SerialException:
+		except:
 			log.write('Update error.\n')
 			time.sleep(300)
 		# 5 min graph plot update..
