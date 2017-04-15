@@ -62,7 +62,7 @@ try:
 			try:
 				for interval in ['1d','1w','1m','1y']:			
 					rrdtool.graph(PLOT + 'rack_plot_' + interval +'.png',
-						'--title', 'NM Rack Temeprature',
+						'--title', 'NM Rack Temperature',
 						'--start', 'now-' + interval,# substraction
 						'--end','now',
 						'--width','600',

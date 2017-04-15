@@ -78,7 +78,7 @@ void loop() {
     ds_temp_request(Bus2,sensor[i]);
     temperature = ds_get_temperature(Bus2,sensor[i]);
     if ( temperature < 0 ) { temperature = 0; }
-    if ( 0 < temperature &&  temperature < 10 ) { temperature /= 10; }
+    if ( 0 < temperature && temperature < 10 ) { temperature /= 10; }
     sprintf(msg, "S%dT%03d", i, int(temperature * 10));
     strcat(payload,msg);
     tft_update(i,temperature);
