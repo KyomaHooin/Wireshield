@@ -4,7 +4,7 @@
 
 #include<SPI.h>
 #include<OneWire.h>
-#include<TFT_22_ILI9225.h>
+#include<TFT_22_ILI9225.h> //176x220
 
 #define BUS1_PWR A0
 #define BUS1_DQ  A1
@@ -66,7 +66,7 @@ void loop() {
     ds_temp_request(Bus1,sensor[i]);
     temperature = ds_get_temperature(Bus1,sensor[i]);
     if ( temperature < 0 ) { temperature = 0; }
-    if ( 0 < temperature < 10 ) { temperature / 10; }
+    if ( 0 < temperature && temperature < 10 ) { temperature /= 10; }
     sprintf(msg, "S%dT%03d", i, int(temperature * 10));
     strcat(payload, msg);
     tft_update(i,temperature);
@@ -75,7 +75,7 @@ void loop() {
     ds_temp_request(Bus2,sensor[i]);
     temperature = ds_get_temperature(Bus2,sensor[i]);
     if ( temperature < 0 ) { temperature = 0; }
-    if ( 0 < temperature < 10 ) { temperature / 0; }
+    if ( 0 < temperature &&  temperature < 10 ) { temperature /= 10; }
     sprintf(msg, "S%dT%03d", i, int(temperature * 10));
     strcat(payload,msg);
     tft_update(i,temperature);
@@ -108,17 +108,22 @@ float ds_get_temperature(OneWire &ds, byte addr[8]) {
 //TFT background template
 void tft_draw_background() {
   tft.clear();
+  tft.setOrientation(3);
   tft.setBackgroundColor(COLOR_BLACK);
-  tft.drawRectangle(5,5,305,235,COLOR_WHITE);
-  for (int i = 0; i < 8; i++) {
-    tft.drawText(10 * i, 20, "HODNOTA: ", COLOR_WHITE);
+  tft.drawRectangle(0,0,175,219,COLOR_WHITE);
+  tft.drawRectangle(1,1,174,218,COLOR_WHITE);
+  for (int i = 0; i < 3; i++) {// 8x20x20 square, 8 spacing, 64 top/bottom
+    tft.drawRectangle(8+i*8+i*20, 64, 8+i*8+i*20+20, 84, COLOR_WHITE);// first line
+    tft.drawRectangle(8+i*8+i*20+1, 65, 8+i*8+i*20+20-1, 83, COLOR_WHITE);// first line
+    tft.drawRectangle(8+i*8+i*20, 92, 8+i*8+i*20+20, 112, COLOR_WHITE);// second line
+    tft.drawRectangle(8+i*8+i*20+1, 93, 8+i*8+i*20+20-1, 111, COLOR_WHITE);// second line
   }
 }
 
 //TFT draw value
 void tft_update(int id, float val) {
   char tmp[4];
-  sprintf(tmp,"%2.1f",val);
+  sprintf(tmp,"%2.1f",double(val));
   tft.setFont(Terminal6x8);
   tft.drawText(10 * id, 40, tmp, COLOR_WHITE);
 }
