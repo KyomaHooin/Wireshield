@@ -4,7 +4,7 @@
 
 #include<SPI.h>
 #include<OneWire.h>
-#include<TFT_22_ILI9225.h> //176x220
+#include<TFT_22_ILI9225.h>// 176x220
 
 #define BUS1_PWR A0
 #define BUS1_DQ  A1
@@ -54,6 +54,9 @@ void setup() {
   digitalWrite(LED_ACC, LOW); 
   //TFT
   tft.begin();
+  tft.setOrientation(3);
+  tft.setFont(Terminal6x8);
+  tft.clear();
   tft_draw_background();
 }
 
@@ -107,24 +110,17 @@ float ds_get_temperature(OneWire &ds, byte addr[8]) {
 
 //TFT background template
 void tft_draw_background() {
-  tft.clear();
-  tft.setOrientation(3);
-  tft.setBackgroundColor(COLOR_BLACK);
-  tft.drawRectangle(0,0,175,219,COLOR_WHITE);
-  tft.drawRectangle(1,1,174,218,COLOR_WHITE);
-  for (int i = 0; i < 3; i++) {// 8x20x20 square, 8 spacing, 64 top/bottom
-    tft.drawRectangle(8+i*8+i*20, 64, 8+i*8+i*20+20, 84, COLOR_WHITE);// first line
-    tft.drawRectangle(8+i*8+i*20+1, 65, 8+i*8+i*20+20-1, 83, COLOR_WHITE);// first line
-    tft.drawRectangle(8+i*8+i*20, 92, 8+i*8+i*20+20, 112, COLOR_WHITE);// second line
-    tft.drawRectangle(8+i*8+i*20+1, 93, 8+i*8+i*20+20-1, 111, COLOR_WHITE);// second line
+  for(int i=0; i<7; i++) {
+    tft.drawRectangle(1, 1 + 2*i + 20 + 20*i, 218, 1 + 2*i + 20*i, COLOR_WHITE);//1px offset 2px spacing 20px height
   }
 }
 
 //TFT draw value
 void tft_update(int id, float val) {
   char tmp[4];
+  unsigned long color; 
   sprintf(tmp,"%2.1f",double(val));
-  tft.setFont(Terminal6x8);
-  tft.drawText(10 * id, 40, tmp, COLOR_WHITE);
+  (val == 0) ? color = COLOR_RED : color = COLOR_GREEN;
+  tft.drawText(3, 6 + 2*id + 20*id, tmp, color);// VAL: top left corner 2px offset 6px padding
 }
 
