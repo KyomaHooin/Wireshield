@@ -1,4 +1,4 @@
-update=Ne 26. únor 2017, 12:04:12 CET
+update=Ne 16. duben 2017, 23:23:33 CEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -22,16 +22,6 @@ BoardOutlineThickness=0.100000000000
 ModuleOutlineThickness=0.150000000000
 [general]
 version=1
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=/home/user/Documents/
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [cvpcb]
 version=1
 NetIExt=net
@@ -69,3 +59,13 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=rpishield
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=/home/user/rpishield/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
