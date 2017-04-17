@@ -108,10 +108,13 @@ float ds_get_temperature(OneWire &ds, byte addr[8]) {
   return (float)raw / 16.0; //-> int to double precission float
 }
 
-//TFT background template
+//TFT background template 52x85 sqare 2px spacing
 void tft_draw_background() {
-  for(int i=0; i<7; i++) {
-    tft.drawRectangle(1, 1 + 2*i + 20 + 20*i, 218, 1 + 2*i + 20*i, COLOR_WHITE);//1px offset 2px spacing 20px height
+  for(int i=0; i < 4; i++) {
+     tft.drawRectangle(2 + 2*i + 52*i, 2, 54 + 2*i + 52*i, 87, COLOR_WHITE);//first row
+     tft.drawRectangle(2 + 2*i + 52*i + 1, 3, 54 + 2*i + 52*i - 1, 86, COLOR_WHITE);
+     tft.drawRectangle(2 + 2*i + 52*i, 89, 54 + 2*i + 52*i, 174 , COLOR_WHITE);//second row
+     tft.drawRectangle(2 + 2*i + 52*i + 1, 90, 54 + 2*i + 52*i - 1, 173 , COLOR_WHITE);
   }
 }
 
@@ -119,8 +122,8 @@ void tft_draw_background() {
 void tft_update(int id, float val) {
   char tmp[4];
   unsigned long color; 
-  sprintf(tmp,"%2.1f",double(val));
+  sprintf(tmp,"%02.1f",double(val));
   (val == 0) ? color = COLOR_RED : color = COLOR_GREEN;
-  tft.drawText(3, 6 + 2*id + 20*id, tmp, color);// VAL: top left corner 2px offset 6px padding
+  ( id < 4 ) ? tft.drawText(6 + 2*id + 52*id, 38, tmp, color) : tft.drawText(6 + 2*id + 52*id, 123, tmp, color);
 }
 
