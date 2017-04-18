@@ -1,9 +1,9 @@
 
 DESCRIPTION
 
-RPi AVR Shield config.
+RPi AVR Shield server configuration.
 
-RPI
+INSTALL
 <pre>
 apt-get install apache2 python-serial python-rrdtool watchdog
 
