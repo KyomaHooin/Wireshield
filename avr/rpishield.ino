@@ -67,18 +67,16 @@ void loop() {
   for (int i = 0; i < 4; i++) {
     ds_temp_request(Bus1,sensor[i]);
     temperature = ds_get_temperature(Bus1,sensor[i]);
-    if ( temperature < 0 ) { temperature = 0; }
-    if ( 0 < temperature && temperature < 10 ) { temperature /= 10; }
-    sprintf(msg, "S%dT%03d", i, int(temperature * 10));
+    if ( temperature <= 0 ) { temperature = 0; }
+    sprintf(msg, "S%dT%03.f", i, double(temperature * 10));
     strcat(payload, msg);
     tft_update(i,temperature);
   }
   for (int i = 4; i < 8; i++) {
     ds_temp_request(Bus2,sensor[i]);
     temperature = ds_get_temperature(Bus2,sensor[i]);
-    if ( temperature < 0 ) { temperature = 0; }
-    if ( 0 < temperature && temperature < 10 ) { temperature /= 10; }
-    sprintf(msg, "S%dT%03d", i, int(temperature * 10));
+    if ( temperature <= 0 ) { temperature = 0; }
+    sprintf(msg, "S%dT%03.f", i, double(temperature * 10));
     strcat(payload,msg);
     tft_update(i,temperature);
   }
@@ -124,7 +122,7 @@ void tft_rectangle(int id, float val) {
 void tft_update(int id, float val) {
   char sid[2],tmp[4];
   sprintf(sid,"%c%d",'R',id);
-  sprintf(tmp,"%.1f",double(val));
+  sprintf(tmp,"%02.1f",double(val));
   if (id < 4) {
       tft.drawText(23 + 2*id + 52*id, 15, sid, COLOR_WHITE);
       tft.drawText(17 + 2*id + 52*id, 36, tmp, COLOR_WHITE);
