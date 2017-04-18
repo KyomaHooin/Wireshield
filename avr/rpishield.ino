@@ -57,7 +57,6 @@ void setup() {
   tft.setOrientation(3);
   tft.setFont(Terminal6x8);
   tft.clear();
-  tft_draw_background();
 }
 
 //MAIN
@@ -84,7 +83,7 @@ void loop() {
     tft_update(i,temperature);
   }
   Serial.println(payload);
-  delay(50000);// hang for 5 min. sleep?
+  delay(50000);
 }
 
 //FUNC
@@ -109,21 +108,30 @@ float ds_get_temperature(OneWire &ds, byte addr[8]) {
 }
 
 //TFT background template 52x85 sqare 2px spacing
-void tft_draw_background() {
-  for(int i=0; i < 4; i++) {
-     tft.drawRectangle(2 + 2*i + 52*i, 2, 54 + 2*i + 52*i, 87, COLOR_WHITE);//first row
-     tft.drawRectangle(2 + 2*i + 52*i + 1, 3, 54 + 2*i + 52*i - 1, 86, COLOR_WHITE);
-     tft.drawRectangle(2 + 2*i + 52*i, 89, 54 + 2*i + 52*i, 174 , COLOR_WHITE);//second row
-     tft.drawRectangle(2 + 2*i + 52*i + 1, 90, 54 + 2*i + 52*i - 1, 173 , COLOR_WHITE);
+void tft_rectangle(int id, float val) {
+  unsigned long color;
+  (val <= 0 || val < 20 ) ? color = COLOR_RED : COLOR_GREEN;
+  if(id < 4) {
+     tft.drawRectangle(2 + 2*id + 52*id, 2, 54 + 2*id + 52*id, 87, color);
+     tft.drawRectangle(2 + 2*id + 52*id + 1, 3, 54 + 2*id + 52*id - 1, 86, color);
+  } else {
+     tft.drawRectangle(2 + 2*id + 52*id, 89, 54 + 2*id + 52*id, 174 , color);
+     tft.drawRectangle(2 + 2*id + 52*id + 1, 90, 54 + 2*id + 52*id - 1, 173 , color);
   }
 }
 
 //TFT draw value
 void tft_update(int id, float val) {
-  char tmp[4];
-  unsigned long color; 
-  sprintf(tmp,"%02.1f",double(val));
-  (val == 0) ? color = COLOR_RED : color = COLOR_GREEN;
-  ( id < 4 ) ? tft.drawText(6 + 2*id + 52*id, 38, tmp, color) : tft.drawText(6 + 2*id + 52*id, 123, tmp, color);
+  char sid[2],tmp[4];
+  sprintf(sid,"%c%d",'R',id);
+  sprintf(tmp,"%.1f",double(val));
+  if (id < 4) {
+      tft.drawText(23 + 2*id + 52*id, 15, sid, COLOR_WHITE);
+      tft.drawText(17 + 2*id + 52*id, 36, tmp, COLOR_WHITE);
+  } else {
+      tft.drawText(23 + 2*id + 52*id, 104, sid, COLOR_WHITE);
+      tft.drawText(17 + 2*id + 52*id, 125, tmp, COLOR_WHITE);
+  }
+  tft_rectangle(id, val);
 }
 
