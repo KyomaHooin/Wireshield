@@ -104,7 +104,7 @@ float ds_get_temperature(OneWire &ds, byte addr[8]) {
   return (float)raw / 16.0; //-> int to double precission float
 }
 
-//TFT background template 52x85 sqare 2px spacing
+//TFT background template 52x85 square 2px spacing
 void tft_rectangle(int id, float val) {
   unsigned long color;
   (val > 0 && val < 30) ? color = COLOR_GREEN : color = COLOR_RED;
@@ -120,7 +120,7 @@ void tft_rectangle(int id, float val) {
 //TFT draw value
 void tft_update(int id, float val) {
   String sid = String("R") + String(id + 1);
-  String tmp = String(int(val)) + String(".") + String(int(val *10) % 10);
+  String tmp = String(int(val)) + String(".") + String(int(val*10) % 10);
   if (id < 4) {
       tft.drawText(23 + 2*id + 52*id, 15, sid, COLOR_WHITE);
       tft.drawText(17 + 2*id + 52*id, 36, tmp, COLOR_WHITE);
