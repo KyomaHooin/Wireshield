@@ -1,15 +1,15 @@
 
 DESCRIPTION
 
-Server room enviroment monitoring.
+Server Room Enviroment Monitoring.
 
 FILE
 <pre>
                  avr/ - Atmega code.
-               kicad/ - KiCad schematic and PCB.
+               kicad/ - KiCAD schematic and PCB.
             openscad/ - OpenSCAD case model.
            raspberry/ - RPi code.
-wireshield_schema.pdf - Shied schematic.
+wireshield_schema.pdf - Shield schematic.
 </pre>
 CONTACT
 
