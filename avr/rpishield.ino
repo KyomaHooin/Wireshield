@@ -2,7 +2,6 @@
 // RPi OneWire Shield 
 //
 
-#include<SPI.h>
 #include<OneWire.h>
 #include<TFT_22_ILI9225.h>// 176x220
 
@@ -48,13 +47,13 @@ void setup() {
   pinMode(BUS2_PWR, OUTPUT);
   digitalWrite(BUS2_PWR, HIGH);
   //LED
-  pinMode(LED_PWR, OUTPUT);
+  inMode(LED_PWR, OUTPUT);
   digitalWrite(LED_PWR, HIGH);
   pinMode(LED_ACC, OUTPUT);
   digitalWrite(LED_ACC, LOW); 
   //TFT
   tft.begin();
-  tft.setOrientation(3);
+  tft.setOrientation(1);
   tft.setFont(Terminal6x8);
   tft.clear();
 }
@@ -63,12 +62,12 @@ void setup() {
 
 void loop() {
   float temperature;
-  char msg[6], payload[48];
+  char msg[6], payload[48] = {};
   for (int i = 0; i < 4; i++) {
     ds_temp_request(Bus1,sensor[i]);
     temperature = ds_get_temperature(Bus1,sensor[i]);
     if ( temperature <= 0 ) { temperature = 0; }
-    sprintf(msg, "S%dT%03.f", i, double(temperature * 10));
+    sprintf(msg, "S%dT%03d", i, int(temperature * 10));
     strcat(payload, msg);
     tft_update(i,temperature);
   }
@@ -76,7 +75,7 @@ void loop() {
     ds_temp_request(Bus2,sensor[i]);
     temperature = ds_get_temperature(Bus2,sensor[i]);
     if ( temperature <= 0 ) { temperature = 0; }
-    sprintf(msg, "S%dT%03.f", i, double(temperature * 10));
+    sprintf(msg, "S%dT%03d", i, int(temperature * 10));
     strcat(payload,msg);
     tft_update(i,temperature);
   }
@@ -108,27 +107,26 @@ float ds_get_temperature(OneWire &ds, byte addr[8]) {
 //TFT background template 52x85 sqare 2px spacing
 void tft_rectangle(int id, float val) {
   unsigned long color;
-  (val <= 0 || val < 20 ) ? color = COLOR_RED : COLOR_GREEN;
+  (val > 0 && val < 30) ? color = COLOR_GREEN : color = COLOR_RED;
   if(id < 4) {
      tft.drawRectangle(2 + 2*id + 52*id, 2, 54 + 2*id + 52*id, 87, color);
      tft.drawRectangle(2 + 2*id + 52*id + 1, 3, 54 + 2*id + 52*id - 1, 86, color);
   } else {
-     tft.drawRectangle(2 + 2*id + 52*id, 89, 54 + 2*id + 52*id, 174 , color);
-     tft.drawRectangle(2 + 2*id + 52*id + 1, 90, 54 + 2*id + 52*id - 1, 173 , color);
+     tft.drawRectangle(2 + 2*(id-4) + 52*(id-4), 89, 54 + 2*(id-4) + 52*(id-4), 174 , color);
+     tft.drawRectangle(2 + 2*(id-4) + 52*(id-4) + 1, 90, 54 + 2*(id-4) + 52*(id-4) - 1, 173 , color);
   }
 }
 
 //TFT draw value
 void tft_update(int id, float val) {
-  char sid[2],tmp[4];
-  sprintf(sid,"%c%d",'R',id);
-  sprintf(tmp,"%02.1f",double(val));
+  String sid = String("R") + String(id + 1);
+  String tmp = String(int(val)) + String(".") + String(int(val *10) % 10);
   if (id < 4) {
       tft.drawText(23 + 2*id + 52*id, 15, sid, COLOR_WHITE);
       tft.drawText(17 + 2*id + 52*id, 36, tmp, COLOR_WHITE);
   } else {
-      tft.drawText(23 + 2*id + 52*id, 104, sid, COLOR_WHITE);
-      tft.drawText(17 + 2*id + 52*id, 125, tmp, COLOR_WHITE);
+      tft.drawText(23 + 2*(id-4) + 52*(id-4), 104, sid, COLOR_WHITE);
+      tft.drawText(17 + 2*(id-4) + 52*(id-4), 125, tmp, COLOR_WHITE);
   }
   tft_rectangle(id, val);
 }
