@@ -4,13 +4,6 @@ DESCRIPTION
 
 Raspberry RPi2 OneWire AVR shiled.
 
-TODO
-<pre>
--GND Zone
--Silk/Label - refname
--LED silk/foot.
--Jack foot.
-</pre>
 FILE
 <pre>
                 3d/ - 3D models by Walter Lain (c) 2015.
