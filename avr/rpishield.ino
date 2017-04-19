@@ -17,7 +17,7 @@
 #define LED_ACC  A4
 #define LED_PWR  A5
 
-//OneWire instace
+//OneWire instance
 OneWire Bus1(BUS1_DQ);
 OneWire Bus2(BUS2_DQ);
 //TFT HW SPI instance
@@ -47,7 +47,7 @@ void setup() {
   pinMode(BUS2_PWR, OUTPUT);
   digitalWrite(BUS2_PWR, HIGH);
   //LED
-  inMode(LED_PWR, OUTPUT);
+  pinMode(LED_PWR, OUTPUT);
   digitalWrite(LED_PWR, HIGH);
   pinMode(LED_ACC, OUTPUT);
   digitalWrite(LED_ACC, LOW); 
