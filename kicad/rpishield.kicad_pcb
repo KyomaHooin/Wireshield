@@ -1040,6 +1040,11 @@
       (net 58 /BUS2_PWR))
     (pad 4 thru_hole rect (at 11.2 -2.54 90) (size 2.2 2.2) (drill oval 1.5 0.8) (layers *.Cu *.Mask)
       (net 65 "Net-(OneWireBus2-Pad4)"))
+    (model /home/user/rpishield/3d/jack_3.5_sj1-3513-smt.wrl
+      (at (xyz 0.3 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (module footprint:Custom_Barrel_Jack (layer F.Cu) (tedit 58FBB22B) (tstamp 58AC5EA3)
@@ -1076,6 +1081,11 @@
       (net 56 /BUS1_PWR))
     (pad 4 thru_hole rect (at 11.2 -2.54 90) (size 2.2 2.2) (drill oval 1.5 0.8) (layers *.Cu *.Mask)
       (net 64 "Net-(OneWireBus1-Pad4)"))
+    (model /home/user/rpishield/3d/jack_3.5_sj1-3513-smt.wrl
+      (at (xyz 0.3 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (gr_line (start 116.5 63.5) (end 175.5 63.5) (layer Edge.Cuts) (width 0.15))
