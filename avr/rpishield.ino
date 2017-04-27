@@ -80,7 +80,7 @@ void loop() {
     tft_update(i,temperature);
   }
   Serial.println(payload);
-  delay(50000);
+  delay(300000);
 }
 
 //FUNC
