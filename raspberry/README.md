@@ -1,3 +1,4 @@
+![RPI](https://github.com/KyomaHooin/Wireshield/raw/master/raspberry/rpi_screen.png "screenshot")
 
 DESCRIPTION
 
@@ -54,11 +55,13 @@ Allow from all
 </pre>
 FILE
 <pre>
-  frontend/ - HTML frontend.
+     frontend/ - HTML frontend.
 
- rpi-avr.py - AVR  data processing.
-database.py - Create RRD database.
-   firewall - Firewall script.
+    rpi-avr.py - AVR  data processing.
+   database.py - Create RRD database.
+      debug.py - Serial debugging.
+      firewall - Firewall script.
+rpi_screen.png - Plot output.
 </pre>
 CONTACT
 
