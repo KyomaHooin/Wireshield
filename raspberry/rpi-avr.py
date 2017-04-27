@@ -1,8 +1,9 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # RPi AVR Shiled OneWire bus data processing
 #
-# DATA[5min]: S1T000S2T000S3T000S4T000S5T000S6T000S7T000S8T000
+# DATA[5min]: S0T000S1T000S2T000S3T000S4T000S5T000S6T000S7T000
 #
 
 import rrdtool,smtplib,serial,email,time,sys,re
@@ -67,22 +68,52 @@ try:
 						'--end','now',
 						'--width','600',
 						'--height','150',
-						'DEF:s1=' + DATABASE + ':S1:MAX',
-						'DEF:s2=' + DATABASE + ':S2:MAX',
-						'DEF:s3=' + DATABASE + ':S3:MAX',
-						'DEF:s4=' + DATABASE + ':S4:MAX',
-						'DEF:s5=' + DATABASE + ':S5:MAX',
-						'DEF:s6=' + DATABASE + ':S6:MAX',
-						'DEF:s7=' + DATABASE + ':S7:MAX',
-						'DEF:s8=' + DATABASE + ':S8:MAX',
-						'LINE:s1#6959CD: S1',
-						'LINE:s2#00FF7F: S2',
-						'LINE:s3#EEEE00: S3',
-						'LINE:s4#EE7621: S4',
-						'LINE:s5#FF3030: S5',
-						'LINE:s6#EE799F: S6',
-						'LINE:s7#00CDCD: S7',
-						'LINE:s8#C0FF3E: S8',
+						'--vertical-label','Temperature °C',
+						'DEF:s0last=' + DATABASE + ':S0:LAST',
+						'DEF:s1last=' + DATABASE + ':S1:LAST',
+						'DEF:s2last=' + DATABASE + ':S2:LAST',
+						'DEF:s3last=' + DATABASE + ':S3:LAST',
+						'DEF:s4last=' + DATABASE + ':S4:LAST',
+						'DEF:s5last=' + DATABASE + ':S5:LAST',
+						'DEF:s6last=' + DATABASE + ':S6:LAST',
+						'DEF:s7last=' + DATABASE + ':S7:LAST',
+						'COMMENT:\s',
+						'COMMENT:            Curr    Max    Avg                 Curr    Max    Avg',
+						'COMMENT:\s',
+						'COMMENT:\s',
+						'COMMENT:\s',
+						'LINE2:s0last#6959CD:R1\t',
+						'GPRINT:s0last:LAST:%5.1lf',
+						'GPRINT:s0last:MAX:%5.1lf',
+						'GPRINT:s0last:AVERAGE:%5.1lf\t',
+						'LINE2:s4last#00FF7F:R5\t',
+						'GPRINT:s4last:LAST:%5.1lf',
+						'GPRINT:s4last:MAX:%5.1lf',
+						'GPRINT:s4last:AVERAGE:%5.1lf\\n',
+						'LINE2:s1last#EEEE00:R2\t',
+						'GPRINT:s1last:LAST:%5.1lf',
+						'GPRINT:s1last:MAX:%5.1lf',
+						'GPRINT:s1last:AVERAGE:%5.1lf\t',
+						'LINE2:s5last#EE7621:R6\t',
+						'GPRINT:s5last:LAST:%5.1lf',
+						'GPRINT:s5last:MAX:%5.1lf',
+						'GPRINT:s5last:AVERAGE:%5.1lf\\n',
+						'LINE2:s2last#FF3030:R3\t',
+						'GPRINT:s2last:LAST:%5.1lf',
+						'GPRINT:s2last:MAX:%5.1lf',
+						'GPRINT:s2last:AVERAGE:%5.1lf\t',
+						'LINE2:s6last#EE799F:R7\t',
+						'GPRINT:s6last:LAST:%5.1lf',
+						'GPRINT:s6last:MAX:%5.1lf',
+						'GPRINT:s6last:AVERAGE:%5.1lf\\n',
+						'LINE2:s3last#00CDCD:R4\t',
+						'GPRINT:s3last:LAST:%5.1lf',
+						'GPRINT:s3last:MAX:%5.1lf',
+						'GPRINT:s3last:AVERAGE:%5.1lf\t',
+						'LINE2:s7last#C0FF3E:R8\t',
+						'GPRINT:s7last:LAST:%5.1lf',
+						'GPRINT:s7last:MAX:%5.1lf',
+						'GPRINT:s7last:AVERAGE:%5.1lf\\n'
 					)
 			except:
 				log.write('Plot error.\n')
