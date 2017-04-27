@@ -8,7 +8,7 @@ INSTALL
 <pre>
 apt-get install apache2 python-serial python-rrdtool watchdog
 
-raspi-config > Advanced options > logging [no] > device [yes]
+raspi-config > Interfacing Options > Serial > logging [no] > device [yes]
 
 /etc/fstab:
 
