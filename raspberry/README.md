@@ -4,10 +4,6 @@ DESCRIPTION
 
 RPi AVR Shield server configuration.
 
-TODO
-<pre>
--Better RRD COMMENT break
-</pre>
 INSTALL
 <pre>
 apt-get install apache2 python-serial python-rrdtool watchdog
