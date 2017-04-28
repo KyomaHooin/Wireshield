@@ -3,6 +3,7 @@
 //
 
 #include<OneWire.h>
+#include<LowPower.h>
 #include<TFT_22_ILI9225.h>// 176x220
 
 #define BUS1_PWR A0
@@ -80,10 +81,20 @@ void loop() {
     tft_update(i,temperature);
   }
   Serial.println(payload);
-  delay(300000);
+  led_flash();
+  for (int i = 0; i < 74; i++) {
+    LowPower.idle(SLEEP_4S,ADC_OFF,TIMER2_ON,TIMER1_ON,TIMER0_ON,SPI_ON,USART0_OFF,TWI_OFF);
+  }
 }
 
 //FUNC
+
+//Blink half a sec.
+void led_flash() {
+  digitalWrite(LED_ACC,HIGH);
+  delay(500);
+  digitalWrite(LED_ACC,LOW);
+}
 
 //Bus request temperature
 void ds_temp_request(OneWire &ds, byte addr[8]) {
