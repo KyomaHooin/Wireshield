@@ -7,6 +7,9 @@ Raspberry RPi2 OneWire AVR shiled Atmega328 code.
 TODO
 <pre>
 -Long wire test
+-22C layout test
+-ACC LED code
+-5min delay/sleep (?) code
 </pre>
 FILE
 
