@@ -4,12 +4,6 @@ DESCRIPTION
 
 Raspberry RPi2 OneWire AVR shiled Atmega328 code.
 
-TODO
-<pre>
--Long wire test
--22C layout test
--TFT char buffer
-</pre>
 FILE
 
 <pre>
