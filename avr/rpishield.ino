@@ -82,8 +82,8 @@ void loop() {
   }
   Serial.println(payload);
   led_flash();
-  for (int i = 0; i < 74; i++) {
-    LowPower.idle(SLEEP_4S,ADC_OFF,TIMER2_ON,TIMER1_ON,TIMER0_ON,SPI_ON,USART0_OFF,TWI_OFF);
+  for (int i = 0; i < 74; i++) {// 5min sleep
+    LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);
   }
 }
 
@@ -92,7 +92,7 @@ void loop() {
 //Blink half a sec.
 void led_flash() {
   digitalWrite(LED_ACC,HIGH);
-  delay(500);
+  delay(100);
   digitalWrite(LED_ACC,LOW);
 }
 
