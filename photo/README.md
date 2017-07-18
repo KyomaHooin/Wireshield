@@ -1,6 +1,6 @@
 DESCRIPTION
 
-Photodocumentation for Wireshield
+Photo documentation for Wireshield
 
 FILE
 <pre>
