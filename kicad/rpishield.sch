@@ -193,7 +193,7 @@ F 3 "" H 6350 2050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text Label 4950 2400 2    60   ~ 0
-LED_PWR
+VCC_ADC
 Text Label 4950 2100 2    60   ~ 0
 RX
 Text Label 4950 2000 2    60   ~ 0
@@ -529,7 +529,7 @@ U 1 1 58CA67C7
 P 9450 5550
 F 0 "Conn4" H 9450 6050 50  0000 C CNN
 F 1 "SPI" V 9550 5550 50  0000 C CNN
-F 2 "Socket_Strips:Socket_Strip_Straight_1x09_Pitch2.54mm" H 9450 5550 50  0001 C CNN
+F 2 "footprint:Custom_Pin_Header_Straight_1x09_Pitch2.54mm" H 9450 5550 50  0001 C CNN
 F 3 "" H 9450 5550 50  0001 C CNN
 	1    9450 5550
 	1    0    0    -1  
