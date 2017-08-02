@@ -10,6 +10,8 @@ apt-get install apache2 python-serial python-rrdtool watchdog
 
 raspi-config > Interfacing Options > Serial > logging [no] > device [yes]
 
+systemctl disable serial-getty@ttyAMA0.service
+
 /etc/fstab:
 
 #tmpfs   /root/avr/ramdisk   tmpfs   nodev,nosuid,size=32M   0       0
