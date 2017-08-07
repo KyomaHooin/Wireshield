@@ -61,7 +61,6 @@ FILE
 
     rpi-avr.py - AVR  data processing.
    database.py - Create RRD database.
-      debug.py - Serial debugging.
       firewall - Firewall script.
 rpi_screen.png - Plot output.
 </pre>
