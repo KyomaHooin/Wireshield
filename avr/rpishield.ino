@@ -12,8 +12,8 @@
 #define BUS2_DQ  A3
 #define LED_ACC  A4
 #define LED_PWR  A5
-#define TFT_RST  8 // TFT RST
-#define TFT_RS   9 // TFT D/C
+#define TFT_RS   8 // TFT D/C
+#define TFT_RST  9 // TFT RST
 #define TFT_CS   10// SPI SS
 #define TFT_SDI  11// SPI MOSI
 #define TFT_CLK  13// SPI SCK
