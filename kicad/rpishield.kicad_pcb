@@ -1007,7 +1007,7 @@
     (pad 2 thru_hole circle (at 4.445 0 270) (size 1.397 1.397) (drill 0.8128) (layers *.Cu *.Mask)
       (net 15 "Net-(LED1-Pad2)"))
     (model Discret.3dshapes/R3.wrl
-      (at (xyz 0 0 0))
+      (at (xyz 0.012 0 0))
       (scale (xyz 0.325 0.3 0.3))
       (rotate (xyz 0 0 0))
     )
@@ -1037,7 +1037,7 @@
     (pad 2 thru_hole circle (at 4.445 0 270) (size 1.397 1.397) (drill 0.8128) (layers *.Cu *.Mask)
       (net 16 "Net-(LED2-Pad2)"))
     (model Discret.3dshapes/R3.wrl
-      (at (xyz 0 0 0))
+      (at (xyz 0.012 0 0))
       (scale (xyz 0.325 0.3 0.3))
       (rotate (xyz 0 0 0))
     )
