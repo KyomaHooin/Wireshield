@@ -14,17 +14,17 @@ displaySPIWidth=2.54;// pls.jpg
 displaySPILength=11*2.54;// pls.jpg
 displaySPIHeight=6.10+2.5;// pls.jpg
 displaySPIX=(displayX-displaySPILength)/2;
-displaySPIY=2.5 - displaySPIWidth/2;
+displaySPIY=displayY-2.5-displaySPIWidth/2;// TFT.jpg
 
 $fn=50;
 
 module display_hole() {
-	cylinder(h=displayThick+2, r=displayHoleRadius);
+    cylinder(h=displayThick+2, r=displayHoleRadius);
 }
 
-module rpishield_display() {
+module display() {
 	color("salmon")
-		difference() {
+		difference() {// HOLE
 			cube([displayX, displayY, displayThick]);
 			translate([displayHoleX, displayHoleY, -1]) display_hole();
 			translate([displayX-displayHoleX, displayHoleY, -1]) display_hole();
@@ -32,13 +32,11 @@ module rpishield_display() {
 			translate([displayX-displayHoleY, displayY-displayHoleY, -1]) display_hole();
 		}
 	color("lightblue") { // SCREEN
-		translate([0,screenY,displayThick])
+		translate([0,screenY, displayThick])
             cube([displayX, displayY-2*screenY, displayThick]);
 	}
 	color("black") { // SPI
-		translate([displaySPIX,displaySPIY,-displaySPIHeight])
-            cube([displaySPILength,displaySPIWidth,displaySPIHeight]);
+		translate([displaySPIX, displaySPIY, -displaySPIHeight])
+            cube([displaySPILength, displaySPIWidth, displaySPIHeight]);
 	}
 }
-
-rpishield_display();
