@@ -3,6 +3,14 @@ DESCRIPTION
 
 Server Room Enviroment Monitoring.
 
+ORDER LIST
+
+-Wallmount - https://www.mechatronicsart.com/product/wall-mount-raspberry-pi-3-case/
+-M2/2.5 Standoff/spacers + M2 screw/nut
+-3.5 Jack Steel metal DS18B20
+-3.5 Jack splitter
+-3.5 Jack to RJ11
+
 FILE
 <pre>
                  avr/ - Atmega code.
