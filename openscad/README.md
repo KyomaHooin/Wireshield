@@ -6,8 +6,11 @@ Raspberry RPi2 AVR shiled & TFT display case.
 
 FILE
 <pre>
-     rpishield.scad - OpenSCAD code.
-            TFT.jpg - Display dimmensions.
+            schema/ - Dimension schematics.
+
+     rpishield.scad - Complete code.
+        shield.scad - Shiled code.
+           tft.scad - TFT display code.
 openscad_screen.png - 3D model screenshot.
 </pre>
 CONTACT
