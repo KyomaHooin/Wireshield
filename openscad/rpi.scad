@@ -7,7 +7,7 @@ piY=85;// RPi.png
 piThick=1.60;// ?
 piHoleDia=2.75;// RPi.png
 piShieldLength=65;// RPi.png
-HoleOffset=3.5;// RPi.png
+piHoleOffset=3.5;// RPi.png
 
 usbWidth=13.28;
 usbLength=17.05;
@@ -44,7 +44,7 @@ gpioWidth=2.54*2;// pls.jpg
 gpioLength=20*2.54;// pls.jpg
 gpioHeight=6.10+2.5;// pls.jpg
 gpioX=1.05;// ?
-gpioY=HoleOffset+29-gpioLength/2;// RPi.png
+gpioY=piHoleOffset+29-gpioLength/2;// RPi.png
 
 $fn=50;
 
@@ -52,14 +52,14 @@ module pi_hole() {
 	cylinder(h=piThick+2, d=piHoleDia);
 }
 
-module rpishield_rpi(edgeCut=0) {
+module rpi(edgeCut=0) {
 	color("seagreen")
 	difference() {
 		cube([piX, piY, piThick]);
-		translate([HoleOffset, HoleOffset, -1]) pi_hole();
-		translate([piX-HoleOffset, HoleOffset, -1]) pi_hole();
-		translate([HoleOffset, piShieldLength-HoleOffset, -1]) pi_hole();
-		translate([piX-HoleOffset, piShieldLength-HoleOffset, -1]) pi_hole();
+		translate([piHoleOffset, piHoleOffset, -1]) pi_hole();
+		translate([piX-piHoleOffset, piHoleOffset, -1]) pi_hole();
+		translate([piHoleOffset, piShieldLength-piHoleOffset, -1]) pi_hole();
+		translate([piX-piHoleOffset, piShieldLength-piHoleOffset, -1]) pi_hole();
 	}
 	color("Silver") {
 		// USB
@@ -86,5 +86,3 @@ module rpishield_rpi(edgeCut=0) {
 			cube([gpioWidth, gpioLength, gpioHeight]);
 	}
 }
-
-rpishield_rpi();
