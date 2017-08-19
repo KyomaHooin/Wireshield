@@ -38,7 +38,7 @@ module shield_hole() {
 	cylinder(h=shieldThick+2, d=shieldHoleDia);
 }
 
-module rpishield_shield(shieldEdgeCut=0) {
+module shield(shieldEdgeCut=0) {
 	color("seagreen")
 	difference() {
 		cube([shieldX, shieldY, shieldThick]);
@@ -62,5 +62,3 @@ module rpishield_shield(shieldEdgeCut=0) {
 			cube([shiledLEDLength,shiledLEDWidth,shiledLEDHeight]);
 	}
 }
-
-rpishield_shield();
