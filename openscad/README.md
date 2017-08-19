@@ -10,6 +10,7 @@ FILE
 
      rpishield.scad - Complete code.
         shield.scad - Shiled code.
+          func.scad - Helper functions.
            rpi.scad - RPi code.
            tft.scad - TFT display code.
 openscad_screen.png - 3D model screenshot.
