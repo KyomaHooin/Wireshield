@@ -6,8 +6,8 @@ drawPi=0;
 drawShiled=0;
 drawDisplay=0;
 drawCaseTop=0;
-drawCaseBottom=1;
-drawAll=0;
+drawCaseBottom=0;
+drawAll=1;
 
 $fn=50;
 
@@ -103,7 +103,6 @@ if (drawShiled) { shield(); }
 if (drawDisplay) { display(); }
 if (drawCaseTop) { case_top(); }
 if (drawCaseBottom) { case_bottom(); }
-
 
 if (drawAll) {
     translate([-bottomX/2,-bottomY/2,0]) {// CENTER

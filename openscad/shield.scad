@@ -56,9 +56,10 @@ module shield(shieldEdgeCut=0) {
 			cube([shiledJackLength,shiledJackWidth,shiledJackHeight]);
 		translate([shiledJackX+shieldEdgeCut,shiledJackY-15,shieldThick])
 			cube([shiledJackLength,shiledJackWidth,shiledJackHeight]);
-		translate([shiledLEDX+shieldEdgeCut,shiledLEDY,shieldThick])// LED
-			cube([shiledLEDLength,shiledLEDWidth,shiledLEDHeight]);
-		translate([shiledLEDX+shieldEdgeCut,shiledLEDY+5,shieldThick])
-			cube([shiledLEDLength,shiledLEDWidth,shiledLEDHeight]);
+		translate([shiledLEDX+shieldEdgeCut,shiledLEDY,shieldThick+shiledLEDWidth/2])// LED
+            rotate([0,90,0]) cylinder(shiledLEDLength,shiledLEDWidth/2,shiledLEDWidth/2);
+		translate([shiledLEDX+shieldEdgeCut,shiledLEDY+5,shieldThick+shiledLEDWidth/2])
+            rotate([0,90,0]) cylinder(shiledLEDLength,shiledLEDWidth/2,shiledLEDWidth/2);
+
 	}
 }
