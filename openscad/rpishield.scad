@@ -29,17 +29,18 @@ module spacer_mount() {
 
 //CASE BOTTOM
 //
-// ventilation
-// liplock
+// IDE cable
+// SD card
 
 bottomX=56;// RPi.png
 bottomY=85;// RPi.png
-bottomHeight=15+1.60;// ?
-bottomThick=3;// ?
-bottomMountHight=2;// ?
-bottomMountDia=6.2;// ?
+bottomThick=3;
+bottomMountHight=2;
+bottomHeight=bottomThick+bottomMountHight+piThick+2*spacerHeight/3;
+bottomMountDia=6.2;// RPi.png
 
 module case_bottom() {
+    color("olive")
 	difference() {
 		rounded_rect(bottomX, bottomY, bottomHeight, bottomThick);
 		translate([0,0,bottomThick]) cube([bottomX, bottomY, bottomHeight]); // FILLER
@@ -47,68 +48,75 @@ module case_bottom() {
 		translate([bottomX-piHoleOffset, piHoleOffset,-1]) bottom_hole();
 		translate([piHoleOffset,shieldY-piHoleOffset,-1]) bottom_hole();
         translate([bottomX-piHoleOffset,shieldY-piHoleOffset,-1]) bottom_hole();
-		translate([0,0,bottomThick+bottomMountHight]) rpi(edgeCut=3); // RPI
+		translate([0,0,bottomThick+bottomMountHight]) rpi(edgeCut=5); // RPI
+        translate([0,0,bottomHeight-bottomThick/2])
+            rounded_rect(piX,piY,bottomThick,bottomThick/2);//LIPLOCK
+        //VENT
+        translate([bottomX/4, 12.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
+        translate([bottomX/4, 22.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
+        translate([bottomX/4, 32.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
+        translate([bottomX/4, 42.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
+        translate([bottomX/4, 52.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
+        translate([bottomX/4, 62.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
+        translate([bottomX/4, 72.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
 	}
 	//BUFFER RING
+    color("olive") {
 	bottom_mount(piHoleOffset, piHoleOffset, bottomThick);
 	bottom_mount(bottomX-piHoleOffset,piHoleOffset, bottomThick);
 	bottom_mount(piHoleOffset, shieldY-piHoleOffset, bottomThick);
-	bottom_mount(bottomX-piHoleOffset, shieldY-piHoleOffset, bottomThick);
+	bottom_mount(bottomX-piHoleOffset, shieldY-piHoleOffset, bottomThick);    
+    }
 }
 
 //CASE TOP
 //
-// display, bottom screw cylinder
-// pwr,jack,USB side
-// liplock
+// display spacer
 
-//topWidth=piWidth;
-//topLength=piLength;
-//topHeight=30-piThick;
-//topThick=3;
-//topMountHight=2;
-//topMountPiHight=topHeight;
-//topMountHoleDia=2;
-//topMountDia=6.2;
+topX=56;// RPi.png
+topY=85;// RPi.png
+topThick=3;
+topHeight=spacerHeight/3+shieldThick+spacerHeight+displayThick+topThick;
+topMountHight=2;
+topMountHoleDia=2;
+topMountDia=6.2;
 
-//module case_top() {
-//	difference() {
-//		rounded_rect(topWidth, topLength, topHeight, topThick);
-//		translate([0,0,-topThick]) cube([piWidth, piLength, topHeight]);// filler
-//		translate([displayOffsetW, displayOffsetH+screenOffset, 0])// screen
-//			cube([displayWidth,displayLength-2*screenOffset,topHeight+1]);
-//		translate([displayOffsetW+displayHoleWoffset,displayOffsetH+displayHoleLoffset,topHeight-topThick-1])// display hole
-//			cylinder(h=topThick+2,r=displayHoleRadius);
-//		translate([displayWidth+displayHoleWoffset, displayOffsetH+displayHoleLoffset, topHeight-topThick-1])
-//			cylinder(h=topThick+2,r=displayHoleRadius);
-//		translate([displayOffsetW+displayHoleWoffset, topLength-displayOffsetH-displayHoleLoffset, topHeight-topThick-1])
-//			cylinder(h=topThick+2,r=displayHoleRadius);
-//		translate([displayWidth+displayHoleWoffset, topLength-displayOffsetH-displayHoleLoffset, topHeight-topThick-1])
-//			cylinder(h=topThick+2,r=displayHoleRadius);
-//		translate([0,0,-10]) pi(edgeCut=3);
-//		translate([0,0,10]) shield(shieldEdgeCut=3);
-//	}
-//}
+module case_top() {
+	difference() {
+        union(){
+            rounded_rect(topX, topY, topHeight, topThick);
+            translate([0,0,-topThick/2])
+                rounded_rect(piX,piY,bottomThick,bottomThick/2);//LIPLOCK
+        }
+		translate([0,0,-topThick]) cube([piX, piY, topHeight]);// FILLER
+		translate([(piX-displayX)/2, (piY-displayY+2*screenY)/2, 0])// SCREEN
+			cube([displayX,displayY-2*screenY,topHeight+1]);
+		translate([0,0,spacerHeight/3]) shield(shieldEdgeCut=3);// SHILED
+		translate([0,0,-(2*spacerHeight/3+piThick)]) rpi(edgeCut=3);// PI
+	}
+}
 
 //------------------------------------------
 
 if (drawPi) { rpi(); }
 if (drawShiled) { shield(); }
 if (drawDisplay) { display(); }
-//if (drawCaseTop) { case_top(); }
+if (drawCaseTop) { case_top(); }
 if (drawCaseBottom) { case_bottom(); }
 
+
 if (drawAll) {
-	translate([0,0,0]) case_bottom();
-	translate([0,0,bottomThick+bottomMountHight])
-        rpi();
-	translate([0,0,bottomThick+bottomMountHight+piThick])
-        spacer_mount();
-	translate([0,0,bottomThick+bottomMountHight+piThick+spacerHeight])
-        shield();
-	translate([(piX-displayX)/2, (piY-displayY)/2,
-        bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+spacerHeight
-    ]) display() ;
-//	translate([0,0,bottomThick+bottomMountHight+piThick+shieldThick+displayThick+topThick])
-//        case_top();
+    translate([-bottomX/2,-bottomY/2,0]) {// CENTER
+        translate([0,0,0]) case_bottom();
+        translate([0,0,bottomThick+bottomMountHight])
+            rpi();
+        translate([0,0,bottomThick+bottomMountHight+piThick])
+            spacer_mount();
+        translate([0,0,bottomThick+bottomMountHight+piThick+spacerHeight])
+            shield();
+        translate([(piX-displayX)/2, (piY-displayY)/2,
+            bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+spacerHeight
+        ]) display();
+        translate([0,0,bottomHeight]) case_top();
+    }
 }
