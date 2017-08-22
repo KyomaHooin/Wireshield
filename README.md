@@ -5,6 +5,7 @@ Server Room Enviroment Monitoring.
 
 ORDER LIST
 <pre>
+-Edimax Technology Co., Ltd EW-7811Un 802.11n Wireless Adapter [Realtek RTL8188CUS]
 -Wallmount - https://www.mechatronicsart.com/product/wall-mount-raspberry-pi-3-case/
 -M2/2.5 Standoff/spacers + M2 screw/nut
 -3.5 Jack Steel metal DS18B20
