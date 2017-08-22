@@ -28,9 +28,6 @@ module spacer_mount() {
 }
 
 //CASE BOTTOM
-//
-// IDE cable
-// SD card
 
 bottomX=56;// RPi.png
 bottomY=85;// RPi.png
@@ -38,6 +35,9 @@ bottomThick=3;
 bottomMountHight=2;
 bottomHeight=bottomThick+bottomMountHight+piThick+2*spacerHeight/3;
 bottomMountDia=6.2;// RPi.png
+
+idcLength=20*2.54;//+4.57 idc.jpg
+idcY=piHoleOffset+(58-idcLength)/2;//RPi.png
 
 module case_bottom() {
     color("olive")
@@ -51,14 +51,12 @@ module case_bottom() {
 		translate([0,0,bottomThick+bottomMountHight]) rpi(edgeCut=5); // RPI
         translate([0,0,bottomHeight-bottomThick/2])
             rounded_rect(piX,piY,bottomThick,bottomThick/2);//LIPLOCK
+        translate([-bottomThick/2,idcY,bottomThick+bottomMountHight+piThick])
+            cube([bottomThick/2+1,idcLength,bottomHeight-bottomThick]);// IDC
         //VENT
-        translate([bottomX/4, 12.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-        translate([bottomX/4, 22.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-        translate([bottomX/4, 32.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-        translate([bottomX/4, 42.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-        translate([bottomX/4, 52.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-        translate([bottomX/4, 62.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-        translate([bottomX/4, 72.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
+        for (vspace=[1:7])
+        translate([bottomX/4, 10*vspace+2.5, -1])
+            rounded_rect(bottomX/2, 1, bottomThick+2, 1);
 	}
 	//BUFFER RING
     color("olive") {
@@ -92,6 +90,8 @@ module case_top() {
 		translate([(piX-displayX)/2, (piY-displayY+2*screenY)/2, 0])// SCREEN
 			cube([displayX,displayY-2*screenY,topHeight+1]);
 		translate([0,0,spacerHeight/3]) shield(shieldEdgeCut=3);// SHILED
+        translate([-topThick/2,idcY,-topThick-1])
+            cube([bottomThick/2+1,idcLength,spacerHeight/3+shieldThick+shieldSPIHeight]);// IDC
 		translate([0,0,-(2*spacerHeight/3+piThick)]) rpi(edgeCut=3);// PI
 	}
 }
