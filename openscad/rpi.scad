@@ -46,6 +46,11 @@ gpioHeight=6.10+2.5;// pls.jpg
 gpioX=1.05;// ?
 gpioY=piHoleOffset+29-gpioLength/2;// RPi.png
 
+cardWidth=11.0;
+cardLength=15.0;
+cardHeight=1.0;
+cardX=piX/2-cardWidth/2;
+
 $fn=50;
 
 module pi_hole() {
@@ -79,6 +84,9 @@ module rpi(edgeCut=0) {
 		// microUSB
 		translate([piX-microWidth+microOverHang+edgeCut, microY, piThick])
 			cube([microWidth, microLength, microHeight]);
+		// microSD
+		translate([cardX, -cardLength/4-edgeCut, -cardHeight])
+			cube([cardWidth, cardLength,cardHeight]);
 	}
 	// GPIO Headers
 	color("black") {
@@ -86,3 +94,4 @@ module rpi(edgeCut=0) {
 			cube([gpioWidth, gpioLength, gpioHeight]);
 	}
 }
+
