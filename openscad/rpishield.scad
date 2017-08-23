@@ -89,6 +89,14 @@ module case_top() {
 		translate([0,0,-topThick]) cube([piX, piY, topHeight]);// FILLER
 		translate([(piX-displayX)/2, (piY-displayY+2*screenY)/2, 0])// SCREEN
 			cube([displayX,displayY-2*screenY,topHeight+1]);
+        translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])// SCREEN HOLE
+            cylinder(h=topThick+2, r=displayHoleRadius);
+        translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
+            cylinder(h=topThick+2, r=displayHoleRadius);
+        translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])
+            cylinder(h=topThick+2, r=displayHoleRadius);
+        translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
+            cylinder(h=topThick+2, r=displayHoleRadius);
 		translate([0,0,spacerHeight/3]) shield(shieldEdgeCut=3);// SHILED
         translate([-topThick/2,idcY,-topThick-1])
             cube([bottomThick/2+1,idcLength,spacerHeight/3+shieldThick+shieldSPIHeight]);// IDC
