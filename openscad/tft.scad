@@ -29,7 +29,7 @@ module display() {
 			translate([displayHoleX, displayHoleY, -1]) display_hole();
 			translate([displayX-displayHoleX, displayHoleY, -1]) display_hole();
 			translate([displayHoleX, displayY-displayHoleY, -1]) display_hole();
-			translate([displayX-displayHoleY, displayY-displayHoleY, -1]) display_hole();
+			translate([displayX-displayHoleX, displayY-displayHoleY, -1]) display_hole();
 		}
 	color("lightblue") { // SCREEN
 		translate([0,screenY, displayThick])
