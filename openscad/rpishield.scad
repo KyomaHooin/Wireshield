@@ -5,9 +5,9 @@
 drawPi=0;
 drawShiled=0;
 drawDisplay=0;
-drawCaseTop=0;
+drawCaseTop=1;
 drawCaseBottom=0;
-drawAll=1;
+drawAll=0;
 
 $fn=50;
 
@@ -74,10 +74,10 @@ module case_bottom() {
 topX=56;// RPi.png
 topY=85;// RPi.png
 topThick=3;
-topHeight=spacerHeight/3+shieldThick+spacerHeight+displayThick+topThick;
-topMountHight=2;
+topMountHight=1;
+topHeight=spacerHeight/3+shieldThick+spacerHeight+displayThick+topMountHight+topThick;
 topMountHoleDia=2;
-topMountDia=6.2;
+topMountDia=4;// ?
 
 module case_top() {
 	difference() {
@@ -90,18 +90,23 @@ module case_top() {
 		translate([(piX-displayX)/2, (piY-displayY+2*screenY)/2, 0])// SCREEN
 			cube([displayX,displayY-2*screenY,topHeight+1]);
         translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])// SCREEN HOLE
-            cylinder(h=topThick+2, r=displayHoleRadius);
+            cylinder(h=topThick+2, d=topMountHoleDia);
         translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
-            cylinder(h=topThick+2, r=displayHoleRadius);
+            cylinder(h=topThick+2, d=topMountHoleDia);
         translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])
-            cylinder(h=topThick+2, r=displayHoleRadius);
+            cylinder(h=topThick+2, d=topMountHoleDia);
         translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
-            cylinder(h=topThick+2, r=displayHoleRadius);
+            cylinder(h=topThick+2, d=topMountHoleDia);
 		translate([0,0,spacerHeight/3]) shield(shieldEdgeCut=3);// SHILED
         translate([-topThick/2,idcY,-topThick-1])
             cube([bottomThick/2+1,idcLength,spacerHeight/3+shieldThick+shieldSPIHeight]);// IDC
 		translate([0,0,-(2*spacerHeight/3+piThick)]) rpi(edgeCut=3);// PI
 	}
+	//BUFFER RING
+    top_mount((piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-displayThick);
+    top_mount((piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-displayThick);
+    top_mount((piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-displayThick);
+    top_mount((piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-displayThick);
 }
 
 //------------------------------------------

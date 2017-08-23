@@ -21,6 +21,13 @@ module bottom_mount(offsetX,offsetY,Thick) {
 	}
 }
 
+module top_mount(offsetX,offsetY,Thick) {
+	difference() {
+		translate([offsetX, offsetY, Thick]) cylinder(h=topMountHight, d=topMountDia);
+		translate([offsetX, offsetY, Thick-1]) cylinder(h=topMountHight+2, d=topMountHoleDia);
+	}
+}
+
 module spacer(offsetX,offsetY) {
 	color("grey") {
 		difference() {
