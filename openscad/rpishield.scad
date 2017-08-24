@@ -106,7 +106,7 @@ module case_top() {
     top_mount((piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-topMountHight);
     top_mount((piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-topMountHight);
     top_mount((piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-topMountHight);
-    top_mount((piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topMountHight);
+    top_mount((piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-topMountHight);
 }
 
 //------------------------------------------
