@@ -2,6 +2,11 @@
 // RPi Shiled case
 //
 
+include <func.scad>
+include <shield.scad>;
+include <tft.scad>;
+include <rpi.scad>;
+
 drawPi=0;
 drawShiled=0;
 drawDisplay=0;
@@ -10,11 +15,6 @@ drawCaseBottom=0;
 drawAll=1;
 
 $fn=50;
-
-include <func.scad>
-include <shield.scad>;
-include <tft.scad>;
-include <rpi.scad>;
 
 // SPACER
 
@@ -68,8 +68,6 @@ module case_bottom() {
 }
 
 //CASE TOP
-//
-// display spacer
 
 topX=56;// RPi.png
 topY=85;// RPi.png
