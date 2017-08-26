@@ -10,9 +10,9 @@ include <rpi.scad>;
 drawPi=0;
 drawShiled=0;
 drawDisplay=0;
-drawCaseTop=0;
+drawCaseTop=1;
 drawCaseBottom=0;
-drawAll=1;
+drawAll=0;
 
 $fn=50;
 
@@ -99,6 +99,10 @@ module case_top() {
         translate([-topThick/2,idcY,-topThick-1])
             cube([bottomThick/2+1,idcLength,spacerHeight/3+shieldThick+shieldSPIHeight]);// IDC
 		translate([0,0,-(2*spacerHeight/3+piThick)]) rpi(edgeCut=3);// PI
+        translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-1]) top_sink();// SCREEN HOLE SINK
+        translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-1]) top_sink();
+        translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-1]) top_sink();
+        translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-1]) top_sink();
 	}
 	//BUFFER RING
     top_mount((piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-topMountHight);

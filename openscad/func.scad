@@ -40,3 +40,6 @@ module spacer(offsetX,offsetY) {
 		}
 	}
 }
+
+module top_sink() { cylinder(h=1, r1=1, r2=2); }
+
