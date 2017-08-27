@@ -10,9 +10,9 @@ include <rpi.scad>;
 drawPi=0;
 drawShiled=0;
 drawDisplay=0;
-drawCaseTop=1;
+drawCaseTop=0;
 drawCaseBottom=0;
-drawAll=0;
+drawAll=1;
 
 $fn=50;
 
@@ -29,81 +29,106 @@ module spacer_mount() {
 
 //CASE BOTTOM
 
-bottomX=56;// RPi.png
-bottomY=85;// RPi.png
 bottomThick=3;
-bottomMountHight=2;
+bottomX=56+2;// RPi.png
+bottomY=85+2;// RPi.png
+bottomMountHight=1.5;
 bottomHeight=bottomThick+bottomMountHight+piThick+2*spacerHeight/3;
-bottomMountDia=6.2;// RPi.png
+bottomMountDia=5;// ?
 
 idcLength=20*2.54;//+4.57 idc.jpg
 idcY=piHoleOffset+(58-idcLength)/2;//RPi.png
 
 module case_bottom() {
     color("olive")
-	difference() {
-		rounded_rect(bottomX, bottomY, bottomHeight, bottomThick);
-		translate([0,0,bottomThick]) cube([bottomX, bottomY, bottomHeight]); // FILLER
-		translate([piHoleOffset, piHoleOffset,-1]) bottom_hole();// MOUNT HOLE
-		translate([bottomX-piHoleOffset, piHoleOffset,-1]) bottom_hole();
-		translate([piHoleOffset,shieldY-piHoleOffset,-1]) bottom_hole();
-        translate([bottomX-piHoleOffset,shieldY-piHoleOffset,-1]) bottom_hole();
-		translate([0,0,bottomThick+bottomMountHight]) rpi(edgeCut=5); // RPI
-        translate([0,0,bottomHeight-bottomThick/2])
-            rounded_rect(piX,piY,bottomThick,bottomThick/2);//LIPLOCK
-        translate([-bottomThick/2,idcY,bottomThick+bottomMountHight+piThick])
-            cube([bottomThick/2+1,idcLength,bottomHeight-bottomThick]);// IDC
-        //VENT
-        for (vspace=[1:7])
-        translate([bottomX/4, 10*vspace+2.5, -1])
-            rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-	}
+    difference () {
+        union() {
+            difference() {
+                translate([-1,-1,0]) rounded_rect(bottomX, bottomY, bottomHeight, bottomThick);
+                translate([-1,-1, bottomThick]) cube([bottomX, bottomY, bottomHeight]); // FILLER
+                translate([piHoleOffset, piHoleOffset, -1]) bottom_hole();// MOUNT HOLE
+                translate([piX-piHoleOffset, piHoleOffset, -1]) bottom_hole();
+                translate([piHoleOffset, shieldY-piHoleOffset, -1]) bottom_hole();
+                translate([piX-piHoleOffset, shieldY-piHoleOffset, -1]) bottom_hole();
+                translate([0,0,bottomThick+bottomMountHight]) rpi(edgeCut=5); // RPI
+//                translate([-1,-1,bottomHeight-bottomThick/2])
+//                    rounded_rect(bottomX,bottomY,bottomThick,bottomThick/2);//LIPLOCK
+                translate([-bottomThick/2-1, idcY, bottomThick+bottomMountHight+piThick])
+                    cube([bottomThick/2+1, idcLength, bottomHeight-bottomThick]);// IDC
+                //VENT
+                for (vspace=[1:7])
+                translate([piX/4, 10*vspace+2.5, -1])
+                    rounded_rect(bottomX/2, 1, bottomThick+2, 1);
+            }
+        translate([-1.5, -1.5, 0]) cylinder(h=bottomHeight, d=4);// CASE MOUNT
+        translate([piX+1.5, -1.5, 0]) cylinder(h=bottomHeight, d=4);
+        translate([-1.5, piY+1.5, 0]) cylinder(h=bottomHeight, d=4);
+        translate([piX+1.5, piY+1.5, 0]) cylinder(h=bottomHeight, d=4);
+        }
+    translate([-1.5, -1.5, -1]) cylinder(h=bottomHeight+2, d=2);// CASE MOUNT
+    translate([piX+1.5, -1.5, -1]) cylinder(h=bottomHeight+2, d=2);
+    translate([-1.5, piY+1.5, -1]) cylinder(h=bottomHeight+2, d=2);
+    translate([piX+1.5, piY+1.5, -1]) cylinder(h=bottomHeight+2, d=2);    
+    }
 	//BUFFER RING
     color("olive") {
 	bottom_mount(piHoleOffset, piHoleOffset, bottomThick);
-	bottom_mount(bottomX-piHoleOffset,piHoleOffset, bottomThick);
+	bottom_mount(piX-piHoleOffset,piHoleOffset, bottomThick);
 	bottom_mount(piHoleOffset, shieldY-piHoleOffset, bottomThick);
-	bottom_mount(bottomX-piHoleOffset, shieldY-piHoleOffset, bottomThick);    
+	bottom_mount(piX-piHoleOffset, shieldY-piHoleOffset, bottomThick);
     }
 }
 
 //CASE TOP
 
-topX=56;// RPi.png
-topY=85;// RPi.png
 topThick=3;
+topX=56+2;// RPi.png
+topY=85+2;// RPi.png
 topMountHight=1;// ?
 topHeight=spacerHeight/3+shieldThick+spacerHeight+displayThick+topMountHight+topThick;
 topMountHoleDia=2;
 topMountDia=4;// ?
 
 module case_top() {
-	difference() {
-        union(){
-            rounded_rect(topX, topY, topHeight, topThick);
-            translate([0,0,-topThick/2])
-                rounded_rect(piX,piY,bottomThick,bottomThick/2);//LIPLOCK
+    color("olive")
+    difference() {
+        union() {
+            difference() {
+                union(){
+                    translate([-1,-1,0]) rounded_rect(topX, topY, topHeight, topThick);
+//                    translate([-1,-1,-topThick/2])
+//                        rounded_rect(topX,topY,bottomThick,bottomThick/2);//LIPLOCK
+                    }
+            translate([-1, -1, -topThick]) cube([topX, topY, topHeight]);// FILLER
+            translate([(piX-displayX)/2, (piY-displayY+2*screenY)/2, 0])// SCREEN
+                cube([displayX,displayY-2*screenY,topHeight+1]);
+            translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])// SCREEN HOLE
+                cylinder(h=topThick+2, d=topMountHoleDia);
+            translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
+                cylinder(h=topThick+2, d=topMountHoleDia);
+            translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])
+                cylinder(h=topThick+2, d=topMountHoleDia);
+            translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
+                cylinder(h=topThick+2, d=topMountHoleDia);
+            translate([0,0,spacerHeight/3]) shield(shieldEdgeCut=5);// SHILED
+            translate([-topThick/2-1,idcY,-topThick-1])
+                cube([bottomThick/2,idcLength,spacerHeight/3+shieldThick+shieldSPIHeight]);// IDC
+            translate([0,0,-(2*spacerHeight/3+piThick)]) rpi(edgeCut=5);// PI
+            translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-1]) top_sink();// SCREEN HOLE SINK
+            translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-1]) top_sink();
+            translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-1]) top_sink();
+            translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-1]) top_sink();
+            }
+        translate([-1.5,-1.5,0]) cylinder(h=topHeight, d=4);// CASE MOUNT
+        translate([piX+1.5,-1.5,0]) cylinder(h=topHeight, d=4);
+        translate([-1.5,piY+1.5,0]) cylinder(h=topHeight, d=4);
+        translate([piX+1.5,piY+1.5,0]) cylinder(h=topHeight, d=4);
         }
-		translate([0,0,-topThick]) cube([piX, piY, topHeight]);// FILLER
-		translate([(piX-displayX)/2, (piY-displayY+2*screenY)/2, 0])// SCREEN
-			cube([displayX,displayY-2*screenY,topHeight+1]);
-        translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])// SCREEN HOLE
-            cylinder(h=topThick+2, d=topMountHoleDia);
-        translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
-            cylinder(h=topThick+2, d=topMountHoleDia);
-        translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])
-            cylinder(h=topThick+2, d=topMountHoleDia);
-        translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
-            cylinder(h=topThick+2, d=topMountHoleDia);
-		translate([0,0,spacerHeight/3]) shield(shieldEdgeCut=3);// SHILED
-        translate([-topThick/2,idcY,-topThick-1])
-            cube([bottomThick/2+1,idcLength,spacerHeight/3+shieldThick+shieldSPIHeight]);// IDC
-		translate([0,0,-(2*spacerHeight/3+piThick)]) rpi(edgeCut=3);// PI
-        translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-1]) top_sink();// SCREEN HOLE SINK
-        translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-1]) top_sink();
-        translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-1]) top_sink();
-        translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-1]) top_sink();
-	}
+    translate([-1.5, -1.5, -1]) cylinder(h=topHeight/4+1, d=1);// CASE MOUNT
+    translate([piX+1.5, -1.5, -1]) cylinder(h=topHeight/4+1, d=1);
+    translate([-1.5, piY+1.5, -1]) cylinder(h=topHeight/4+1, d=1);
+    translate([piX+1.5, piY+1.5, -1]) cylinder(h=topHeight/4+1, d=1);
+    }
 	//BUFFER RING
     top_mount((piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-topMountHight);
     top_mount((piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-topMountHight);
