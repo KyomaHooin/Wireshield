@@ -32,10 +32,10 @@ module spacer(offsetX,offsetY) {
 	color("grey") {
 		difference() {
 			translate([offsetX, offsetY,0]) {
-				linear_extrude(height=15) circle(d=5,$fn=6);
+				linear_extrude(height=spacerHeight) circle(d=5,$fn=6);
 			}
 			translate([offsetX, offsetY,-1]) {
-				linear_extrude(height=15+2) circle(d=2);
+				linear_extrude(height=spacerHeight+2) circle(d=2);
 			}
 		}
 	}

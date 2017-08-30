@@ -11,20 +11,20 @@ shieldHoleXY=3.5;// RPi.png
 shieldSPIWidth=2.54;// pls.jpg
 shieldSPILength=9*2.54;// pls.jpg
 shieldSPIHeight=6.10+2.5;// pls.jpg
-shieldSPIX=(shieldX-shieldSPILength)/2;// ?
-shieldSPIY=2.5;// ?
+shieldSPIX=17.1;
+shieldSPIY=4.25;
 
 shiledJackWidth=12.00;// jack.jpg
-shiledJackLength=13.70;// jack.jpg
+shiledJackLength=14.10;
 shiledJackHeight=6.00;// jack.jpg (5 + 1)
 shiledJackX=shieldX-shiledJackLength+2.5;// ?
-shiledJackY=25;// ?
+shiledJackY=10.48;
 
 shiledLEDWidth=3.20;// led.pdf
 shiledLEDLength=14.90;// ?
 shiledLEDHeight=3.20;// led.pdf
 shiledLEDX=shieldX-shiledJackLength+2.5;// ?
-shiledLEDY=40;// ?
+shiledLEDY=43.06;
 
 shieldGPIOWidth=2*2.54;// pls.jpg
 shieldGPIOLength=20*2.54;// pls.jpg
@@ -54,11 +54,11 @@ module shield(shieldEdgeCut=0) {
 			cube([shieldSPILength,shieldSPIWidth,shieldSPIHeight]);
 		translate([shiledJackX+shieldEdgeCut,shiledJackY,shieldThick])// JACK
 			cube([shiledJackLength,shiledJackWidth,shiledJackHeight]);
-		translate([shiledJackX+shieldEdgeCut,shiledJackY-15,shieldThick])
+		translate([shiledJackX+shieldEdgeCut,shiledJackY+shiledJackWidth+1.72,shieldThick])
 			cube([shiledJackLength,shiledJackWidth,shiledJackHeight]);
 		translate([shiledLEDX+shieldEdgeCut,shiledLEDY,shieldThick+shiledLEDWidth/2])// LED
             rotate([0,90,0]) cylinder(shiledLEDLength,shiledLEDWidth/2,shiledLEDWidth/2);
-		translate([shiledLEDX+shieldEdgeCut,shiledLEDY+5,shieldThick+shiledLEDWidth/2])
+		translate([shiledLEDX+shieldEdgeCut,shiledLEDY+2.44,shieldThick+shiledLEDWidth/2])
             rotate([0,90,0]) cylinder(shiledLEDLength,shiledLEDWidth/2,shiledLEDWidth/2);
 
 	}

@@ -14,11 +14,13 @@ drawCaseTop=0;
 drawCaseBottom=0;
 drawAll=1;
 
+//--------------------------------
+
 $fn=50;
 
 // SPACER
 
-spacerHeight=15;
+spacerHeight=20;
 
 module spacer_mount() {
 	spacer(piHoleOffset, piHoleOffset);
@@ -32,7 +34,7 @@ module spacer_mount() {
 bottomThick=3;
 bottomX=56+2;// RPi.png
 bottomY=85+2;// RPi.png
-bottomMountHight=1.5;
+bottomMountHight=2.19;
 bottomHeight=bottomThick+bottomMountHight+piThick+2*spacerHeight/3;
 bottomMountDia=5;// ?
 
@@ -90,7 +92,7 @@ topMountHoleDia=2;
 topMountDia=4;// ?
 
 module case_top() {
-    color("olive")
+//    color("olive")
     difference() {
         union() {
             difference() {
@@ -156,6 +158,6 @@ if (drawAll) {
         translate([(piX-displayX)/2, (piY-displayY)/2,
             bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+spacerHeight
         ]) display();
-        translate([0,0,bottomHeight]) case_top();
+//        translate([0,0,bottomHeight]) case_top();
     }
 }
