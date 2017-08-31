@@ -87,7 +87,7 @@ topThick=3;
 topX=56+2;// RPi.png
 topY=85+2;// RPi.png
 topMountHight=1;// ?
-topHeight=spacerHeight/3+shieldThick+spacerHeight+displayThick+topMountHight+topThick;
+topHeight=spacerHeight/3+shieldThick+2*spacerHeight/3+displayThick+topMountHight+topThick;
 topMountHoleDia=2;
 topMountDia=4;// ?
 
@@ -102,8 +102,8 @@ module case_top() {
 //                        rounded_rect(topX,topY,bottomThick,bottomThick/2);//LIPLOCK
                     }
             translate([-1, -1, -topThick]) cube([topX, topY, topHeight]);// FILLER
-            translate([(piX-displayX)/2, (piY-displayY+2*screenY)/2, 0])// SCREEN
-                cube([displayX,displayY-2*screenY,topHeight+1]);
+            translate([(piX-displayX)/2, (piY-displayY+2*screenOffset)/2, 0])// SCREEN
+                cube([displayX,displayY-2*screenOffset,topHeight+1]);
             translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayHoleY,topHeight-topThick-1])// SCREEN HOLE
                 cylinder(h=topThick+2, d=topMountHoleDia);
             translate([(piX-displayX)/2+displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-1])
@@ -148,7 +148,7 @@ if (drawCaseBottom) { case_bottom(); }
 
 if (drawAll) {
     translate([-bottomX/2,-bottomY/2,0]) {// CENTER
-        translate([0,0,0]) case_bottom();
+//        translate([0,0,0]) case_bottom();
         translate([0,0,bottomThick+bottomMountHight])
             rpi();
         translate([0,0,bottomThick+bottomMountHight+piThick])
@@ -156,7 +156,7 @@ if (drawAll) {
         translate([0,0,bottomThick+bottomMountHight+piThick+spacerHeight])
             shield();
         translate([(piX-displayX)/2, (piY-displayY)/2,
-            bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+spacerHeight
+            bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+2*spacerHeight/3
         ]) display();
 //        translate([0,0,bottomHeight]) case_top();
     }

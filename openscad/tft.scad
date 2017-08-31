@@ -41,3 +41,5 @@ module display() {
             cube([displaySPILength, displaySPIWidth, displaySPIHeight]);
 	}
 }
+
+display();
