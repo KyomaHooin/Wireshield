@@ -1,7 +1,7 @@
 
 DESCRIPTION
 
-Server Room Enviroment Monitoring.
+Server Rack Enviroment Monitoring.
 
 ORDER LIST
 <pre>

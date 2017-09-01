@@ -12,6 +12,6 @@ IMG_20170419_115917.jpg - TFT display test.
 IMG_20170502_114444.jpg - Temp sensor connected via Cat 5e.
 IMG_20170718_132216.jpg - PCB.
 IMG_20170807_113755.jpg - Testing PCB.
-IMG_20170830_094421.jpg - Test revision 2.0
-IMG_20170830_094432.jpg - TFT display test 
+IMG_20170830_094421.jpg - Test revision 2.0.
+IMG_20170830_094432.jpg - TFT display test.
 </pre>
