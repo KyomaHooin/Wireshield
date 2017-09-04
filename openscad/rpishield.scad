@@ -5,8 +5,11 @@
 //
 // http://www.toray.jp/plastics/en/torelina/technical/tec_027.html
 //
-
-
+// IDC overang = 2
+//
+// TFT / SHIELD 20,14 
+// SHILED / RPI 21,045 
+//
 include <func.scad>
 include <shield.scad>;
 include <tft.scad>;
@@ -19,13 +22,13 @@ drawCaseTop=0;
 drawCaseBottom=0;
 drawAll=1;
 
-//--------------------------------
-
 $fn=50;
+
+//--------------------------------
 
 // SPACER
 
-spacerHeight=20;
+spacerHeight=21;
 
 //module spacer_mount() {
 //	spacer(piHoleOffset, piHoleOffset);
@@ -39,9 +42,9 @@ spacerHeight=20;
 bottomThick=3;
 bottomX=56+2;// RPi.png
 bottomY=85+2;// RPi.png
-bottomMountHight=2.19;
+bottomMountHight=2.26;
 bottomHeight=bottomThick+bottomMountHight+piThick+microHeight-0.1;//hdmi bug
-bottomMountDia=5;// ?
+bottomMountDia=5;
 
 idcLength=20*2.54;//+4.57 idc.jpg
 idcY=piHoleOffset+(58-idcLength)/2;//RPi.png
@@ -60,8 +63,8 @@ module case_bottom() {
                 translate([0,0,bottomThick+bottomMountHight]) rpi(edgeCut=4); // RPI
 //                translate([-1,-1,bottomHeight-bottomThick/2])
 //                    rounded_rect(bottomX,bottomY,bottomThick,bottomThick/2);//LIPLOCK
-                translate([-bottomThick/2-1, idcY, bottomThick+bottomMountHight+piThick])
-                    cube([bottomThick/2+1, idcLength, bottomHeight-bottomThick]);// IDC
+//                translate([-bottomThick/2-1, idcY, bottomThick+bottomMountHight+piThick])
+//                    cube([bottomThick/2+1, idcLength, bottomHeight-bottomThick]);// IDC
                 //VENT
                 for (vspace=[1:7])
                 translate([piX/4, 10*vspace+2.5, -1])
@@ -91,8 +94,8 @@ module case_bottom() {
 topThick=3;
 topX=56+2;// RPi.png
 topY=85+2;// RPi.png
-topMountHight=3;
-topHeight=spacerHeight-microHeight+0.1+shieldThick+2*spacerHeight/3+displayThick+topMountHight+topThick;
+topMountHight=1.26;
+topHeight=spacerHeight-microHeight+0.1+shieldThick+spacerHeight+displayThick+topMountHight+topThick;
 topMountHoleDia=2;
 topMountDia=5;// ?
 
@@ -118,8 +121,8 @@ module case_top() {
             translate([(piX-displayX)/2+displayX-displayHoleX,(piY-displayY)/2+displayY-displayHoleY,topHeight-topThick-0.5])
                 cylinder(h=2, d=topMountHoleDia);
             translate([0,0,spacerHeight-microHeight+0.1]) shield(shieldEdgeCut=5);// SHILED
-            translate([-topThick/2-1,idcY,-topThick-1])
-                cube([bottomThick/2,idcLength,spacerHeight/3+shieldThick+shieldSPIHeight]);// IDC
+//            translate([-topThick/2-1,idcY,-topThick-1])
+//                cube([bottomThick/2,idcLength,spacerHeight/3+shieldThick+shieldSPIHeight]);// IDC
             translate([0,0,-0.1-microHeight-piThick]) rpi(edgeCut=5);// PI
             }
         translate([-1.5,-1.5,0]) cylinder(h=topHeight, d=4);// CASE MOUNT
@@ -149,16 +152,16 @@ if (drawCaseBottom) { case_bottom(); }
 
 if (drawAll) {
     translate([-bottomX/2,-bottomY/2,0]) {// CENTER
-//        translate([0,0,0]) case_bottom();
-//        translate([0,0,bottomThick+bottomMountHight])
-//            rpi();
+        translate([0,0,0]) case_bottom();
+        translate([0,0,bottomThick+bottomMountHight])
+            rpi();
 //        translate([0,0,bottomThick+bottomMountHight+piThick])
 //            spacer_mount();
-//        translate([0,0,bottomThick+bottomMountHight+piThick+spacerHeight])
-//            shield();
-//        translate([(piX-displayX)/2, (piY-displayY)/2,
-//            bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+2*spacerHeight/3
-//        ]) display();
-        translate([0,0,bottomHeight]) case_top();
+        translate([0,0,bottomThick+bottomMountHight+piThick+spacerHeight])
+            shield();
+        translate([(piX-displayX)/2, (piY-displayY)/2,
+            bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+spacerHeight])
+            display();
+//        translate([0,0,bottomHeight]) case_top();
     }
 }

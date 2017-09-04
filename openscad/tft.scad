@@ -9,8 +9,8 @@ displayHoleRadius=1.70;// TFT.jpg
 displayHoleX=3.50;// TFT.jpg
 displayHoleY=2.50;// TFT.jpg
 screenX=40.02;
-screenOffset=6.43;
-screenThick = 4.6 - displayThick;
+screenOffset=6.76;
+screenThick = 4.26 - displayThick;
 displaySPIWidth=2.54;// pls.jpg
 displaySPILength=11*2.54;// pls.jpg
 displaySPIHeight=6.10+2.5;// pls.jpg
@@ -41,3 +41,5 @@ module display() {
             cube([displaySPILength, displaySPIWidth, displaySPIHeight]);
 	}
 }
+
+//display();
