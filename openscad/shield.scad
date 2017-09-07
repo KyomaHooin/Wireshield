@@ -23,8 +23,8 @@ shiledJackY=10.56;
 shiledLEDWidth=3.20;// led.pdf
 shiledLEDLength=13.72;
 shiledLEDHeight=3.20;// led.pdf
-shiledLEDX=shieldX-shiledJackLength+4.5;
-shiledLEDY=43.06;
+shiledLEDX=47;
+shiledLEDY=43.1;
 
 shieldGPIOWidth=2*2.54;// pls.jpg
 shieldGPIOLength=20*2.54;// pls.jpg
@@ -58,7 +58,7 @@ module shield(shieldEdgeCut=0) {
 			cube([shiledJackLength,shiledJackWidth,shiledJackHeight]);
 		translate([shiledLEDX+shieldEdgeCut,shiledLEDY,shieldThick+shiledLEDWidth/2])// LED
             rotate([0,90,0]) cylinder(shiledLEDLength,shiledLEDWidth/2,shiledLEDWidth/2);
-		translate([shiledLEDX+shieldEdgeCut,shiledLEDY+shiledLEDWidth+2.44,shieldThick+shiledLEDWidth/2])
+		translate([shiledLEDX+shieldEdgeCut,shiledLEDY+shiledLEDWidth+1.75,shieldThick+shiledLEDWidth/2])
             rotate([0,90,0]) cylinder(shiledLEDLength,shiledLEDWidth/2,shiledLEDWidth/2);
 
 	}
