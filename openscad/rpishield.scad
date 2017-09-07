@@ -7,12 +7,9 @@ include <tft.scad>;
 include <rpi.scad>;
 include <fc.scad>;
 
-drawPi=0;
-drawShiled=0;
-drawDisplay=0;
-drawCaseTop=0;
+drawCaseTop=1;
 drawCaseBottom=0;
-drawAll=1;
+drawAll=0;
 
 $fn=50;
 
@@ -30,11 +27,6 @@ module spacer_mount() {
 }
 
 //CASE BOTTOM
-//
-// -lip lock
-// -1mm spacing
-// -microSD cut
-//
 
 bottomThick=3;
 bottomX=56;
@@ -44,7 +36,6 @@ bottomMountDia=5;
 bottomHeight=bottomThick+bottomMountHight+piThick+microHeight/2;
 
 module case_bottom() {
-    color("olive")
     difference() {
         rounded_rect(bottomX, bottomY, bottomHeight, bottomThick);// BASE
         translate([0,0,bottomThick]) cube([bottomX, bottomY, bottomHeight]); // FILLER
@@ -52,10 +43,12 @@ module case_bottom() {
         bottom_hole();// BOTTOM HOLE
         for (vspace=[1:7])// VENT
             translate([piX/4, 10*vspace+2.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-//        translate([0,bottomY+bottomThick/2,bottomThick+bottomMountHight+piThick])// LIPLOCK
-//            cube([bottomX,bottomThick/2,bottomThick]);
-//        translate([bottomX+bottomThick/2,piHoleOffset,bottomThick+bottomMountHight+piThick])
-//            cube([bottomThick/2, 58, bottomThick]);
+        translate([cardX,-bottomThick,0])// SD CUT
+            cube([cardWidth,bottomThick,bottomThick+bottomMountHight]);
+        translate([0,bottomY+bottomThick/2,bottomThick+bottomMountHight+piThick])// LIP LOCK
+            bottom_lip();
+        translate([bottomX+bottomThick/2,piHoleOffset,bottomThick+bottomMountHight+piThick])
+            bottom_side_lip();
     }
     bottom_mount(piHoleOffset, piHoleOffset, bottomThick);// BOTTOM MOUNT
 	bottom_mount(piX-piHoleOffset,piHoleOffset, bottomThick);
@@ -66,11 +59,8 @@ module case_bottom() {
 
 //CASE TOP
 //
-// -Circular jack to jack slot 
-// -top-top = topWidth-1
-// -IDC lip
-// -lip-lock
-// -1mm spacing
+// -top/top -1mm
+// -shield lip-lock
 //
 
 topThick=3;
@@ -98,10 +88,16 @@ module case_top() {
         translate([(piX-displayX)/2, (piY-displayY+2*screenOffset)/2, 0])// SCREEN
             cube([displayX,displayY-2*screenOffset,topHeight+1]);
         top_display_hole();// SCREEN HOLE
-        translate([displayHoleOffsetX,displayHoleOffsetY,topHeight-1]) top_sink();//SCREEN HOLE SINK
+        translate([displayHoleOffsetX,displayHoleOffsetY,topHeight-1]) top_sink();// SCREEN HOLE SINK
         translate([displayHoleOffsetXX,displayHoleOffsetY,topHeight-1]) top_sink();
         translate([displayHoleOffsetX,displayHoleOffsetYY,topHeight-1]) top_sink();
         translate([displayHoleOffsetXX,displayHoleOffsetYY,topHeight-1]) top_sink();
+        translate([-topThick/2,shieldGPIOY,0])// IDC LIP
+            cube([topThick/2,shieldGPIOLength,topHeight-topThick]);
+        translate([0, topY+bottomThick/2, -microHeight/2-piThick])// RPI LIP
+            bottom_lip();
+        translate([bottomX+bottomThick/2,piHoleOffset, -hdmiHeight/2-piThick])
+            bottom_side_lip();
     }
     //TOP MOUNT
     top_mount(piHoleOffset, piHoleOffset, spacerHeight-microHeight/2+shieldThick);
@@ -117,21 +113,18 @@ module case_top() {
 
 //------------------------------
 
-if (drawPi) { rpi(); }
-if (drawShiled) { shield(); }
-if (drawDisplay) { display(); }
 if (drawCaseTop) { case_top(); }
 if (drawCaseBottom) { case_bottom(); }
 
 if (drawAll) {
     translate([-bottomX/2,-bottomY/2,0]) {// CENTER
         translate([0,0,0]) case_bottom();
-        translate([0,0,bottomThick+bottomMountHight]) rpi();
-        translate([0,0,bottomThick+bottomMountHight+piThick]) spacer_mount();
-        translate([0,0,bottomThick+bottomMountHight+piThick+spacerHeight]) shield();
-        translate([(piX-displayX)/2, (piY-displayY)/2,
-            bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+spacerHeight])
-            display();
+//        translate([0,0,bottomThick+bottomMountHight]) rpi();
+//        translate([0,0,bottomThick+bottomMountHight+piThick]) spacer_mount();
+//        translate([0,0,bottomThick+bottomMountHight+piThick+spacerHeight]) shield();
+//        translate([(piX-displayX)/2, (piY-displayY)/2,
+//            bottomThick+bottomMountHight+piThick+spacerHeight+shieldThick+spacerHeight])
+//            display();
         translate([0,0,bottomHeight]) case_top();
     }
 }

@@ -27,22 +27,16 @@ module bottom_mount(offsetX,offsetY,Thick) {
 }
 
 module spacer(offsetX,offsetY) {
-	color("grey") {
-		difference() {
-			translate([offsetX, offsetY,0]) {
-				linear_extrude(height=spacerHeight) circle(d=5);
-			}
-			translate([offsetX, offsetY,-1]) {
-				linear_extrude(height=spacerHeight+2) circle(d=2.5);
-			}
-		}
+    difference() {
+		translate([offsetX, offsetY,0]) cylinder(h=spacerHeight, d=5);
+		translate([offsetX, offsetY,-1]) cylinder(h=spacerHeight+2, d=2.5);
 	}
 }
 
 module top_mount(offsetX,offsetY,Thick) {
 	difference() {
 		translate([offsetX, offsetY, Thick]) cylinder(h=topMountHeight, d=topMountDia);
-		translate([offsetX, offsetY, Thick-1]) cylinder(h=topMountHeight+2, d=topMountHoleDia);
+		translate([offsetX, offsetY, Thick-1]) cylinder(h=topMountHeight/2, d=topMountHoleDia);
 	}
 }
 
@@ -65,3 +59,15 @@ module top_display_mount(offsetX,offsetY,Thick) {
 }
 
 module top_sink() { cylinder(h=1, r1=1.25, r2=2.5); }
+
+module bottom_lip() {
+    translate([bottomThick/2, bottomThick/2, bottomThick/2 - 1])
+        rotate([90,0,0])
+            rounded_rect(piX-bottomThick, ethHeight+2, bottomThick/2, bottomThick/2);
+}
+
+module bottom_side_lip() {
+    translate([bottomThick/2,bottomThick/2, bottomThick/2 - 1])
+        rotate([0,270,0])
+            rounded_rect(hdmiHeight+2, 58-bottomThick, bottomThick/2, bottomThick/2);
+}
