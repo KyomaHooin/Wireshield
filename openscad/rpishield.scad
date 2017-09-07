@@ -28,9 +28,7 @@ module spacer_mount() {
 
 //CASE BOTTOM
 
-//bottom-bottom -1mm
-
-bottomThick=3;
+bottomThick=2;
 bottomX=56;
 bottomY=85;
 bottomMountHeight=2.26;
@@ -45,11 +43,8 @@ module case_bottom() {
         bottom_hole();// BOTTOM HOLE
         for (vspace=[1:7])// VENT
             translate([piX/4, 10*vspace+2.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-//        translate([cardX,-bottomThick,0])// SD CUT
-//            cube([cardWidth,bottomThick,bottomThick+bottomMountHeight]);
         translate([cardX, -bottomThick, bottomThick+bottomMountHeight]) sd_lip();// SD LIP
-        translate([usb2X-1,bottomY+bottomThick/2,bottomThick+bottomMountHeight+piThick])// USB LIP
-            usb_lip();
+        translate([usb2X-1,bottomY+bottomThick/2,bottomThick+bottomMountHeight+piThick]) usb_lip();// USB LIP
         translate([bottomX+bottomThick/2,microY-1,bottomThick+bottomMountHeight+piThick])// MICRO LIP
             micro_lip();
     }
@@ -62,9 +57,7 @@ module case_bottom() {
 
 //CASE TOP
 
-// -top/top -1mm
-
-topThick=3;
+topThick=2;
 topX=56;
 topY=85;
 topDisplayMountHeight=1.26;

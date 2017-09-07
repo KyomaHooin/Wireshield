@@ -63,8 +63,7 @@ module top_sink() { cylinder(h=1, r1=1.25, r2=2.5); }
 module usb_lip() {
     translate([1, bottomThick/2,0])
         rotate([90,0,0])
-//            rounded_rect(piX-2, usbHeight, bottomThick/2, 1);
-            rounded_rect(2*usbWidth+2.94, usbHeight, bottomThick/2+0.25, 1);
+            rounded_rect(2*usbWidth+2.94, usbHeight, bottomThick/2, 1);
 }
 
 module micro_lip() {
