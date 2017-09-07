@@ -5,12 +5,13 @@ Server Rack Enviroment Monitoring.
 
 ORDER LIST
 <pre>
--Edimax Technology Co., Ltd EW-7811Un 802.11n Wireless Adapter [Realtek RTL8188CUS]
 -Wallmount         - https://www.mechatronicsart.com/product/wall-mount-raspberry-pi-3-case/
--Standoff M2X20 FF - https://www.gme.cz/distancni-sloupek-di4m2x20-nikl-vigan
--4 x M2x4          - https://www.ges.cz/cz/skl-m2x5-GES06814924.html
--4 x M2x8
+-[spacer M2.8x18.7]
+-4 x M2.5x8 cylinder
+-4 x M2.5 nut
+-4 x M2x30 flat
 
+-Edimax Technology Co., Ltd EW-7811Un 802.11n Wireless Adapter [Realtek RTL8188CUS]
 -3.5 Jack Steel metal DS18B20
 -3.5 Jack splitter
 -3.5 Jack to RJ11
