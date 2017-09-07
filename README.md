@@ -5,11 +5,14 @@ Server Rack Enviroment Monitoring.
 
 ORDER LIST
 <pre>
--Wallmount         - https://www.mechatronicsart.com/product/wall-mount-raspberry-pi-3-case/
--[spacer M2.8x18.7]
--4 x M2.5x8 cylinder
--4 x M2.5 nut
--4 x M2x30 flat
+[box]
+
+-Wallmount  - https://www.mechatronicsart.com/product/wall-mount-raspberry-pi-3-case/
+-4 x M2.5x8 - https://www.ges.cz/cz/phlz-m2-5x8-a2-GES06815088.html
+-4 x M2.5   - https://www.ges.cz/cz/sk-m2-5-GES06814895.html
+-4 x M2x30  - https://www.ges.cz/cz/szk-m2x30-GES06815160.html
+
+[install]
 
 -Edimax Technology Co., Ltd EW-7811Un 802.11n Wireless Adapter [Realtek RTL8188CUS]
 -3.5 Jack Steel metal DS18B20
