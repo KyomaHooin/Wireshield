@@ -2,8 +2,6 @@
 // RPi Shield - functions
 //
 
-include <tft.scad>
-
 module rounded_rect(x, y, z, radius) {
 	linear_extrude(height=z)
 		minkowski() {
