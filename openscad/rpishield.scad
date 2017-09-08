@@ -8,8 +8,8 @@ include <rpi.scad>;
 include <fc.scad>;
 
 drawCaseTop=0;
-drawCaseBottom=1;
-drawAll=0;
+drawCaseBottom=0;
+drawAll=1;
 
 $fn=50;
 
@@ -65,7 +65,7 @@ topDisplayMountHoleDia=2.5;
 topDisplayMountDia=5;
 topMountHoleDia=3.1;
 topMountDia=6;
-topHeight=spacerHeight-microHeight/2+shieldThick+spacerHeight+topThick;
+topHeight=spacerHeight-microHeight/2+shieldThick+spacerHeight+displayThick+topDisplayMountHeight+topThick;
 
 displayHoleOffsetX=(piX-displayX)/2+displayHoleX;
 displayHoleOffsetY=(piY-displayY)/2+displayHoleY;
@@ -128,7 +128,7 @@ if (drawAll) {
 //    translate([0,0,bottomThick+bottomMountHeight+piThick]) spacer_mount();
 //    translate([0,0,bottomThick+bottomMountHeight+piThick+spacerHeight]) shield();
 //    translate([(piX-displayX)/2, (piY-displayY)/2,
-//        bottomHeight+topHeight-topThick-displayThick-topDisplayMountHeight])
+//        bottomHeight+topHeight-topThick-topDisplayMountHeight-displayThick])
 //        display();
     translate([0,0,bottomHeight]) case_top();
 }

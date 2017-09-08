@@ -35,8 +35,8 @@ module spacer(offsetX,offsetY) {
 
 module top_mount(offsetX,offsetY,Thick) {
 	difference() {
-		translate([offsetX, offsetY, Thick]) cylinder(h=spacerHeight, d=topMountDia);
-		translate([offsetX, offsetY, Thick-1]) cylinder(h=spacerHeight/2, d=topMountHoleDia);
+		translate([offsetX, offsetY, Thick]) cylinder(h=spacerHeight+displayThick+topDisplayMountHeight, d=topMountDia);
+		translate([offsetX, offsetY, Thick-1]) cylinder(h=(spacerHeight+displayThick+topDisplayMountHeight)/2, d=topMountHoleDia);
 	}
 }
 
@@ -92,5 +92,6 @@ module lip_lock() {
 }
 
 module harden() {
-    cube([piHoleOffset-topMountDia/2+(topMountDia-topMountHoleDia)/2, topThick, spacerHeight]);
+    cube([piHoleOffset-topMountDia/2+(topMountDia-topMountHoleDia)/2, topThick,
+        spacerHeight+displayThick+topDisplayMountHeight]);
 }
