@@ -35,8 +35,8 @@ module spacer(offsetX,offsetY) {
 
 module top_mount(offsetX,offsetY,Thick) {
 	difference() {
-		translate([offsetX, offsetY, Thick]) cylinder(h=topMountHeight, d=topMountDia);
-		translate([offsetX, offsetY, Thick-1]) cylinder(h=topMountHeight/2, d=topMountHoleDia);
+		translate([offsetX, offsetY, Thick]) cylinder(h=spacerHeight, d=topMountDia);
+		translate([offsetX, offsetY, Thick-1]) cylinder(h=spacerHeight/2, d=topMountHoleDia);
 	}
 }
 
@@ -81,4 +81,16 @@ module shield_lip() {
 module sd_lip() {
         rotate([270,0,0])
             rounded_rect(cardWidth, bottomThick+bottomMountHeight, bottomThick, 1);
+}
+
+module lip_lock() {
+    difference() {
+        rounded_rect(bottomX, bottomY, 1, bottomThick/2+0.01);// bug
+        translate([0,0,-1]) cube([bottomX, bottomY, bottomThick+2]);
+        translate([0,0, -piThick]) rpi(edgeCut=3);
+    }
+}
+
+module harden() {
+    cube([piHoleOffset-topMountDia/2+(topMountDia-topMountHoleDia)/2, topThick, spacerHeight]);
 }

@@ -8,8 +8,8 @@ include <rpi.scad>;
 include <fc.scad>;
 
 drawCaseTop=0;
-drawCaseBottom=0;
-drawAll=1;
+drawCaseBottom=1;
+drawAll=0;
 
 $fn=50;
 
@@ -52,7 +52,7 @@ module case_bottom() {
 	bottom_mount(piX-piHoleOffset,piHoleOffset, bottomThick);
 	bottom_mount(piHoleOffset, shieldY-piHoleOffset, bottomThick);
 	bottom_mount(piX-piHoleOffset, shieldY-piHoleOffset, bottomThick);
-
+    translate([0, 0, bottomHeight]) lip_lock();// LIPLOCK
 }
 
 //CASE TOP
@@ -63,10 +63,9 @@ topY=85;
 topDisplayMountHeight=1.26;
 topDisplayMountHoleDia=2.5;
 topDisplayMountDia=5;
-topMountHeight=spacerHeight+displayThick+topDisplayMountHeight;
 topMountHoleDia=3.1;
 topMountDia=6;
-topHeight=spacerHeight-microHeight/2+shieldThick+spacerHeight+displayThick+topDisplayMountHeight+topThick;
+topHeight=spacerHeight-microHeight/2+shieldThick+spacerHeight+topThick;
 
 displayHoleOffsetX=(piX-displayX)/2+displayHoleX;
 displayHoleOffsetY=(piY-displayY)/2+displayHoleY;
@@ -89,9 +88,8 @@ module case_top() {
         translate([-topThick/2,shieldGPIOY,0])// IDC LIP
             cube([topThick/2,shieldGPIOLength,topHeight-topThick]);
         translate([usb2X-1, topY+bottomThick/2, -microHeight/2]) usb_lip();// RPI LIP
-        translate([bottomX+bottomThick/2, microY-1, -microHeight/2]) micro_lip();
-        translate([bottomX+bottomThick/2, shieldJackY-1, spacerHeight-microHeight/2+shieldThick])// SHIELD LIP
-            shield_lip();
+        translate([bottomX+bottomThick/2, microY-1, -microHeight/2]) micro_lip();// MICRO LIP
+        lip_lock();//LIP LOCK
     }
     //TOP MOUNT
     top_mount(piHoleOffset, piHoleOffset, spacerHeight-microHeight/2+shieldThick);
@@ -103,22 +101,34 @@ module case_top() {
     top_display_mount(displayHoleOffsetXX,displayHoleOffsetY,topHeight-topThick-topDisplayMountHeight);
     top_display_mount(displayHoleOffsetX,displayHoleOffsetYY,topHeight-topThick-topDisplayMountHeight);
     top_display_mount(displayHoleOffsetXX,displayHoleOffsetYY,topHeight-topThick-topDisplayMountHeight);
+    //HARDEN
+    translate([0, piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
+    translate([piX-topThick/2, piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
+    translate([0, shieldY-piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
+    translate([piX-topThick/2, shieldY-piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick])
+        harden();
+    translate([piHoleOffset-topThick/2, -topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
+    translate([piX-piHoleOffset-topThick/2, -topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
 }
 
 //------------------------------
 
-if (drawCaseTop) { case_top(); }
-if (drawCaseBottom) { case_bottom(); }
+if (drawCaseTop) {
+    translate([topX, 0, topHeight])
+        rotate([0,180,0]) case_top();   
+}
+
+if (drawCaseBottom) {
+    case_bottom();
+}
 
 if (drawAll) {
-    translate([-bottomX/2,-bottomY/2,0]) {// CENTER
-        translate([0,0,0]) case_bottom();
-//        translate([0,0,bottomThick+bottomMountHeight]) rpi();
-//        translate([0,0,bottomThick+bottomMountHeight+piThick]) spacer_mount();
-//        translate([0,0,bottomThick+bottomMountHeight+piThick+spacerHeight]) shield();
-//        translate([(piX-displayX)/2, (piY-displayY)/2,
-//            bottomThick+bottomMountHeight+piThick+spacerHeight+shieldThick+spacerHeight])
-//            display();
-        translate([0,0,bottomHeight]) case_top();
-    }
+    translate([0,0,0]) case_bottom();
+//    translate([0,0,bottomThick+bottomMountHeight]) rpi();
+//    translate([0,0,bottomThick+bottomMountHeight+piThick]) spacer_mount();
+//    translate([0,0,bottomThick+bottomMountHeight+piThick+spacerHeight]) shield();
+//    translate([(piX-displayX)/2, (piY-displayY)/2,
+//        bottomHeight+topHeight-topThick-displayThick-topDisplayMountHeight])
+//        display();
+    translate([0,0,bottomHeight]) case_top();
 }
