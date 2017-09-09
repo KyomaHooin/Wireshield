@@ -24,22 +24,22 @@ module display_hole() {
 }
 
 module display() {
-	color("salmon")
-		difference() {// HOLE
-			cube([displayX, displayY, displayThick]);
-			translate([displayHoleX, displayHoleY, -1]) display_hole();
-			translate([displayX-displayHoleX, displayHoleY, -1]) display_hole();
-			translate([displayHoleX, displayY-displayHoleY, -1]) display_hole();
-			translate([displayX-displayHoleX, displayY-displayHoleY, -1]) display_hole();
-		}
-	color("lightblue") { // SCREEN
-		translate([0,screenOffset, displayThick])
+    color("salmon")
+        difference() {// HOLE
+            cube([displayX, displayY, displayThick]);
+            translate([displayHoleX, displayHoleY, -1]) display_hole();
+            translate([displayX-displayHoleX, displayHoleY, -1]) display_hole();
+            translate([displayHoleX, displayY-displayHoleY, -1]) display_hole();
+            translate([displayX-displayHoleX, displayY-displayHoleY, -1]) display_hole();
+        }
+    color("lightblue") { // SCREEN
+        translate([0,screenOffset, displayThick])
             cube([displayX, displayY-2*screenOffset, screenThick]);
-	}
-	color("black") { // SPI
-		translate([displaySPIX, displaySPIY, -displaySPIHeight])
+    }
+    color("black") { // SPI
+        translate([displaySPIX, displaySPIY, -displaySPIHeight])
             cube([displaySPILength, displaySPIWidth, displaySPIHeight]);
-	}
+    }
 }
 
 //display();

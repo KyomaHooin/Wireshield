@@ -3,11 +3,11 @@
 //
 
 module rounded_rect(x, y, z, radius) {
-	linear_extrude(height=z)
-		minkowski() {
-			square([x,y]);
-			circle(r = radius);
-		}
+    linear_extrude(height=z)
+        minkowski() {
+            square([x,y]);
+            circle(r = radius);
+        }
 }
 
 module bottom_hole() {
@@ -18,24 +18,24 @@ module bottom_hole() {
 }
 
 module bottom_mount(offsetX,offsetY,Thick) {
-	difference() {
-		translate([offsetX, offsetY, Thick]) cylinder(h=bottomMountHeight, d=bottomMountDia);
-		translate([offsetX, offsetY, Thick-1]) cylinder(h=bottomMountHeight+2, d=2.5);
-	}
+    difference() {
+        translate([offsetX, offsetY, Thick]) cylinder(h=bottomMountHeight, d=bottomMountDia);
+        translate([offsetX, offsetY, Thick-1]) cylinder(h=bottomMountHeight+2, d=2.5);
+    }
 }
 
 module spacer(offsetX,offsetY) {
     difference() {
-		translate([offsetX, offsetY,0]) cylinder(h=spacerHeight, d=5);
-		translate([offsetX, offsetY,-1]) cylinder(h=spacerHeight+2, d=2.5);
-	}
+        translate([offsetX, offsetY,0]) cylinder(h=spacerHeight, d=5);
+        translate([offsetX, offsetY,-1]) cylinder(h=spacerHeight+2, d=2.5);
+    }
 }
 
 module top_mount(offsetX,offsetY,Thick) {
-	difference() {
-		translate([offsetX, offsetY, Thick]) cylinder(h=spacerHeight+displayThick+topDisplayMountHeight, d=topMountDia);
-		translate([offsetX, offsetY, Thick-1]) cylinder(h=(spacerHeight+displayThick+topDisplayMountHeight)/2, d=topMountHoleDia);
-	}
+    difference() {
+        translate([offsetX, offsetY, Thick]) cylinder(h=spacerHeight+displayThick+topDisplayMountHeight, d=topMountDia);
+        translate([offsetX, offsetY, Thick-1]) cylinder(h=(spacerHeight+displayThick+topDisplayMountHeight)/2, d=topMountHoleDia);
+    }
 }
 
 module top_display_hole() {
@@ -50,10 +50,10 @@ module top_display_hole() {
 }
 
 module top_display_mount(offsetX,offsetY,Thick) {
-	difference() {
-		translate([offsetX, offsetY, Thick]) cylinder(h=topDisplayMountHeight, d=topDisplayMountDia);
-		translate([offsetX, offsetY, Thick-1]) cylinder(h=topDisplayMountHeight+2, d=topDisplayMountHoleDia);
-	}
+    difference() {
+        translate([offsetX, offsetY, Thick]) cylinder(h=topDisplayMountHeight, d=topDisplayMountDia);
+        translate([offsetX, offsetY, Thick-1]) cylinder(h=topDisplayMountHeight+2, d=topDisplayMountHoleDia);
+    }
 }
 
 module top_sink() { cylinder(h=1, r1=1.25, r2=2.5); }
@@ -77,8 +77,8 @@ module shield_lip() {
 }
 
 module sd_lip() {
-        rotate([270,0,0])
-            rounded_rect(cardWidth, bottomThick+bottomMountHeight, bottomThick, 1);
+    rotate([270,0,0])
+        rounded_rect(cardWidth, bottomThick+bottomMountHeight, bottomThick, 1);
 }
 
 module lip_lock_bottom() {
@@ -89,7 +89,7 @@ module lip_lock_bottom() {
 }
 
 module lip_lock_top() {
-        rounded_rect(bottomX, bottomY, 1, bottomThick/2+0.01);// bug
+    rounded_rect(bottomX, bottomY, 1, bottomThick/2+0.01);// bug
 }
 
 module harden() {

@@ -35,33 +35,32 @@ shieldGPIOY=(shieldY-shieldGPIOLength)/2;
 $fn=50;
 
 module shield_hole() {
-	cylinder(h=shieldThick+2, d=shieldHoleDia);
+    cylinder(h=shieldThick+2, d=shieldHoleDia);
 }
 
 module shield(shieldEdgeCut=0) {
-	color("seagreen")
-	difference() {
-		translate([2, 2, 0]) rounded_rect(shieldX-4, shieldY-4, shieldThick, 2);
-		translate([shieldHoleXY, shieldHoleXY, -1]) shield_hole();
-		translate([shieldX-shieldHoleXY, shieldHoleXY, -1]) shield_hole();
-		translate([shieldHoleXY, shieldY-shieldHoleXY, -1]) shield_hole();
-		translate([shieldX-shieldHoleXY, shieldY-shieldHoleXY, -1]) shield_hole();
-	}
-	color("black") {
-		translate([shieldGPIOX, shieldGPIOY, shieldThick])// GPIO
-			cube([shieldGPIOWidth, shieldGPIOLength, shieldGPIOHeight]);
-		translate([shieldSPIX, shieldSPIY, shieldThick])// SPI
-			cube([shieldSPILength, shieldSPIWidth, shieldSPIHeight]);
-		translate([shieldJackX+shieldEdgeCut, shieldJackY, shieldThick])// JACK
-			cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
-		translate([shieldJackX+shieldEdgeCut, shieldJackY+shieldJackWidth+2.37, shieldThick])
-			cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
-		translate([shieldLEDX+shieldEdgeCut, shieldLEDY, shieldThick+shieldLEDWidth/2])// LED
+    color("seagreen")
+    difference() {
+        translate([2, 2, 0]) rounded_rect(shieldX-4, shieldY-4, shieldThick, 2);
+        translate([shieldHoleXY, shieldHoleXY, -1]) shield_hole();
+        translate([shieldX-shieldHoleXY, shieldHoleXY, -1]) shield_hole();
+        translate([shieldHoleXY, shieldY-shieldHoleXY, -1]) shield_hole();
+        translate([shieldX-shieldHoleXY, shieldY-shieldHoleXY, -1]) shield_hole();
+    }
+    color("black") {
+        translate([shieldGPIOX, shieldGPIOY, shieldThick])// GPIO
+            cube([shieldGPIOWidth, shieldGPIOLength, shieldGPIOHeight]);
+        translate([shieldSPIX, shieldSPIY, shieldThick])// SPI
+            cube([shieldSPILength, shieldSPIWidth, shieldSPIHeight]);
+        translate([shieldJackX+shieldEdgeCut, shieldJackY, shieldThick])// JACK
+            cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
+        translate([shieldJackX+shieldEdgeCut, shieldJackY+shieldJackWidth+2.37, shieldThick])
+            cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
+        translate([shieldLEDX+shieldEdgeCut, shieldLEDY, shieldThick+shieldLEDWidth/2])// LED
             rotate([0,90,0]) cylinder(shieldLEDLength, shieldLEDWidth/2, shieldLEDWidth/2);
-		translate([shieldLEDX+shieldEdgeCut, shieldLEDY+shieldLEDWidth+1.75, shieldThick+shieldLEDWidth/2])
+        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+shieldLEDWidth+1.75, shieldThick+shieldLEDWidth/2])
             rotate([0,90,0]) cylinder(shieldLEDLength, shieldLEDWidth/2, shieldLEDWidth/2);
-
-	}
+    }
 }
 
 //shield();

@@ -21,10 +21,10 @@ $fn=50;
 spacerHeight=18.7;
 
 module spacer_mount() {
-	spacer(piHoleOffset, piHoleOffset);
-	spacer(shieldX-piHoleOffset, piHoleOffset);
-	spacer(piHoleOffset, shieldY-piHoleOffset);
-	spacer(shieldX-piHoleOffset, shieldY-piHoleOffset);
+    spacer(piHoleOffset, piHoleOffset);
+    spacer(shieldX-piHoleOffset, piHoleOffset);
+    spacer(piHoleOffset, shieldY-piHoleOffset);
+    spacer(shieldX-piHoleOffset, shieldY-piHoleOffset);
 }
 
 //CASE BOTTOM
@@ -51,10 +51,9 @@ module case_bottom() {
         translate([0, 0, bottomHeight]) lip_lock_bottom();// LIPLOCK
     }
     bottom_mount(piHoleOffset, piHoleOffset, bottomThick);// BOTTOM MOUNT
-	bottom_mount(piX-piHoleOffset,piHoleOffset, bottomThick);
-	bottom_mount(piHoleOffset, shieldY-piHoleOffset, bottomThick);
-	bottom_mount(piX-piHoleOffset, shieldY-piHoleOffset, bottomThick);
-//    translate([0, 0, bottomHeight]) lip_lock_bottom();// LIPLOCK
+    bottom_mount(piX-piHoleOffset,piHoleOffset, bottomThick);
+    bottom_mount(piHoleOffset, shieldY-piHoleOffset, bottomThick);
+    bottom_mount(piX-piHoleOffset, shieldY-piHoleOffset, bottomThick);
 }
 
 //CASE TOP
@@ -95,9 +94,9 @@ module case_top() {
     }
     //TOP MOUNT
     top_mount(piHoleOffset, piHoleOffset, spacerHeight-microHeight/2+shieldThick);
-	top_mount(piX-piHoleOffset,piHoleOffset, spacerHeight-microHeight/2+shieldThick);
-	top_mount(piHoleOffset, shieldY-piHoleOffset, spacerHeight-microHeight/2+shieldThick);
-	top_mount(piX-piHoleOffset, shieldY-piHoleOffset, spacerHeight-microHeight/2+shieldThick);
+    top_mount(piX-piHoleOffset,piHoleOffset, spacerHeight-microHeight/2+shieldThick);
+    top_mount(piHoleOffset, shieldY-piHoleOffset, spacerHeight-microHeight/2+shieldThick);
+    top_mount(piX-piHoleOffset, shieldY-piHoleOffset, spacerHeight-microHeight/2+shieldThick);
     //DISPLAY MOUNT
     top_display_mount(displayHoleOffsetX,displayHoleOffsetY,topHeight-topThick-topDisplayMountHeight);
     top_display_mount(displayHoleOffsetXX,displayHoleOffsetY,topHeight-topThick-topDisplayMountHeight);
