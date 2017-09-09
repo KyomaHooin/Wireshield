@@ -8,8 +8,9 @@ include <rpi.scad>;
 include <fc.scad>;
 
 drawCaseTop=0;
-drawCaseBottom=0;
-drawAll=1;
+drawCaseBottom=1;
+drawSpacer=0;
+drawAll=0;
 
 $fn=50;
 
@@ -115,13 +116,15 @@ module case_top() {
 //------------------------------
 
 if (drawCaseTop) {
-    translate([topX, 0, topHeight])
+    translate([topX+topThick, topThick, topHeight])
         rotate([0,180,0]) case_top();   
 }
 
 if (drawCaseBottom) {
-    case_bottom();
+    translate([topThick, topThick, 0]) case_bottom();
 }
+
+if(drawSpacer) { spacer_mount(); }
 
 if (drawAll) {
     translate([0,0,0]) case_bottom();
