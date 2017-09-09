@@ -8,12 +8,15 @@ FILE
 <pre>
             schema/ - Dimension schematics.
 
-     rpishield.scad - Complete code.
-        shield.scad - Shiled code.
-           rpi.scad - RPi code.
-           tft.scad - TFT display code.
-            fc.scad - Helper functions.
-openscad_screen.png - 3D model screenshot.
+rpishield_bottom.stl - Bottom STL file.
+rpishield_spacer.stl - Spacer STL file.
+   rpishield_top.stl - Top STL file.
+      rpishield.scad - Complete code.
+         shield.scad - Shiled code.
+            rpi.scad - RPi code.
+            tft.scad - TFT display code.
+             fc.scad - Helper functions.
+ openscad_screen.png - 3D model screenshot.
 </pre>
 CONTACT
 
