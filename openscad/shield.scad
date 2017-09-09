@@ -41,7 +41,7 @@ module shield_hole() {
 module shield(shieldEdgeCut=0) {
 	color("seagreen")
 	difference() {
-		cube([shieldX, shieldY, shieldThick]);
+		translate([2, 2, 0]) rounded_rect(shieldX-4, shieldY-4, shieldThick, 2);
 		translate([shieldHoleXY, shieldHoleXY, -1]) shield_hole();
 		translate([shieldX-shieldHoleXY, shieldHoleXY, -1]) shield_hole();
 		translate([shieldHoleXY, shieldY-shieldHoleXY, -1]) shield_hole();
