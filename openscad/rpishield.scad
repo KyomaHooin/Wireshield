@@ -1,6 +1,8 @@
 //
 // RPi Wireshield Case 
 //
+// -bottom mount harden
+//
 
 include <shield.scad>;
 include <tft.scad>;
@@ -37,7 +39,7 @@ bottomHeight=bottomThick+bottomMountHeight+piThick+microHeight/2;
 
 module case_bottom() {
     difference() {
-        rounded_rect(bottomX, bottomY, bottomHeight, bottomThick);// BASE
+        rounded_rect(bottomX, bottomY, bottomHeight+1, bottomThick);// BASE
         translate([0,0,bottomThick]) cube([bottomX, bottomY, bottomHeight]); // FILLER
         translate([0,0,bottomThick+bottomMountHeight]) rpi(edgeCut=3);// RPI
         bottom_hole();// BOTTOM HOLE
@@ -47,12 +49,13 @@ module case_bottom() {
         translate([usb2X-1,bottomY+bottomThick/2,bottomThick+bottomMountHeight+piThick]) usb_lip();// USB LIP
         translate([bottomX+bottomThick/2,microY-1,bottomThick+bottomMountHeight+piThick])// MICRO LIP
             micro_lip();
+        translate([0, 0, bottomHeight]) lip_lock_bottom();// LIPLOCK
     }
     bottom_mount(piHoleOffset, piHoleOffset, bottomThick);// BOTTOM MOUNT
 	bottom_mount(piX-piHoleOffset,piHoleOffset, bottomThick);
 	bottom_mount(piHoleOffset, shieldY-piHoleOffset, bottomThick);
 	bottom_mount(piX-piHoleOffset, shieldY-piHoleOffset, bottomThick);
-    translate([0, 0, bottomHeight]) lip_lock();// LIPLOCK
+//    translate([0, 0, bottomHeight]) lip_lock_bottom();// LIPLOCK
 }
 
 //CASE TOP
@@ -89,7 +92,7 @@ module case_top() {
             cube([topThick/2,shieldGPIOLength,topHeight-topThick]);
         translate([usb2X-1, topY+bottomThick/2, -microHeight/2]) usb_lip();// RPI LIP
         translate([bottomX+bottomThick/2, microY-1, -microHeight/2]) micro_lip();// MICRO LIP
-        lip_lock();//LIP LOCK
+        lip_lock_top();//LIP LOCK
     }
     //TOP MOUNT
     top_mount(piHoleOffset, piHoleOffset, spacerHeight-microHeight/2+shieldThick);
