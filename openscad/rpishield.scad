@@ -1,8 +1,6 @@
 //
 // RPi Wireshield Case 
 //
-// -bottom mount harden
-//
 
 include <shield.scad>;
 include <tft.scad>;
