@@ -51,12 +51,12 @@ module top_display_hole() {
 
 module top_display_mount(offsetX,offsetY,Thick) {
     difference() {
-        translate([offsetX, offsetY, Thick]) cylinder(h=topDisplayMountHeight, d=topDisplayMountDia);
+        translate([offsetX, offsetY, Thick]) cylinder(h=topDisplayMountHeight, r1=topDisplayMountDia/2, r2=topDisplayMountDia/2+0.5);
         translate([offsetX, offsetY, Thick-1]) cylinder(h=topDisplayMountHeight+2, d=topDisplayMountHoleDia);
     }
 }
 
-module top_sink() { cylinder(h=1, r1=1.25, r2=2.5); }
+module top_sink() { cylinder(h=1.5, r1=1.25, r2=2.35); }
 
 module usb_lip() {
     translate([1, bottomThick/2,0])

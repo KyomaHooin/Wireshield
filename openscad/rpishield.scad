@@ -8,9 +8,9 @@ include <rpi.scad>;
 include <fc.scad>;
 
 drawCaseTop=0;
-drawCaseBottom=1;
+drawCaseBottom=0;
 drawSpacer=0;
-drawAll=0;
+drawAll=1;
 
 $fn=50;
 
@@ -82,10 +82,10 @@ module case_top() {
         translate([(piX-displayX)/2, (piY-displayY+2*screenOffset)/2, 0])// SCREEN
             cube([displayX,displayY-2*screenOffset,topHeight+1]);
         top_display_hole();// SCREEN HOLE
-        translate([displayHoleOffsetX,displayHoleOffsetY,topHeight-1]) top_sink();// SCREEN HOLE SINK
-        translate([displayHoleOffsetXX,displayHoleOffsetY,topHeight-1]) top_sink();
-        translate([displayHoleOffsetX,displayHoleOffsetYY,topHeight-1]) top_sink();
-        translate([displayHoleOffsetXX,displayHoleOffsetYY,topHeight-1]) top_sink();
+        translate([displayHoleOffsetX,displayHoleOffsetY,topHeight-1.5]) top_sink();// SCREEN HOLE SINK
+        translate([displayHoleOffsetXX,displayHoleOffsetY,topHeight-1.5]) top_sink();
+        translate([displayHoleOffsetX,displayHoleOffsetYY,topHeight-1.5]) top_sink();
+        translate([displayHoleOffsetXX,displayHoleOffsetYY,topHeight-1.5]) top_sink();
         translate([-topThick/2,shieldGPIOY,0])// IDC LIP
             cube([topThick/2,shieldGPIOLength,topHeight-topThick]);
         translate([usb2X-1, topY+bottomThick/2, -microHeight/2]) usb_lip();// RPI LIP
