@@ -9,15 +9,14 @@ displayHoleRadius=1.70;// TFT.jpg
 displayHoleX=3.50;// TFT.jpg
 displayHoleY=2.50;// TFT.jpg
 screenX=40.02;
-screenOffset=6.76;
+screenY=5.82;
+screenLength=displayY-7.04-5.82;
 screenThick = 4.26 - displayThick;
 displaySPIWidth=2.54;// pls.jpg
 displaySPILength=11*2.54;// pls.jpg
 displaySPIHeight=6.10+2.5;// pls.jpg
 displaySPIX=(displayX-displaySPILength)/2;
 displaySPIY=displayY-2.5-displaySPIWidth/2;// TFT.jpg
-
-$fn=50;
 
 module display_hole() {
     cylinder(h=displayThick+2, r=displayHoleRadius);
@@ -33,13 +32,11 @@ module display() {
             translate([displayX-displayHoleX, displayY-displayHoleY, -1]) display_hole();
         }
     color("lightblue") { // SCREEN
-        translate([0,screenOffset, displayThick])
-            cube([displayX, displayY-2*screenOffset, screenThick]);
+        translate([0,screenY, displayThick])
+            cube([displayX, screenLength, screenThick]);
     }
     color("black") { // SPI
         translate([displaySPIX, displaySPIY, -displaySPIHeight])
             cube([displaySPILength, displaySPIWidth, displaySPIHeight]);
     }
 }
-
-//display();

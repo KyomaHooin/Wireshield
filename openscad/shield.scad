@@ -29,10 +29,8 @@ shieldLEDY=43.1;
 shieldGPIOWidth=2*2.54;// pls.jpg
 shieldGPIOLength=20*2.54;// pls.jpg
 shieldGPIOHeight=6.10+2.5;// pls.jpg
-shieldGPIOX=1.05;// ?
+shieldGPIOX=2.16;
 shieldGPIOY=(shieldY-shieldGPIOLength)/2;
-
-$fn=50;
 
 module shield_hole() {
     cylinder(h=shieldThick+2, d=shieldHoleDia);
@@ -56,11 +54,9 @@ module shield(shieldEdgeCut=0) {
             cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
         translate([shieldJackX+shieldEdgeCut, shieldJackY+shieldJackWidth+2.37, shieldThick])
             cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
-        translate([shieldLEDX+shieldEdgeCut, shieldLEDY, shieldThick+shieldLEDWidth/2])// LED
+        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+shieldLEDWidth/2, shieldThick+shieldLEDWidth/2])// LED
             rotate([0,90,0]) cylinder(shieldLEDLength, shieldLEDWidth/2, shieldLEDWidth/2);
-        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+shieldLEDWidth+1.75, shieldThick+shieldLEDWidth/2])
+        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+3*shieldLEDWidth/2+2.35, shieldThick+shieldLEDWidth/2])
             rotate([0,90,0]) cylinder(shieldLEDLength, shieldLEDWidth/2, shieldLEDWidth/2);
     }
 }
-
-//shield();

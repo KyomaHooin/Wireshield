@@ -9,7 +9,7 @@ piHoleDia=2.75;// RPi.png
 piShieldLength=65;// RPi.png
 piHoleOffset=3.5;// RPi.png
 
-usbWidth=15.06;
+usbWidth=13.16;
 usbLength=17.05;
 usbHeight=17.03-piThick;
 usb1X=piX-29-usbWidth/2;// RPi.png
@@ -22,13 +22,13 @@ ethHeight=15.00-piThick;
 ethX=piX-10.25-(ethWidth/2);// RPi.png
 ethOverHang=2.32;
 
-avWidth=7.22;
-avLength=15.01;
-avHeight=7.38-piThick;
-avOverHang=2.18;
+avWidth=7.20;
+avLength=15;
+avHeight=7.47-piThick;
+avOverHang=2.44;
 avY=53.5-avWidth/2;// RPi.png
 
-hdmiWidth=11.43;
+hdmiWidth=11.47;
 hdmiLength=15.04;
 hdmiHeight=7.86-piThick;
 hdmiOverHang=1.59;
@@ -51,8 +51,6 @@ cardLength=17.18;
 cardHeight=1.0;
 cardOverHang=2.63;
 cardX=piX/2-cardWidth/2;
-
-$fn=50;
 
 module pi_hole() {
     cylinder(h=piThick+2, d=piHoleDia);
@@ -95,5 +93,3 @@ module rpi(edgeCut=0) {
             cube([gpioWidth, gpioLength, gpioHeight]);
     }
 }
-
-//rpi();
