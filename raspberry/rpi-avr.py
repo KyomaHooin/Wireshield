@@ -11,6 +11,8 @@ import rrdtool,smtplib,serial,email,time,sys,re
 from email.mime.text import MIMEText
 
 ADMIN='foo@foobar.foo'
+MAXTEMP=30
+
 DATABASE='/root/avr/rpishield.rrd'
 PLOT='/var/www/rpishield/plot/'
 LOG='/var/log/rpishield.log'
@@ -52,7 +54,7 @@ try:
 					for (sid,val) in re.findall(sensor, data):
 						temperature = float(re.sub('(\d\d)(\d)','\\1.\\2',val))
 						payload += ':' + str(temperature)
-						if temperature > 40: notify(sid,temperature)
+						if temperature > MAXTEMP: notify(sid,temperature)
 					rrdtool.update(DATABASE, payload)
 		except:
 			log.write('Update error.\n')
