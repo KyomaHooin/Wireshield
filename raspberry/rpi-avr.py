@@ -47,7 +47,7 @@ try:
 			s = serial.Serial('/dev/ttyAMA0',9600,xonxoff=0,timeout=5)# 8,N,1; 5s scan..
 			data = s.readline()
 			if data:
-				pattern = re.compile('S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)S.T(.*)')
+				pattern = re.compile('(S.T...){8}')
 				sensor = re.compile('S(.)T(...)')
 				payload = 'N'
 				if re.match(pattern, data):
