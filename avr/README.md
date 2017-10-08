@@ -2,7 +2,7 @@
 
 DESCRIPTION
 
-Raspberry RPi2 OneWire AVR shiled Atmega328 code.
+OneWire AVR shield Atmega328 code.
 
 FILE
 

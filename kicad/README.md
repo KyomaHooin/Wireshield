@@ -2,7 +2,7 @@
 
 DESCRIPTION
 
-Raspberry RPi2 OneWire AVR shiled.
+Raspberry RPi2 OneWire AVR shield PCB.
 
 FILE
 <pre>

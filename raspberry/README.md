@@ -2,7 +2,7 @@
 
 DESCRIPTION
 
-RPi AVR Shield server configuration.
+RPi2 AVR shield server configuration.
 
 INSTALL
 <pre>

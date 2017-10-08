@@ -2,7 +2,7 @@
 
 DESCRIPTION
 
-Raspberry RPi2 AVR shiled & TFT display case.
+Raspberry RPi2 AVR shield & TFT display case.
 
 FILE
 <pre>
@@ -12,7 +12,7 @@ rpishield_bottom.stl - Bottom STL file.
 rpishield_spacer.stl - Spacer STL file.
    rpishield_top.stl - Top STL file.
       rpishield.scad - Complete code.
-         shield.scad - Shiled code.
+         shield.scad - Shield code.
             rpi.scad - RPi code.
             tft.scad - TFT display code.
              fc.scad - Helper functions.
