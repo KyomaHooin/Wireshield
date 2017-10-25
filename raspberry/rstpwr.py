@@ -12,30 +12,26 @@ except:
 	sys.exit(1)
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(32, GPIO.IN, pull_up_down=GPIO.PUD_UP)# pull-up
-
-#-------------------------
+GPIO.setup(32,GPIO.IN, pull_up_down=GPIO.PUD_UP)# pull-up
 
 def pwrrst():
 	counter = 0
 	while 1:
-		if not GPIO.input(32):# pressed..
+		if not GPIO.input(32):# pressed
 			counter += 1
 		else:
-			if 7 > counter > 2:
+			if 6 > counter > 2:
 				print "System reboot..."
 				#os.system('reboot')
-				return
-			if counter > 7:
+			elif counter >= 6:
 				print "System halt..."
 				#os.system('halt')
-				return
-			counter = 0# reset counter..
+			else: return
 		time.sleep(1)
-			
-#-------------------------
 
 while 1:
-	GPIO.wait_for_edge(32,GPIO.FALLING)
+	pressed = GPIO.wait_for_edge(32,GPIO.FALLING)
+	if pressed: pwrrst()
+
 GPIO.clenup()
 
