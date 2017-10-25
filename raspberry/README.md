@@ -22,6 +22,7 @@ systemctl disable serial-getty@ttyAMA0.service
 /etc/rc.local:
 
 /root/avr/rpi-avr.py &
+/root/avr/rstpwr.py &
 /root/firewall &
 
 /etc/network/interfaces:
@@ -60,6 +61,7 @@ FILE
      frontend/ - HTML frontend.
 
     rpi-avr.py - AVR  data processing.
+     rstpwr.py - Reset/halt detection.
    database.py - Create RRD database.
       firewall - Firewall script.
 rpi_screen.png - Plot output.
