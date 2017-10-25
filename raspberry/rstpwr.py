@@ -25,9 +25,11 @@ def pwrrst():
 			if 7 > counter > 2:
 				print "System reboot..."
 				#os.system('reboot')
+				return
 			if counter > 7:
 				print "System halt..."
 				#os.system('halt')
+				return
 			counter = 0# reset counter..
 		sleep(1)
 			
