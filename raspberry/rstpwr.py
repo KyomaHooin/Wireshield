@@ -31,11 +31,11 @@ def pwrrst():
 				#os.system('halt')
 				return
 			counter = 0# reset counter..
-		sleep(1)
+		time.sleep(1)
 			
 #-------------------------
 
 while 1:
-	GPIO.wait_for_edge(32, GPIO.FALLING)
+	GPIO.wait_for_edge(32,GPIO.FALLING)
 GPIO.clenup()
 
