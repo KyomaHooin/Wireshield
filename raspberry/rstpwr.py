@@ -14,7 +14,7 @@ except:
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(32,GPIO.IN, pull_up_down=GPIO.PUD_UP)# pull-up
 
-def pwrrst():
+def rstpwr():
 	counter = 0
 	while 1:
 		if not GPIO.input(32):# pressed
@@ -31,7 +31,7 @@ def pwrrst():
 
 while 1:
 	pressed = GPIO.wait_for_edge(32,GPIO.FALLING)
-	if pressed: pwrrst()
+	if pressed: rstpwr()
 
 GPIO.clenup()
 
