@@ -17,16 +17,17 @@ GPIO.setup(32,GPIO.IN, pull_up_down=GPIO.PUD_UP)# pull-up
 def rstpwr():
 	counter = 0
 	while 1:
-		if not GPIO.input(32):# pressed
+		if not GPIO.input(32):# pressed = 0
 			counter += 1
 		else:
 			if 6 > counter > 2:
 				print "System reboot..."
 				#os.system('reboot')
+				return
 			elif counter >= 6:
 				print "System halt..."
 				#os.system('halt')
-			else: return
+				return
 		time.sleep(1)
 
 while 1:
