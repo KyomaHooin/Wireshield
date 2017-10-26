@@ -96,3 +96,14 @@ module harden() {
     cube([piHoleOffset-topMountDia/2+(topMountDia-topMountHoleDia)/2, topThick,
         spacerHeight+displayThick+topDisplayMountHeight]);
 }
+
+module button() {
+    color("silver")
+    rotate([0,90,0]) cylinder(h=15,d=7);
+    translate([19,0,0])
+        color("red")
+        rotate([0,90,0]) cylinder(h=4,d=6); 
+    translate([15,0,0])
+        color("silver")
+        rotate([0,90,0]) cylinder(h=4,d=4);
+}
