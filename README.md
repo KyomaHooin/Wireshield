@@ -9,6 +9,7 @@ ORDER LIST
 
 -Wallmount     - https://www.mechatronicsart.com/product/wall-mount-raspberry-pi-3-case/
 -4 x M2 insert - http://www.tme.eu/cz/details/b2_bn1052/zavitove-vlozky/bossard/1386840/
+-? x M7 buffer - ? 
 
 [install]
 
