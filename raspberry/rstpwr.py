@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# RPi GPIO RST/PWR button
+# RPi GPIO 32 RST/PWR button
 #
 
 import time,sys,os
