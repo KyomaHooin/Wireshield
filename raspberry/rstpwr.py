@@ -21,12 +21,10 @@ def rstpwr():
 			counter += 1
 		else:
 			if 6 > counter > 2:
-				print "System reboot..."
-				#os.system('reboot')
+				os.system('reboot')
 				return
 			elif counter >= 6:
-				print "System halt..."
-				#os.system('halt')
+				os.system('halt')
 				return
 		time.sleep(1)
 
