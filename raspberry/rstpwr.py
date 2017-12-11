@@ -6,7 +6,7 @@
 import time,sys,os
 
 try:
-	import RPI.GPIO as GPIO
+	import RPi.GPIO as GPIO
 except:
 	print "Missing GPIO library."
 	sys.exit(1)
