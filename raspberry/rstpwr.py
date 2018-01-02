@@ -26,6 +26,7 @@ def rstpwr():
 			elif counter >= 6:
 				os.system('halt')
 				return
+			else: return
 		time.sleep(1)
 
 while 1:
