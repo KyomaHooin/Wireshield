@@ -26,6 +26,8 @@ TFT_22_ILI9225 tft(TFT_RST,TFT_RS,TFT_CS,0);
 
 //VAR
 
+int maxtemp = 30;// Maximum temperature.
+
 byte sensor[8][8] = {
   0x28,0xff,0x1b,0xb0,0x70,0x16,0x05,0x43,// Bus1[sensor 1-4]
   0x28,0xff,0x52,0x10,0x72,0x16,0x05,0x63,
@@ -109,7 +111,7 @@ float ds_get_temperature(OneWire &ds, byte addr[8]) {
   byte ds_data[2];
   ds.reset();
   ds.select(addr);
-  ds.write(0xBE); //"Read Scratchpad".
+  ds.write(0xbe); //"Read Scratchpad".
   ds.read_bytes(ds_data,2); //LSB & MSB
   short raw = ds_data[1] << 8 | ds_data[0]; //2-Byte to 16 bit int
   return (float)raw / 16.0; //-> int to double precission float
@@ -118,7 +120,7 @@ float ds_get_temperature(OneWire &ds, byte addr[8]) {
 //TFT background template 52x85 square 2px spacing
 void tft_rectangle(int id, float val) {
   unsigned long color;
-  (val > 0 && val < 30) ? color = COLOR_GREEN : color = COLOR_RED;
+  (val > 0 && val < maxtemp) ? color = COLOR_GREEN : color = COLOR_RED;
   if(id < 4) {
      tft.drawRectangle(2 + 2*id + 52*id, 2, 54 + 2*id + 52*id, 87, color);
      tft.drawRectangle(2 + 2*id + 52*id + 1, 3, 54 + 2*id + 52*id - 1, 86, color);
