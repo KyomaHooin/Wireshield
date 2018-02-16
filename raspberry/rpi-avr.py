@@ -16,7 +16,6 @@ MAXTEMP=30
 DATABASE='/root/avr/rpishield.rrd'
 PLOT='/var/www/rpishield/plot/'
 LOG='/var/log/rpishield.log'
-PAYLOAD=''
 UPDATE=True
 
 #----------------
