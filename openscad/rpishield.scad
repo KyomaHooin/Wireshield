@@ -91,8 +91,7 @@ module case_top() {
         translate([usb2X-1, topY+bottomThick/2, -microHeight/2]) usb_lip();// RPI LIP
         translate([bottomX+bottomThick/2, microY-1, -microHeight/2]) micro_lip();// MICRO LIP
         lip_lock_top();//LIP LOCK
-        translate([topX-10,topY-11,spacerHeight-microHeight/2+3.5+shieldThick]) button();// PWR/RST
-        
+        translate([topX-10,topY-11,spacerHeight-microHeight/2+4+shieldThick]) button();// PWR/RST 4 = dia/2        
     }
     //TOP MOUNT
     top_mount(piHoleOffset, piHoleOffset, spacerHeight-microHeight/2+shieldThick);
@@ -132,7 +131,7 @@ if (drawAll) {
     translate([0,0,bottomThick+bottomMountHeight]) rpi();
     translate([0,0,bottomThick+bottomMountHeight+piThick]) spacer_mount();
     translate([0,0,bottomThick+bottomMountHeight+piThick+spacerHeight]) shield();
-    translate([topX-12,topY-11,bottomThick+bottomMountHeight+piThick+spacerHeight+shieldThick+3.5]) button();
+    translate([topX-12,topY-11,bottomThick+bottomMountHeight+piThick+spacerHeight+shieldThick+4]) button();
     translate([(piX-displayX)/2, (piY-displayY)/2,
         bottomHeight+topHeight-topThick-topDisplayMountHeight-displayThick])
         display();
