@@ -4,6 +4,8 @@
 
 include<fc.scad>;
 
+$fn=50;
+
 shieldX=56;// RPi.png
 shieldY=65;// RPi.png
 shieldThick=1.5;// plosnaky.cz
@@ -16,13 +18,13 @@ shieldSPIHeight=6.10+2.5;// pls.jpg
 shieldSPIX=16.49;
 shieldSPIY=4.56;
 
-shieldJackWidth=12.00;// jack.jpg
+shieldJackWidth=12.00+1;// jack.jpg
 shieldJackLength=14.10;
 shieldJackHeight=6.00;// jack.jpg (5 + 1)
 shieldJackX=shieldX-shieldJackLength+3.56;
 shieldJackY=10.56;
 
-shieldLEDDia=4.20;// led.pdf
+shieldLEDDia=3.20+0.5;// led.pdf
 shieldLEDLength=13.72;
 shieldLEDX=47;
 shieldLEDY=43.1;
@@ -51,15 +53,22 @@ module shield(shieldEdgeCut=0) {
             cube([shieldGPIOWidth, shieldGPIOLength, shieldGPIOHeight]);
         translate([shieldSPIX, shieldSPIY, shieldThick])// SPI
             cube([shieldSPILength, shieldSPIWidth, shieldSPIHeight]);
-        translate([shieldJackX+shieldEdgeCut, shieldJackY, shieldThick])// JACK
-            cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
-        translate([shieldJackX+shieldEdgeCut, shieldJackY+shieldJackWidth+2.37, shieldThick])
-            cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
-        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+shieldLEDDia/2-0.5, shieldThick+shieldLEDDia/2])// LED
+        union() {// JACK
+            translate([shieldJackX+shieldEdgeCut, shieldJackY-0.5, shieldThick])
+                cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
+            translate([shieldJackX+shieldEdgeCut, shieldJackY+shieldJackWidth/2-0.5, shieldThick+3])
+                rotate([0,90,0]) cylinder(shieldJackLength,4,4);
+        }
+        union() {
+            translate([shieldJackX+shieldEdgeCut, shieldJackY+shieldJackWidth+2.37-0.5, shieldThick])
+                cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
+            translate([shieldJackX+shieldEdgeCut, shieldJackY+3*shieldJackWidth/2+2.37-0.5, shieldThick+3])
+                rotate([0,90,0]) cylinder(shieldJackLength,4,4);
+        }
+        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+shieldLEDDia/2-0.25, shieldThick+shieldLEDDia/2])// LED
             rotate([0,90,0]) cylinder(shieldLEDLength, shieldLEDDia/2, shieldLEDDia/2);
-        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+3*shieldLEDDia/2+2.35-0.5, shieldThick+shieldLEDDia/2])
+        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+3*shieldLEDDia/2+2.35-0.25, shieldThick+shieldLEDDia/2])
             rotate([0,90,0]) cylinder(shieldLEDLength, shieldLEDDia/2, shieldLEDDia/2);
     }
 }
 
-shield();
