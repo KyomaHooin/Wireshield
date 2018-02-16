@@ -32,13 +32,13 @@ hdmiWidth=11.47;
 hdmiLength=15.04;
 hdmiHeight=7.86-piThick;
 hdmiOverHang=1.59;
-hdmiY=32-(hdmiWidth/2);// RPi.png
+hdmiY=32-(hdmiLength/2);// RPi.png
 
 microWidth=5.59;
 microLength=8.04;
 microHeight=4.22-piThick;
 microOverHang=1.9;
-microY=10.6-(microWidth/2);// RPi.png
+microY=10.6-(microLength/2);// RPi.png
 
 gpioWidth=2.54*2;// pls.jpg
 gpioLength=20*2.54;// pls.jpg
