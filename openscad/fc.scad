@@ -99,7 +99,7 @@ module harden() {
 
 module button() {
     color("silver")
-    rotate([0,90,0]) cylinder(h=15,d=7);
+    rotate([0,90,0]) cylinder(h=15,d=7.5);
     translate([19,0,0])
         color("red")
         rotate([0,90,0]) cylinder(h=4,d=6); 
