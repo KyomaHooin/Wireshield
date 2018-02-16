@@ -10,7 +10,7 @@ displayHoleX=3.50;// TFT.jpg
 displayHoleY=2.50;// TFT.jpg
 screenX=40.02;
 screenY=5.82;
-screenLength=displayY-7.04-5.82;
+screenLength=displayY-7.04-5.82+1;
 screenThick = 4.26 - displayThick;
 displaySPIWidth=2.54;// pls.jpg
 displaySPILength=11*2.54;// pls.jpg
@@ -32,8 +32,8 @@ module display() {
             translate([displayX-displayHoleX, displayY-displayHoleY, -1]) display_hole();
         }
     color("lightblue") { // SCREEN
-        translate([0,screenY, displayThick])
-            cube([displayX, screenLength, screenThick]);
+        translate([1,screenY, displayThick])
+            cube([displayX-2, screenLength, screenThick]);
     }
     color("black") { // SPI
         translate([displaySPIX, displaySPIY, -displaySPIHeight])

@@ -7,10 +7,10 @@ include <tft.scad>;
 include <rpi.scad>;
 include <fc.scad>;
 
-drawCaseTop=1;
+drawCaseTop=0;
 drawCaseBottom=0;
 drawSpacer=0;
-drawAll=0;
+drawAll=1;
 
 $fn=50;
 
@@ -79,8 +79,8 @@ module case_top() {
         translate([0,0,-topThick]) cube([topX, topY, topHeight]);// FILLER
         translate([0,0,-microHeight/2-piThick]) rpi(edgeCut=3);// RPI
         translate([0,0,spacerHeight-microHeight/2]) shield(shieldEdgeCut=5);// SHILED
-        translate([(piX-displayX)/2, (piY-displayY)/2+5.82, 0])// SCREEN
-            cube([displayX, screenLength, topHeight+1]);
+        translate([(piX-displayX)/2+1, (piY-displayY)/2+5.82, 0])// SCREEN
+            cube([displayX-2, screenLength, topHeight+1]);
         top_display_hole();// SCREEN HOLE
         translate([displayHoleOffsetX,displayHoleOffsetY,topHeight-1.5]) top_sink();// SCREEN HOLE SINK
         translate([displayHoleOffsetXX,displayHoleOffsetY,topHeight-1.5]) top_sink();
