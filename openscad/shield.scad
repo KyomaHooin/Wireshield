@@ -22,7 +22,7 @@ shieldJackHeight=6.00;// jack.jpg (5 + 1)
 shieldJackX=shieldX-shieldJackLength+3.56;
 shieldJackY=10.56;
 
-shieldLEDDia=3.70;// led.pdf
+shieldLEDDia=4.20;// led.pdf
 shieldLEDLength=13.72;
 shieldLEDX=47;
 shieldLEDY=43.1;
@@ -55,10 +55,11 @@ module shield(shieldEdgeCut=0) {
             cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
         translate([shieldJackX+shieldEdgeCut, shieldJackY+shieldJackWidth+2.37, shieldThick])
             cube([shieldJackLength, shieldJackWidth, shieldJackHeight]);
-        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+shieldLEDDia/2-0.25, shieldThick+shieldLEDDia/2])// LED
+        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+shieldLEDDia/2-0.5, shieldThick+shieldLEDDia/2])// LED
             rotate([0,90,0]) cylinder(shieldLEDLength, shieldLEDDia/2, shieldLEDDia/2);
-        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+3*shieldLEDDia/2+2.35-0.25, shieldThick+shieldLEDDia/2])
+        translate([shieldLEDX+shieldEdgeCut, shieldLEDY+3*shieldLEDDia/2+2.35-0.5, shieldThick+shieldLEDDia/2])
             rotate([0,90,0]) cylinder(shieldLEDLength, shieldLEDDia/2, shieldLEDDia/2);
     }
 }
 
+shield();
