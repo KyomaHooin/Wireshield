@@ -91,7 +91,7 @@ module case_top() {
         translate([usb2X-1, topY+bottomThick/2, -microHeight/2]) usb_lip();// RPI LIP
         translate([bottomX+bottomThick/2, microY-1, -microHeight/2]) micro_lip();// MICRO LIP
         lip_lock_top();//LIP LOCK
-        translate([topX-10,topY-11,spacerHeight-microHeight/2+4+shieldThick]) button();// PWR/RST 4 = dia/2        
+        translate([topX-10,topY-11,spacerHeight-microHeight/2+shieldThick+4-0.5]) button();// PWR/RST 4 = dia/2        
     }
     //TOP MOUNT
     top_mount(piHoleOffset, piHoleOffset, spacerHeight-microHeight/2+shieldThick);
