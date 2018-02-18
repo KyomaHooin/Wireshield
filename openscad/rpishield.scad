@@ -45,8 +45,8 @@ module case_bottom() {
         for (vspace=[1:7])// VENT
             translate([piX/4, 10*vspace+2.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
         translate([cardX, -bottomThick, bottomThick+bottomMountHeight]) sd_lip();// SD LIP
-        translate([usb2X-1,bottomY+bottomThick/2,bottomThick+bottomMountHeight+piThick]) usb_lip();// USB LIP
-        translate([bottomX+bottomThick/2,microY-1,bottomThick+bottomMountHeight+piThick])// MICRO LIP
+        translate([usb2X-1,bottomY+bottomThick/2,bottomThick+bottomMountHeight+piThick-0.5]) usb_lip();// USB LIP
+        translate([bottomX+bottomThick/2,microY-1-0.5,bottomThick+bottomMountHeight+piThick-0.5])// MICRO LIP
             micro_lip();
         translate([0, 0, bottomHeight]) lip_lock_bottom();// LIPLOCK
     }
@@ -88,8 +88,8 @@ module case_top() {
         translate([displayHoleOffsetXX,displayHoleOffsetYY,topHeight-1.5]) top_sink();
         translate([-topThick/2,shieldGPIOY,0])// IDC LIP
             cube([topThick/2,shieldGPIOLength,topHeight-topThick]);
-        translate([usb2X-1, topY+bottomThick/2, -microHeight/2]) usb_lip();// RPI LIP
-        translate([bottomX+bottomThick/2, microY-1, -microHeight/2]) micro_lip();// MICRO LIP
+        translate([usb2X-1, topY+bottomThick/2, -microHeight/2-0.5]) usb_lip();// USB LIP
+        translate([bottomX+bottomThick/2, microY-1-0.5, -microHeight/2-0.5]) micro_lip();// MICRO LIP
         lip_lock_top();//LIP LOCK
         translate([topX-10,topY-11,spacerHeight-microHeight/2+shieldThick+4-0.5]) button();// PWR/RST 4 = dia/2        
     }
