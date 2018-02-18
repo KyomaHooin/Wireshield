@@ -2,6 +2,8 @@
 //RPI Shiled - TFT display
 //
 
+$fn=50;
+
 displayX=42.46;// TFT.jpg
 displayY=67.20;// TFT.jpg
 displayThick=1.6;
@@ -40,3 +42,5 @@ module display() {
             cube([displaySPILength, displaySPIWidth, displaySPIHeight]);
     }
 }
+
+//tft();
