@@ -38,17 +38,17 @@ bottomHeight=bottomThick+bottomMountHeight+piThick+microHeight/2;
 
 module case_bottom() {
     difference() {
-        rounded_rect(bottomX, bottomY, bottomHeight+1, bottomThick);// BASE
-        translate([0,0,bottomThick]) cube([bottomX, bottomY, bottomHeight]); // FILLER
+        translate([-0.5,-0.5,0]) rounded_rect(bottomX+1, bottomY+1, bottomHeight+1, bottomThick);// BASE
+        translate([-0.5,-0.5,bottomThick]) cube([bottomX+1, bottomY+1, bottomHeight]); // FILLER
         translate([0,0,bottomThick+bottomMountHeight]) rpi(edgeCut=3);// RPI
         bottom_hole();// BOTTOM HOLE
         for (vspace=[1:7])// VENT
             translate([piX/4, 10*vspace+2.5, -1]) rounded_rect(bottomX/2, 1, bottomThick+2, 1);
-        translate([cardX, -bottomThick, bottomThick+bottomMountHeight]) sd_lip();// SD LIP
-        translate([usb2X-1,bottomY+bottomThick/2,bottomThick+bottomMountHeight+piThick-0.5]) usb_lip();// USB LIP
-        translate([bottomX+bottomThick/2,microY-1-0.5,bottomThick+bottomMountHeight+piThick-0.5])// MICRO LIP
+        translate([cardX, -bottomThick-0.5, bottomThick+bottomMountHeight]) sd_lip();// SD LIP
+        translate([usb2X-1,bottomY+bottomThick/2+0.5,bottomThick+bottomMountHeight+piThick-0.5]) usb_lip();// USB LIP
+        translate([bottomX+bottomThick/2+0.5,microY-1-0.5,bottomThick+bottomMountHeight+piThick-0.5])// MICRO LIP
             micro_lip();
-        translate([0, 0, bottomHeight]) lip_lock_bottom();// LIPLOCK
+        translate([-0.5,-0.5,bottomHeight]) lip_lock_bottom();// LIPLOCK
     }
     bottom_mount(piHoleOffset, piHoleOffset, bottomThick);// BOTTOM MOUNT
     bottom_mount(piX-piHoleOffset,piHoleOffset, bottomThick);
@@ -75,8 +75,8 @@ displayHoleOffsetYY=(piY-displayY)/2+displayY-displayHoleY;
 
 module case_top() {
     difference() {
-        rounded_rect(topX, topY, topHeight, topThick);// BASE
-        translate([0,0,-topThick]) cube([topX, topY, topHeight]);// FILLER
+        translate([-0.5,-0.5,0]) rounded_rect(topX+1, topY+1, topHeight, topThick);// BASE
+        translate([-0.5,-0.5,-topThick]) cube([topX+1, topY+1, topHeight]);// FILLER
         translate([0,0,-microHeight/2-piThick]) rpi(edgeCut=3);// RPI
         translate([0,0,spacerHeight-microHeight/2]) shield(shieldEdgeCut=5);// SHILED
         translate([(piX-displayX)/2+1, (piY-displayY)/2+5.82, 0])// SCREEN
@@ -86,11 +86,11 @@ module case_top() {
         translate([displayHoleOffsetXX,displayHoleOffsetY,topHeight-1.5]) top_sink();
         translate([displayHoleOffsetX,displayHoleOffsetYY,topHeight-1.5]) top_sink();
         translate([displayHoleOffsetXX,displayHoleOffsetYY,topHeight-1.5]) top_sink();
-        translate([-topThick/2,shieldGPIOY,0])// IDC LIP
+        translate([-topThick/2-0.5,shieldGPIOY,0])// IDC LIP
             cube([topThick/2,shieldGPIOLength,topHeight-topThick]);
-        translate([usb2X-1, topY+bottomThick/2, -microHeight/2-0.5]) usb_lip();// USB LIP
-        translate([bottomX+bottomThick/2, microY-1-0.5, -microHeight/2-0.5]) micro_lip();// MICRO LIP
-        lip_lock_top();//LIP LOCK
+        translate([usb2X-1, topY+bottomThick/2+0.5, -microHeight/2-0.5]) usb_lip();// USB LIP
+        translate([bottomX+bottomThick/2+0.5, microY-1-0.5, -microHeight/2-0.5]) micro_lip();// MICRO LIP
+        translate([-0.5,-0.5,0]) lip_lock_top();//LIP LOCK
         translate([topX-10,topY-11,spacerHeight-microHeight/2+shieldThick+4-0.5]) button();// PWR/RST 4 = dia/2        
     }
     //TOP MOUNT
@@ -104,9 +104,9 @@ module case_top() {
     top_display_mount(displayHoleOffsetX,displayHoleOffsetYY,topHeight-topThick-topDisplayMountHeight);
     top_display_mount(displayHoleOffsetXX,displayHoleOffsetYY,topHeight-topThick-topDisplayMountHeight);
     //HARDEN
-    translate([0, piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
+    translate([-1, piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
     translate([piX-topThick/2, piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick+0.5]) harden_low();
-    translate([0, shieldY-piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
+    translate([-1, shieldY-piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
     translate([piX-topThick/2, shieldY-piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick+0.5]) harden_low();
     translate([piHoleOffset-topThick/2, -topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
     translate([piX-piHoleOffset-topThick/2, -topThick/2, spacerHeight-microHeight/2+shieldThick+0.5]) harden_low();
@@ -115,12 +115,12 @@ module case_top() {
 //------------------------------
 
 if (drawCaseTop) {
-    translate([topX+topThick, topThick, topHeight])
+    translate([topX+topThick+0.5, topThick+0.5, topHeight])
         rotate([0,180,0]) case_top();
 }
 
 if (drawCaseBottom) {
-    translate([topThick, topThick, 0]) case_bottom();
+    translate([topThick+0.5, topThick+0.5, 0]) case_bottom();
 }
 
 if(drawSpacer) { spacer_mount(); }
