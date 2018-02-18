@@ -38,6 +38,13 @@ module top_mount(offsetX,offsetY,Thick) {
     }
 }
 
+module top_mount_low(offsetX,offsetY,Thick) {
+    difference() {
+        translate([offsetX, offsetY, Thick]) cylinder(h=spacerHeight+displayThick+topDisplayMountHeight-0.5, d=topMountDia);
+        translate([offsetX, offsetY, Thick-1]) cylinder(h=(spacerHeight+displayThick+topDisplayMountHeight-0.5)/2, d=topMountHoleDia);
+    }
+}
+
 module top_display_hole() {
     translate([displayHoleOffsetX,displayHoleOffsetY,topHeight-topThick-1])
         cylinder(h=topThick+2, d=2.5);
@@ -95,6 +102,11 @@ module lip_lock_top() {
 module harden() {
     cube([piHoleOffset-topMountDia/2+(topMountDia-topMountHoleDia)/2, topThick,
         spacerHeight+displayThick+topDisplayMountHeight]);
+}
+
+module harden_low() {
+    cube([piHoleOffset-topMountDia/2+(topMountDia-topMountHoleDia)/2, topThick,
+        spacerHeight+displayThick+topDisplayMountHeight-0.5]);
 }
 
 module button() {

@@ -95,9 +95,9 @@ module case_top() {
     }
     //TOP MOUNT
     top_mount(piHoleOffset, piHoleOffset, spacerHeight-microHeight/2+shieldThick);
-    top_mount(piX-piHoleOffset,piHoleOffset, spacerHeight-microHeight/2+shieldThick);
+    top_mount_low(piX-piHoleOffset,piHoleOffset, spacerHeight-microHeight/2+shieldThick+0.5);
     top_mount(piHoleOffset, shieldY-piHoleOffset, spacerHeight-microHeight/2+shieldThick);
-    top_mount(piX-piHoleOffset, shieldY-piHoleOffset, spacerHeight-microHeight/2+shieldThick);
+    top_mount_low(piX-piHoleOffset, shieldY-piHoleOffset, spacerHeight-microHeight/2+shieldThick+0.5);
     //DISPLAY MOUNT
     top_display_mount(displayHoleOffsetX,displayHoleOffsetY,topHeight-topThick-topDisplayMountHeight);
     top_display_mount(displayHoleOffsetXX,displayHoleOffsetY,topHeight-topThick-topDisplayMountHeight);
@@ -105,12 +105,11 @@ module case_top() {
     top_display_mount(displayHoleOffsetXX,displayHoleOffsetYY,topHeight-topThick-topDisplayMountHeight);
     //HARDEN
     translate([0, piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
-    translate([piX-topThick/2, piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
+    translate([piX-topThick/2, piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick+0.5]) harden_low();
     translate([0, shieldY-piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
-    translate([piX-topThick/2, shieldY-piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick])
-        harden();
+    translate([piX-topThick/2, shieldY-piHoleOffset-topThick/2, spacerHeight-microHeight/2+shieldThick+0.5]) harden_low();
     translate([piHoleOffset-topThick/2, -topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
-    translate([piX-piHoleOffset-topThick/2, -topThick/2, spacerHeight-microHeight/2+shieldThick]) harden();
+    translate([piX-piHoleOffset-topThick/2, -topThick/2, spacerHeight-microHeight/2+shieldThick+0.5]) harden_low();
 }
 
 //------------------------------
