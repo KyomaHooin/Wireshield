@@ -15,4 +15,6 @@ IMG_20170807_113755.jpg - Testing PCB.
 IMG_20170830_094421.jpg - Test revision 2.0.
 IMG_20170830_094432.jpg - TFT display test.
 IMG_20180214_163721.jpg - 3D print case prototype.
+IMG_20180219_162749.jpg - Front view of Wireshield
+IMG_20180219_162757.jpg - Side view of Wireshield
 </pre>
