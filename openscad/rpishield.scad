@@ -130,11 +130,11 @@ if(drawSpacer) { spacer_mount(); }
 if (drawAll) {
     translate([0,0,0]) case_bottom();
     translate([0,0,bottomThick+bottomMountHeight]) rpi();
-    translate([0,0,bottomThick+bottomMountHeight+piThick]) spacer_mount();
-    translate([0,0,bottomThick+bottomMountHeight+piThick+spacerHeight]) shield();
-    translate([topX-10,topY-7,bottomThick+bottomMountHeight+piThick+spacerHeight+shieldThick+4-1.5]) button();
+    translate([0,0,bottomThick+bottomMountHeight+piThick+1]) spacer_mount();
+    translate([0,0,bottomThick+bottomMountHeight+piThick+spacerHeight+1]) shield();
+    translate([topX-10,topY-7,bottomThick+bottomMountHeight+piThick+spacerHeight+shieldThick+4-1.5+1]) button();
     translate([(piX-displayX)/2, (piY-displayY)/2,
-        bottomHeight+topHeight-topThick-topDisplayMountHeight-displayThick])
+        bottomHeight+topHeight-topThick-topDisplayMountHeight-displayThick+1])
         display();
     translate([0,0,bottomHeight+1]) case_top();
 }
