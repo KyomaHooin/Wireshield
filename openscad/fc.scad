@@ -35,6 +35,7 @@ module top_mount(offsetX,offsetY,Thick) {
     difference() {
         translate([offsetX, offsetY, Thick]) cylinder(h=spacerHeight+displayThick+topDisplayMountHeight, d=topMountDia);
         translate([offsetX, offsetY, Thick-1]) cylinder(h=(spacerHeight+displayThick+topDisplayMountHeight)/2, d=topMountHoleDia);
+        translate([offsetX, offsetY, Thick-1]) cylinder(h=2, d=3.6);
     }
 }
 
@@ -42,6 +43,7 @@ module top_mount_low(offsetX,offsetY,Thick) {
     difference() {
         translate([offsetX, offsetY, Thick]) cylinder(h=spacerHeight+displayThick+topDisplayMountHeight-0.5, d=topMountDia);
         translate([offsetX, offsetY, Thick-1]) cylinder(h=(spacerHeight+displayThick+topDisplayMountHeight-0.5)/2, d=topMountHoleDia);
+        translate([offsetX, offsetY, Thick-1]) cylinder(h=2, d=3.6);
     }
 }
 
