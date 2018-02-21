@@ -8,9 +8,9 @@ include <rpi.scad>;
 include <fc.scad>;
 
 drawCaseTop=0;
-drawCaseBottom=0;
+drawCaseBottom=1;
 drawSpacer=0;
-drawAll=1;
+drawAll=0;
 
 $fn=50;
 
@@ -33,7 +33,7 @@ bottomThick=2;
 bottomX=56;
 bottomY=85;
 bottomMountHeight=2.26;
-bottomMountDia=5;
+bottomMountDia=5.5;
 bottomHeight=bottomThick+bottomMountHeight+piThick+microHeight/2;
 
 module case_bottom() {

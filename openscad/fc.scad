@@ -11,16 +11,16 @@ module rounded_rect(x, y, z, radius) {
 }
 
 module bottom_hole() {
-    translate([piHoleOffset, piHoleOffset,-1]) cylinder(h=bottomThick+2, d=2.5);
-    translate([piX-piHoleOffset, piHoleOffset,-1]) cylinder(h=bottomThick+2, d=2.5);
-    translate([piHoleOffset, shieldY-piHoleOffset,-1]) cylinder(h=bottomThick+2, d=2.5);
-    translate([piX-piHoleOffset, shieldY-piHoleOffset,-1]) cylinder(h=bottomThick+2, d=2.5);
+    translate([piHoleOffset, piHoleOffset,-1]) cylinder(h=bottomThick+2, d=3);
+    translate([piX-piHoleOffset, piHoleOffset,-1]) cylinder(h=bottomThick+2, d=3);
+    translate([piHoleOffset, shieldY-piHoleOffset,-1]) cylinder(h=bottomThick+2, d=3);
+    translate([piX-piHoleOffset, shieldY-piHoleOffset,-1]) cylinder(h=bottomThick+2, d=3);
 }
 
 module bottom_mount(offsetX,offsetY,Thick) {
     difference() {
         translate([offsetX, offsetY, Thick]) cylinder(h=bottomMountHeight, d=bottomMountDia);
-        translate([offsetX, offsetY, Thick-1]) cylinder(h=bottomMountHeight+2, d=2.5);
+        translate([offsetX, offsetY, Thick-1]) cylinder(h=bottomMountHeight+2, d=3);
     }
 }
 
