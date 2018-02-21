@@ -34,8 +34,8 @@ module display() {
             translate([displayX-displayHoleX, displayY-displayHoleY, -1]) display_hole();
         }
     color("lightblue") { // SCREEN
-        translate([1,screenY, displayThick])
-            cube([displayX-2, screenLength, screenThick]);
+        translate([0.5,screenY, displayThick])
+            cube([displayX-1, screenLength, screenThick]);
     }
     color("black") { // SPI
         translate([displaySPIX, displaySPIY, -displaySPIHeight])
@@ -43,4 +43,4 @@ module display() {
     }
 }
 
-//tft();
+//display();
