@@ -76,9 +76,9 @@ displayHoleOffsetYY=(piY-displayY)/2+displayY-displayHoleY;
 
 module case_top() {
     difference() {
-        translate([-0.5,-0.5,0]) rounded_rect(topX+1, topY+1, topHeight, topThick);// BASE
+        translate([-0.5,-0.5,-1]) rounded_rect(topX+1, topY+1, topHeight+1, topThick);// BASE
         translate([-0.5,-0.5,-topThick]) cube([topX+1, topY+1, topHeight]);// FILLER
-        translate([0,0,-microHeight/2-piThick]) rpi(edgeCut=3);// RPI
+        translate([0,0,-microHeight/2-piThick-1]) rpi(edgeCut=3);// RPI
         translate([0,0,spacerHeight-microHeight/2]) shield(shieldEdgeCut=5);// SHILED
         translate([(piX-displayX)/2+0.5, (piY-displayY)/2+5.82, 0])// SCREEN
             cube([displayX-1, screenLength, topHeight+1]);
@@ -89,10 +89,10 @@ module case_top() {
         translate([displayHoleOffsetXX,displayHoleOffsetYY,topHeight-1.5]) top_sink();
         translate([-topThick/2-0.5,shieldGPIOY,0])// IDC LIP
             cube([topThick/2,shieldGPIOLength,topHeight-topThick]);
-        translate([usb2X-1, topY+bottomThick/2+0.5, -microHeight/2-0.5]) usb_lip();// USB LIP
-        translate([usb1X-1, topY+bottomThick/2+0.5, -microHeight/2-0.5]) usb_lip();
-        translate([bottomX+bottomThick/2+0.5, microY-1-0.5, -microHeight/2-0.5]) micro_lip();// MICRO LIP
-        translate([-0.5,-0.5,0]) lip_lock_top();//LIP LOCK
+        translate([usb2X-1, topY+bottomThick/2+0.5, -microHeight/2-0.5-1]) usb_lip();// USB LIP
+        translate([usb1X-1, topY+bottomThick/2+0.5, -microHeight/2-0.5-1]) usb_lip();
+        translate([bottomX+bottomThick/2+0.5, microY-1-0.5, -microHeight/2-0.5-1]) micro_lip();// MICRO LIP
+        translate([-0.5,-0.5,-1]) lip_lock_top();//LIP LOCK
         translate([topX-10,topY-7,spacerHeight-microHeight/2+shieldThick+4-1.5]) button();// PWR/RST 4 = dia/2        
     }
     //TOP MOUNT
@@ -136,6 +136,6 @@ if (drawAll) {
     translate([(piX-displayX)/2, (piY-displayY)/2,
         bottomHeight+topHeight-topThick-topDisplayMountHeight-displayThick])
         display();
-    translate([0,0,bottomHeight]) case_top();
+    translate([0,0,bottomHeight+1]) case_top();
 }
 
