@@ -16,6 +16,6 @@ TFT_22_ILI9225.zip - ILI9225 TFT HW SPI driver by Johan Cronje Nkawu (c) 2017.
 
 CONTACT
 
-Author: richard_bruna@nm.cz<br>
+Author: richard.bruna@protonmail.com<br>
 Source: https://github.com/KyomaHooin/Wireshield
 
