@@ -1,7 +1,7 @@
 
 DESCRIPTION
 
-Server Rack Enviroment Monitoring.
+Server Rack Waste Heat Monitoring.
 
 FILE
 <pre>
