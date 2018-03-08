@@ -12,13 +12,6 @@ raspi-config > Interfacing Options > Serial > logging [no] > device [yes]
 
 systemctl disable serial-getty@ttyAMA0.service
 
-/etc/fstab:
-
-#tmpfs   /root/avr/ramdisk   tmpfs   nodev,nosuid,size=32M   0       0
-#tmpfs   /tmp            tmpfs   defaults,noatime,nosuid,size=100m       0       0
-#tmpfs   /var/log        tmpfs   defaults,noatime,nosuid,mode=0755,size=100m     0       0
-#tmpfs   /var/run        tmpfs   defaults,noatime,nosuid,mode=0755,size=2m       0       0
-
 /etc/rc.local:
 
 /root/avr/rpi-avr.py &
@@ -60,7 +53,7 @@ FILE
 <pre>
      frontend/ - HTML frontend.
 
-    rpi-avr.py - AVR  data processing.
+    rpi-avr.py - AVR data processing.
      rstpwr.py - Reset/halt detection.
    database.py - Create RRD database.
       firewall - Firewall script.
