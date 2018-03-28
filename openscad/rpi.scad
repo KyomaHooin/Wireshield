@@ -38,7 +38,7 @@ hdmiY=32-(hdmiLength/2);// RPi.png
 
 microWidth=5.59;
 microLength=8.04+1;
-microHeight=4.22-piThick+1;
+microHeight=4.22-piThick;
 microOverHang=1.9;
 microY=10.6-(microLength/2);// RPi.png
 
@@ -84,7 +84,7 @@ module rpi(edgeCut=0) {
             cube([avLength, avWidth, avHeight]);
         // microUSB
         translate([piX-microWidth+microOverHang+edgeCut, microY-0.5, piThick-0.5])
-            cube([microWidth, microLength, microHeight]);
+            cube([microWidth, microLength, microHeight+1]);
         // microSD
         translate([cardX, -cardOverHang-edgeCut, -cardHeight])
             cube([cardWidth, cardLength,cardHeight]);

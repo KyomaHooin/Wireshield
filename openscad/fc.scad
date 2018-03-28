@@ -76,7 +76,7 @@ module usb_lip() {
 module micro_lip() {
     translate([bottomThick/2, 1, 0])
         rotate([0,270,0])
-            rounded_rect(microHeight, microLength, bottomThick/2, 1);
+            rounded_rect(microHeight+1, microLength, bottomThick/2, 1);
 }
 
 module shield_lip() {
