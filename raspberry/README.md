@@ -61,6 +61,5 @@ rpi_screen.png - Plot output.
 </pre>
 CONTACT
 
-Author: richard.bruna@protonmail.com<br>
 Source: https://github.com/KyomaHooin/Wireshield
 

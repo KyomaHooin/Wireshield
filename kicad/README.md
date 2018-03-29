@@ -17,6 +17,5 @@ rpishield.kicad_pcb - PCB layout.
 </pre>
 CONTACT
 
-Author: richard.bruna@protonmail.com<br>
 Source: https://github.com/KyomaHooin/Wireshield
 

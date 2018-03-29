@@ -20,6 +20,5 @@ rpishield_spacer.stl - Spacer STL file.
 </pre>
 CONTACT
 
-Author: richard.bruna@protonmail.com<br>
 Source: https://github.com/KyomaHooin/Wireshield
 
