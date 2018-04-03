@@ -93,12 +93,12 @@ module sd_lip() {
 module lip_lock_bottom() {
     difference() {
         rounded_rect(bottomX+1, bottomY+1, 1, bottomThick);
-        rounded_rect(bottomX+1, bottomY+1, 1, bottomThick/2);
+        rounded_rect(bottomX+1, bottomY+1, 1, bottomThick/2-0.125);
     }
 }
 
 module lip_lock_top() {
-    rounded_rect(bottomX+1, bottomY+1, 1, bottomThick/2+0.01);// bug
+    rounded_rect(bottomX+1, bottomY+1, 1, bottomThick/2+0.125);// bug
 }
 
 module harden() {
