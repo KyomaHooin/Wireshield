@@ -52,7 +52,7 @@ try:
 				if re.match(pattern, data):
 					for (sid,val) in re.findall(sensor, data):
 						temperature = float(re.sub('(\d\d)(\d)','\\1.\\2',val))
-						if temperature > 50: temperature = 'U'
+						if temperature > 50: temperature = 'U'# errorneous sensor
 						elif temperature > MAXTEMP: notify(sid,temperature)
 						payload += ':' + str(temperature)
 					rrdtool.update(DATABASE, payload)
