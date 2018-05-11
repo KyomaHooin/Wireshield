@@ -12,7 +12,7 @@ FILE
            raspberry/ - RPi code.
 wireshield_schema.pdf - Shield schematic.
 </pre>
-CONTACT
+SOURCE
 
-Source: https://github.com/KyomaHooin/Wireshield
+https://github.com/KyomaHooin/Wireshield
 

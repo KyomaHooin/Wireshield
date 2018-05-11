@@ -59,7 +59,7 @@ FILE
       firewall - Firewall script.
 rpi_screen.png - Plot output.
 </pre>
-CONTACT
+SOURCE
 
-Source: https://github.com/KyomaHooin/Wireshield
+https://github.com/KyomaHooin/Wireshield
 

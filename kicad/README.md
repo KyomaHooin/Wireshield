@@ -15,7 +15,7 @@ rpishield.kicad_pcb - PCB layout.
       rpishield.net - Trace list.
   shield_screen.png - Board screenshot.
 </pre>
-CONTACT
+SOURCE
 
-Source: https://github.com/KyomaHooin/Wireshield
+https://github.com/KyomaHooin/Wireshield
 

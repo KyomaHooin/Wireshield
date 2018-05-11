@@ -18,7 +18,7 @@ rpishield_spacer.stl - Spacer STL file.
              fc.scad - Helper functions.
  openscad_screen.png - 3D model screenshot.
 </pre>
-CONTACT
+SOURCE
 
-Source: https://github.com/KyomaHooin/Wireshield
+https://github.com/KyomaHooin/Wireshield
 
