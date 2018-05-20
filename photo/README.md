@@ -19,4 +19,6 @@ IMG_20180219_162749.jpg - Front view of Wireshield (with wrong screwed screw)
 IMG_20180219_162757.jpg - Side view of Wireshield (without button)
 IMG_20180220_111011.jpg - Side view of Wireshield 
 IMG_20180220_111004.jpg - Front view of Wireshield
+IMG_20180412_110601.jpg - Final box connector side.
+IMG_20180412_110608.jpg - Final box.
 </pre>
