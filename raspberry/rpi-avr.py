@@ -22,7 +22,7 @@ UPDATE=True
 
 def notify(s,t):
 	try:
-		text = "\nRack Sensor: " + s + "\nTemperature: " + t + "\n"
+		text = "\nRack Sensor: " + s + "\nTemperature: " + str(t) + "\n"
 		msg = MIMEText(text)
 		msg['Subject'] = "Rack Sensor Alarm"
 		msg['From'] = 'root@localhost'
