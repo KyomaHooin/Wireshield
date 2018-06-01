@@ -25,7 +25,7 @@ def notify(s,t):
 		text = "\nRack Sensor: " + s + "\nTemperature: " + str(t) + "\n"
 		msg = MIMEText(text)
 		msg['Subject'] = "Rack Sensor Alarm"
-		msg['From'] = 'root@localhost'
+		msg['From'] = 'Wireshield <root@localhost>'
 		msg['To'] = ADMIN
 		s = smtplib.SMTP('foo.foobar.foo')
 		s.sendmail('root@localhost', ADMIN, msg.as_string())
