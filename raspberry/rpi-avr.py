@@ -11,6 +11,8 @@ import rrdtool,smtplib,serial,email,time,sys,re
 from email.mime.text import MIMEText
 
 ADMIN='foo@foobar.foo'
+ROOT='root@local-domain.tld'
+RELAY='relay.mx.tld'
 MAXTEMP=30
 
 DATABASE='/root/avr/rpishield.rrd'
@@ -25,10 +27,10 @@ def notify(s,t):
 		text = "\nRack Sensor: " + s + "\nTemperature: " + str(t) + "\n"
 		msg = MIMEText(text)
 		msg['Subject'] = "Rack Sensor Alarm"
-		msg['From'] = 'Wireshield <root@localhost>'
+		msg['From'] = 'Wireshield <' + ROOT + '>'
 		msg['To'] = ADMIN
-		s = smtplib.SMTP('foo.foobar.foo')
-		s.sendmail('root@localhost', ADMIN, msg.as_string())
+		s = smtplib.SMTP(RELAY)
+		s.sendmail(ROOT, ADMIN, msg.as_string())
 		s.quit()
 	except: pass
 
