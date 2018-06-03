@@ -32,7 +32,8 @@ def notify(s,t):
 		s = smtplib.SMTP(RELAY)
 		s.sendmail(ROOT, ADMIN, msg.as_string())
 		s.quit()
-	except: pass
+	except:
+		log.write('Notification error.\n')
 
 #----------------
 
